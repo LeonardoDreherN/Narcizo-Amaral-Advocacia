@@ -222,6 +222,13 @@ function splitWords(el: HTMLElement, mask = true): HTMLElement[] {
 /** Atraso de entrada: o que já está na tela espera a cortina ou a abertura. */
 const delayNow = () => (performance.now() - setupAt < 400 ? entryDelay : 0);
 
+/**
+ * Retratos dos sócios. As fotos têm pouquíssima folga acima do cabelo, então
+ * qualquer ampliação ou deslocamento para cima corta a cabeça.
+ */
+const RETRATOS = '.partner, .pp-img, .prof-img, .coord, .coord-card';
+const ehRetrato = (img: Element) => !!img.closest(RETRATOS);
+
 /* ------------------------------------------------------------------ */
 /* Animações de rolagem                                                */
 /* ------------------------------------------------------------------ */
@@ -259,8 +266,14 @@ function setup() {
   all('[data-reveal]').forEach((el) => {
     const img = el.querySelector('img');
     const base = el.hasAttribute('data-parallax') ? 1.12 : 1;
+    // Em retrato, a escala pertence ao parallax ancorado no topo. Se a
+    // revelação também animasse escala, as duas brigariam pela mesma
+    // propriedade e a âncora se perderia.
+    const animaEscala = !!img && !ehRetrato(img);
+
     gsap.set(el, { clipPath: 'inset(100% 0% 0% 0%)' });
-    if (img) gsap.set(img, { scale: base + 0.28 });
+    if (animaEscala) gsap.set(img, { scale: base + 0.28 });
+
     ScrollTrigger.create({
       trigger: el,
       start: 'top 88%',
@@ -268,7 +281,7 @@ function setup() {
       onEnter: () => {
         const d = delayNow();
         gsap.to(el, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'expo.inOut', delay: d });
-        if (img) gsap.to(img, { scale: base, duration: 2, ease: EASE, delay: d });
+        if (animaEscala) gsap.to(img, { scale: base, duration: 2, ease: EASE, delay: d });
       },
     });
   });
@@ -277,21 +290,26 @@ function setup() {
   all('[data-parallax]').forEach((el) => {
     const img = el.querySelector('img');
     if (!img) return;
+    const rolagem = { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true };
+
+    if (ehRetrato(img)) {
+      // Retrato: o movimento vem da escala assentando, nunca de translação.
+      gsap.set(img, { transformOrigin: '50% 0%' });
+      gsap.fromTo(img, { scale: 1.1 }, { scale: 1, ease: 'none', scrollTrigger: rolagem });
+      return;
+    }
+
     if (!el.hasAttribute('data-reveal')) gsap.set(img, { scale: 1.12 });
-    gsap.fromTo(
-      img,
-      { yPercent: -5 },
-      { yPercent: 5, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } },
-    );
+    gsap.fromTo(img, { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: rolagem });
   });
 
-  // Retratos dos sócios.
+  // Retratos dos sócios na home: mesma lógica, ancorada no topo.
   all('.partner img').forEach((img) => {
-    gsap.set(img, { scale: 1.1 });
+    gsap.set(img, { transformOrigin: '50% 0%' });
     gsap.fromTo(
       img,
-      { yPercent: -4 },
-      { yPercent: 4, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } },
+      { scale: 1.1 },
+      { scale: 1, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } },
     );
   });
 
@@ -330,7 +348,19 @@ function setup() {
   all('.phero-bg img, .prof-img img').forEach((img) => {
     const sec = img.closest('section');
     if (!sec) return;
-    gsap.to(img, { yPercent: 10, ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom top', scrub: true } });
+    const rolagem = { trigger: sec, start: 'top top', end: 'bottom top', scrub: true };
+
+    if (ehRetrato(img)) {
+      // Retrato do sócio: escala ancorada no topo, sem deslocamento.
+      gsap.set(img, { transformOrigin: '50% 0%' });
+      gsap.fromTo(img, { scale: 1.12 }, { scale: 1, ease: 'none', scrollTrigger: rolagem });
+      return;
+    }
+
+    // Demais topos: a folga de 6% em cima e embaixo vem da escala de base,
+    // e o deslocamento fica dentro dela para não descobrir a moldura.
+    gsap.set(img, { scale: 1.12 });
+    gsap.fromTo(img, { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: rolagem });
   });
 
   // Topo da home: foto e texto se afastam ao rolar.
@@ -358,8 +388,11 @@ function intro(first: boolean) {
       .from('.hero-sub, .hero-actions, .hero-foot', { y: 24, opacity: 0, duration: 1.1, ease: EASE, stagger: 0.12 }, 0.65);
   }
 
-  const bg = all('.phero-bg img, .prof-img img');
-  if (bg.length) tl.fromTo(bg, { scale: 1.14 }, { scale: 1, duration: 2.2, ease: EASE }, 0);
+  // Só os topos que não são retrato recebem a ampliação de abertura. No
+  // retrato do sócio a escala pertence ao parallax ancorado no topo, e dois
+  // donos para a mesma propriedade fariam o enquadramento saltar.
+  const bg = all('.phero-bg img');
+  if (bg.length) tl.fromTo(bg, { scale: 1.26 }, { scale: 1.12, duration: 2.2, ease: EASE }, 0);
 
   if (first) tl.from('.hdr-in > *', { y: -14, opacity: 0, duration: 0.9, ease: EASE, stagger: 0.06 }, 0.4);
 
