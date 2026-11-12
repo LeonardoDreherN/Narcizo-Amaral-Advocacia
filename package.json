@@ -12,7 +12,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check && tsc --noEmit -p functions/tsconfig.json"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

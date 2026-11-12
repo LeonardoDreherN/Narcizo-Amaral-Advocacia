@@ -30,7 +30,8 @@ const LIMITES = {
   mensagem: 2000,
 } as const;
 
-const texto = (v: FormDataEntryValue | null, max: number): string =>
+/** O runtime de Workers devolve File ou string; só interessa string. */
+const texto = (v: File | string | null, max: number): string =>
   typeof v === 'string' ? v.trim().slice(0, max) : '';
 
 const escapeHtml = (s: string): string =>

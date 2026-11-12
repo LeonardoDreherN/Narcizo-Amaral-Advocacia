@@ -1,0 +1,15 @@
+{
+  "comment": "As Pages Functions rodam no runtime da Cloudflare, não no do Astro, por isso têm tipos próprios e ficam fora do tsconfig da raiz.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["@cloudflare/workers-types"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true
+  },
+  "include": ["**/*.ts"]
+}
