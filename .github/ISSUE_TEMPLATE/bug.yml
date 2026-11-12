@@ -1,0 +1,28 @@
+name: Problema
+description: Algo que está quebrado ou se comporta de forma inesperada
+labels: ["bug"]
+body:
+  - type: textarea
+    id: descricao
+    attributes:
+      label: O que acontece
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: O que deveria acontecer
+    validations:
+      required: true
+  - type: textarea
+    id: reproducao
+    attributes:
+      label: Como reproduzir
+      placeholder: |
+        1. Abrir a página /...
+        2. ...
+  - type: input
+    id: ambiente
+    attributes:
+      label: Onde aconteceu
+      placeholder: "Chrome no Windows / Safari no iPhone / npm run dev"
