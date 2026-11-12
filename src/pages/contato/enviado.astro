@@ -1,0 +1,38 @@
+---
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/Icon.astro';
+import PageHero from '~/components/PageHero.astro';
+import { CONTACT } from '~/data/site';
+---
+
+<Base
+  title="Mensagem enviada"
+  description="Recebemos a sua mensagem. Um dos sócios retornará o contato."
+  noindex
+>
+  <PageHero
+    title="Recebemos a sua mensagem"
+    lead="Um dos sócios vai retornar pelo telefone ou e-mail que você informou."
+    trail={[{ label: 'Contato', href: '/contato' }, { label: 'Mensagem enviada' }]}
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="prose dark" style="max-width:60ch">
+        <p>
+          O retorno acontece em horário comercial, com hora marcada até as 19h. As informações
+          que você enviou estão protegidas pelo sigilo profissional previsto no Estatuto da
+          Advocacia e no Código de Ética e Disciplina da OAB.
+        </p>
+        <p>Se for urgente, fale agora pelo telefone e WhatsApp {CONTACT.phone}.</p>
+      </div>
+
+      <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center">
+        <a class="btn btn-dark" href={CONTACT.whatsapp} target="_blank" rel="noopener">
+          Falar pelo WhatsApp <Icon name="arrow" />
+        </a>
+        <a class="link" href="/">Voltar para o início <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+</Base>

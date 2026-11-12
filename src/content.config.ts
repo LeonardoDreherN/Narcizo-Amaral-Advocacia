@@ -54,7 +54,10 @@ const socios = defineCollection({
       oab: z.string(),
       nucleo: NUCLEO,
       role: z.string(),
+      /** Linha de apresentação, usada no topo do perfil. */
       lead: z.string(),
+      /** Parágrafo de resumo, usado na listagem de sócios. */
+      summary: z.string(),
       photo: image(),
       /** Temas em que também atua, fora das áreas do núcleo. */
       also: z.array(z.string()),

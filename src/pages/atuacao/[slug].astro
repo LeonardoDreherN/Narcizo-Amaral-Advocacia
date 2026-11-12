@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/Icon.astro';
+import PageHero from '~/components/PageHero.astro';
+import PubCard from '~/components/PubCard.astro';
+import CtaBand from '~/components/CtaBand.astro';
+import { NUCLEOS } from '~/data/site';
+import { breadcrumbSchema } from '~/lib/schema';
+
+export const getStaticPaths = (async () => {
+  const areas = await getCollection('areas');
+  return areas.map((area) => ({
+    params: { slug: area.id },
+    props: { area },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  area: CollectionEntry<'areas'>;
+}
+const { area } = Astro.props;
+const { title, nucleo, text, extra, items, photo, grayscale } = area.data;
+
+const { Content } = await render(area);
+
+const todas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
+const irmas = todas.filter((a) => a.data.nucleo === nucleo && a.id !== area.id);
+
+const socio = (await getCollection('socios')).find((s) => s.data.nucleo === nucleo)!;
+
+const pubs = (await getCollection('publicacoes', ({ data }) => !data.draft))
+  .filter((p) => p.data.area.id === area.id)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const trail = [{ label: 'Atuação', href: '/atuacao' }, { label: title }];
+const siteUrl = Astro.site!.origin;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: title,
+  description: text,
+  serviceType: title,
+  provider: { '@type': 'LegalService', '@id': `${siteUrl}/#escritorio` },
+  areaServed: { '@type': 'Country', name: 'Brasil' },
+};
+---
+
+<Base
+  title={title}
+  description={text}
+  schema={[schema, breadcrumbSchema(siteUrl, [{ label: 'Início', href: '/' }, ...trail])]}
+>
+  <PageHero
+    title={title}
+    lead={text}
+    trail={[{ label: 'Atuação', href: '/atuacao' }, { label: NUCLEOS[nucleo].title }]}
+    photo={photo}
+    emphasis
+    grayscale={grayscale}
+  />
+
+  <section class="sec">
+    <div class="wrap area-body">
+      <div>
+        <h2 data-title>Em que podemos ajudar</h2>
+        <ul class="help">
+          {items.map((t) => <li data-stagger-item>{t}</li>)}
+        </ul>
+
+        {extra && <p class="note" style="margin-top:36px" data-up>{extra}</p>}
+        {
+          nucleo === 'penal' && (
+            <p class="note" style="margin-top:24px" data-up>
+              Atuação em todas as fases: inquéritos policiais, audiências de custódia, ações
+              penais e recursos.
+            </p>
+          )
+        }
+
+        <div style="margin-top:72px">
+          <h2 data-title style="font-size:clamp(1.7rem,1.3rem + 1.2vw,2.4rem)">
+            Como é o atendimento
+          </h2>
+          <div class="prose" style="margin-top:22px" data-up>
+            <Content />
+          </div>
+        </div>
+      </div>
+
+      <aside class="aside" data-up>
+        <div class="coord-card">
+          <div class="who">
+            <Image
+              src={socio.data.photo}
+              alt={`Retrato de ${socio.data.treat}`}
+              width={168}
+              height={208}
+              loading="lazy"
+            />
+            <div>
+              <h4>{socio.data.treat}</h4>
+              <small>{socio.data.oab} · {socio.data.role}</small>
+            </div>
+          </div>
+          <a class="btn btn-dark" href={`/contato/${area.id}`}>
+            Agendar reunião <Icon name="arrow" />
+          </a>
+          <a class="link" href={`/socios/${socio.id}`}>Ver perfil <Icon name="arrow" /></a>
+        </div>
+
+        <div>
+          <h4>Outras áreas do núcleo</h4>
+          <ul>
+            {
+              irmas.map((s) => (
+                <li>
+                  <a href={`/atuacao/${s.id}`}>{s.data.title} <Icon name="arrow" /></a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {
+    pubs.length > 0 && (
+      <section class="sec" style="padding-top:0">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2 data-title>Leia sobre o tema</h2>
+            <a class="link" href="/publicacoes" data-up>
+              Todas as publicações <Icon name="arrow" />
+            </a>
+          </div>
+          <div class="pubs">
+            {pubs.map((p) => <PubCard pub={p} />)}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <CtaBand
+    title={`Converse com o ${socio.data.first}`}
+    text={`O sócio que coordena o ${NUCLEOS[nucleo].title} recebe você pessoalmente, no escritório ou por videoconferência.`}
+  />
+</Base>

@@ -1,0 +1,140 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import type { ImageMetadata } from 'astro';
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/Icon.astro';
+import PageHero from '~/components/PageHero.astro';
+import PlaceBlock from '~/components/PlaceBlock.astro';
+import CtaBand from '~/components/CtaBand.astro';
+import { NUCLEOS, type NucleoId } from '~/data/site';
+import { breadcrumbSchema } from '~/lib/schema';
+import escritorio from '~/assets/img/escritorio.jpg';
+import detalhe from '~/assets/img/detalhe.jpg';
+import familia from '~/assets/img/familia.jpg';
+import juri from '~/assets/img/juri.jpg';
+
+const socios = await getCollection('socios');
+const socioDo = (n: NucleoId) => socios.find((s) => s.data.nucleo === n)!;
+const capa: Record<NucleoId, ImageMetadata> = { civil: familia, penal: juri };
+
+const trail = [{ label: 'Escritório' }];
+const siteUrl = Astro.site!.origin;
+---
+
+<Base
+  title="O escritório"
+  description="Um escritório estruturado para o atendimento próximo e exclusivo. Cada cliente é recebido diretamente pelos sócios, em Palhoça ou por videoconferência."
+  schema={[breadcrumbSchema(siteUrl, [{ label: 'Início', href: '/' }, ...trail])]}
+>
+  <PageHero
+    title="Um escritório estruturado para o atendimento próximo e exclusivo"
+    trail={trail}
+    photo={escritorio}
+    emphasis
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="kicker" data-up>Sobre nós</p>
+      <p class="manifesto" data-scrub style="margin-top:28px">
+        Aqui, cada cliente é recebido diretamente pelos sócios, que acompanham pessoalmente o
+        caso do primeiro contato até a solução.
+      </p>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap split">
+      <div class="px" data-reveal data-parallax style="aspect-ratio:4/5;max-height:78vh">
+        <Image
+          src={escritorio}
+          alt="Sala de reuniões do escritório em Palhoça"
+          width={760}
+          height={950}
+          loading="lazy"
+        />
+      </div>
+
+      <div>
+        <h2 data-title style="font-size:clamp(2rem,1.3rem + 2.2vw,3.4rem)">
+          Nenhuma questão jurídica é igual a outra
+        </h2>
+        <div class="prose" style="margin-top:32px" data-up>
+          <p>Somos um escritório estruturado para oferecer um atendimento próximo e exclusivo.</p>
+          <p>
+            Acreditamos que nenhuma questão jurídica é igual a outra. Por isso, cada estratégia é
+            construída sob medida, a partir da história e dos objetivos de quem nos procura, com
+            sigilo, clareza e o cuidado de quem conhece cada cliente pelo nome.
+          </p>
+        </div>
+        <div class="px" data-reveal style="aspect-ratio:1;max-width:260px;margin-top:48px">
+          <Image
+            src={detalhe}
+            alt="Detalhe do escritório: nicho de madeira com busto"
+            width={520}
+            height={520}
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-title>Como trabalhamos</h2></div>
+      <div class="rows">
+        <div class="row" data-stagger-item>
+          <h3>Do primeiro contato até a solução</h3>
+          <p>
+            O cliente é recebido diretamente pelos sócios, que acompanham pessoalmente cada
+            etapa do caso.
+          </p>
+        </div>
+        <div class="row" data-stagger-item>
+          <h3>Estratégia sob medida</h3>
+          <p>
+            Cada estratégia é construída a partir da história e dos objetivos de quem nos
+            procura, com sigilo e clareza.
+          </p>
+        </div>
+        <div class="row" data-stagger-item>
+          <h3>Presencial ou on-line</h3>
+          <p>
+            Reuniões no escritório em Palhoça ou por videoconferência, com acompanhamento de
+            processos eletrônicos em tribunais de todo o país.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 data-title>Dois núcleos de atuação</h2>
+        <p data-up>Cada núcleo é coordenado por um dos sócios.</p>
+      </div>
+
+      <div class="nuc-duo">
+        {
+          (['civil', 'penal'] as const).map((n) => {
+            const socio = socioDo(n);
+            return (
+              <a class:list={['nuc-tile', n]} href={`/atuacao#nucleo-${n}`} data-stagger-item>
+                <Image src={capa[n]} alt="" width={900} height={700} loading="lazy" />
+                <h3>{NUCLEOS[n].title}</h3>
+                <p>Coordenação: {socio.data.treat}. {NUCLEOS[n].intro}</p>
+                <span class="go">Ver áreas <Icon name="arrow" /></span>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <PlaceBlock />
+  <CtaBand />
+</Base>

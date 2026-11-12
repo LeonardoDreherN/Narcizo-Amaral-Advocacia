@@ -1,0 +1,54 @@
+---
+import Base from '~/layouts/Base.astro';
+import PageHero from '~/components/PageHero.astro';
+import { ADDRESS, CONTACT } from '~/data/site';
+---
+
+<Base
+  title="Política de privacidade"
+  description="Como o escritório trata os dados enviados por este site, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018)."
+>
+  <PageHero
+    title="Política de privacidade"
+    lead="Como o escritório trata os dados enviados por este site, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018)."
+    trail={[{ label: 'Privacidade' }]}
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="article legal">
+        <h2 style="margin-top:0">Quais dados coletamos</h2>
+        <p>
+          Apenas os dados que você informa no formulário de contato: nome, e-mail, telefone,
+          área de interesse e a descrição da situação.
+        </p>
+
+        <h2>Para que usamos</h2>
+        <p>
+          Exclusivamente para retornar o seu contato e agendar a reunião solicitada. Os dados
+          não são usados para publicidade nem compartilhados com terceiros para esse fim.
+        </p>
+
+        <h2>Sigilo profissional</h2>
+        <p>
+          As informações relatadas ao escritório estão protegidas pelo sigilo profissional
+          previsto no Estatuto da Advocacia e no Código de Ética e Disciplina da OAB.
+        </p>
+
+        <h2>Seus direitos</h2>
+        <ul>
+          <li>Confirmar se tratamos seus dados e acessá-los</li>
+          <li>Corrigir dados incompletos ou desatualizados</li>
+          <li>Pedir a eliminação dos dados tratados com o seu consentimento</li>
+          <li>Revogar o consentimento a qualquer momento</li>
+        </ul>
+
+        <h2>Contato</h2>
+        <p>
+          Para exercer esses direitos, fale com o escritório pelo telefone {CONTACT.phone} ou
+          presencialmente na sede, em {ADDRESS.full}.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

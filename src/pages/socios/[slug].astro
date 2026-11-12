@@ -1,0 +1,144 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/Icon.astro';
+import Crumbs from '~/components/Crumbs.astro';
+import CtaBand from '~/components/CtaBand.astro';
+import { NUCLEOS } from '~/data/site';
+import { breadcrumbSchema } from '~/lib/schema';
+
+export const getStaticPaths = (async () => {
+  const socios = await getCollection('socios');
+  return socios.map((socio) => ({
+    params: { slug: socio.id },
+    props: { socio },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  socio: CollectionEntry<'socios'>;
+}
+const { socio } = Astro.props;
+const { name, treat, first, oab, nucleo, role, lead, photo, also, background } = socio.data;
+
+const { Content } = await render(socio);
+
+const areas = (await getCollection('areas'))
+  .filter((a) => a.data.nucleo === nucleo)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const outro = (await getCollection('socios')).find((s) => s.id !== socio.id)!;
+
+const trail = [{ label: 'Sócios', href: '/socios' }, { label: name }];
+const siteUrl = Astro.site!.origin;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name,
+  jobTitle: role,
+  description: lead,
+  worksFor: { '@type': 'LegalService', '@id': `${siteUrl}/#escritorio` },
+  url: `${siteUrl}/socios/${socio.id}`,
+};
+---
+
+<Base
+  title={treat}
+  description={lead}
+  schema={[schema, breadcrumbSchema(siteUrl, [{ label: 'Início', href: '/' }, ...trail])]}
+>
+  <section class="prof-hero on-dark">
+    <div class="wrap prof-grid">
+      <div class="prof-txt">
+        <Crumbs trail={[{ label: 'Sócios', href: '/socios' }, { label: name }]} />
+        <h1>{treat}</h1>
+        <div class="meta">
+          <b>Sócio</b>
+          <span>{oab}</span>
+          <span>{role}</span>
+        </div>
+        <p class="lead">{lead}</p>
+      </div>
+
+      <div class="prof-img">
+        <Image
+          src={photo}
+          alt={`Retrato de ${treat}`}
+          width={900}
+          height={1100}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap prof-body">
+      <div class="prose dark">
+        <Content />
+        <div style="margin-top:48px" data-up>
+          <a class="btn btn-dark" href="/contato">
+            Agendar reunião com {first} <Icon name="arrow" />
+          </a>
+        </div>
+      </div>
+
+      <aside class="aside" data-up>
+        <div>
+          <h4>{NUCLEOS[nucleo].title}</h4>
+          <ul>
+            {
+              areas.map((a) => (
+                <li>
+                  <a href={`/atuacao/${a.id}`}>{a.data.title} <Icon name="arrow" /></a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div>
+          <h4>Também atua em</h4>
+          <div class="tags">
+            {also.map((t) => <span class="tag">{t}</span>)}
+          </div>
+        </div>
+
+        <div>
+          <h4>Formação e trajetória</h4>
+          <ul>
+            {background.map((t) => <li><span>{t}</span></li>)}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-title>Conheça também</h2></div>
+      <div class="partners" style="grid-template-columns:minmax(0,1fr);max-width:760px">
+        <a class="partner" href={`/socios/${outro.id}`} style="aspect-ratio:16/11">
+          <Image
+            src={outro.data.photo}
+            alt={`Retrato de ${outro.data.treat}`}
+            width={900}
+            height={620}
+            loading="lazy"
+          />
+          <div class="partner-cap">
+            <h3>{outro.data.name}</h3>
+            <p>Sócio · {outro.data.oab} · {NUCLEOS[outro.data.nucleo].title}</p>
+            <span class="more">Ver perfil <Icon name="arrow" /></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

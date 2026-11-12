@@ -1,0 +1,86 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Base from '~/layouts/Base.astro';
+import PageHero from '~/components/PageHero.astro';
+import PubCard from '~/components/PubCard.astro';
+import CtaBand from '~/components/CtaBand.astro';
+import { breadcrumbSchema } from '~/lib/schema';
+
+/**
+ * Uma página estática por área com publicações. Substitui o filtro em
+ * JavaScript do protótipo: cada recorte ganha URL própria e indexável.
+ */
+export const getStaticPaths = (async () => {
+  const pubs = await getCollection('publicacoes', ({ data }) => !data.draft);
+  const areas = await getCollection('areas');
+
+  return areas
+    .filter((a) => pubs.some((p) => p.data.area.id === a.id))
+    .map((area) => ({
+      params: { area: area.id },
+      props: {
+        area,
+        pubs: pubs
+          .filter((p) => p.data.area.id === area.id)
+          .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+      },
+    }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  area: CollectionEntry<'areas'>;
+  pubs: CollectionEntry<'publicacoes'>[];
+}
+const { area, pubs } = Astro.props;
+
+const todasAreas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
+const todasPubs = await getCollection('publicacoes', ({ data }) => !data.draft);
+const comPubs = todasAreas.filter((a) => todasPubs.some((p) => p.data.area.id === a.id));
+
+const trail = [
+  { label: 'Publicações', href: '/publicacoes' },
+  { label: area.data.title },
+];
+const siteUrl = Astro.site!.origin;
+---
+
+<Base
+  title={`Publicações sobre ${area.data.title}`}
+  description={`Textos informativos sobre ${area.data.title.toLowerCase()}: ${area.data.short}`}
+  schema={[breadcrumbSchema(siteUrl, [{ label: 'Início', href: '/' }, ...trail])]}
+>
+  <PageHero
+    title={`Publicações sobre ${area.data.title}`}
+    lead={area.data.short}
+    trail={trail}
+    photo={area.data.photo}
+    emphasis
+    grayscale={area.data.grayscale}
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <nav class="chips" aria-label="Filtrar por área">
+        <a class="chip" href="/publicacoes">Todas</a>
+        {
+          comPubs.map((a) => (
+            <a
+              class="chip"
+              href={`/publicacoes/area/${a.id}`}
+              aria-current={a.id === area.id ? 'page' : undefined}
+            >
+              {a.data.title}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="pubs">
+        {pubs.map((p) => <PubCard pub={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

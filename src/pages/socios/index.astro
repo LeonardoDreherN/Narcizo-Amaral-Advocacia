@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/Icon.astro';
+import PageHero from '~/components/PageHero.astro';
+import CtaBand from '~/components/CtaBand.astro';
+import { NUCLEOS } from '~/data/site';
+import { breadcrumbSchema } from '~/lib/schema';
+
+const socios = (await getCollection('socios')).sort((a, b) => a.data.order - b.data.order);
+const areas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
+
+const trail = [{ label: 'Sócios' }];
+const siteUrl = Astro.site!.origin;
+---
+
+<Base
+  title="Sócios"
+  description="Eduardo Dreher Narcizo e Wagner Renan Amaral de Souza. Cada cliente é recebido diretamente pelos sócios, do primeiro contato até a solução."
+  schema={[breadcrumbSchema(siteUrl, [{ label: 'Início', href: '/' }, ...trail])]}
+>
+  <PageHero
+    title="Os sócios"
+    lead="Cada cliente é recebido diretamente pelos sócios, que acompanham pessoalmente o caso do primeiro contato até a solução."
+    trail={trail}
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      {
+        socios.map((s, i) => {
+          const doNucleo = areas.filter((a) => a.data.nucleo === s.data.nucleo);
+          return (
+            <article class:list={['pp', i % 2 === 1 && 'rev']}>
+              <a class="pp-img px" href={`/socios/${s.id}`} data-reveal data-parallax>
+                <Image
+                  src={s.data.photo}
+                  alt={`Retrato de ${s.data.treat}`}
+                  width={800}
+                  height={1000}
+                  loading="lazy"
+                />
+              </a>
+
+              <div>
+                <p class="kicker" data-up>{NUCLEOS[s.data.nucleo].title}</p>
+                <h2 data-title style="margin-top:18px">{s.data.treat}</h2>
+
+                <div class="meta" data-up>
+                  <b>Sócio</b>
+                  <span>{s.data.oab}</span>
+                  <span>{s.data.role}</span>
+                </div>
+
+                <div class="prose" data-up>
+                  <p>{s.data.summary}</p>
+                </div>
+
+                <div class="tags" data-up>
+                  {doNucleo.map((a) => (
+                    <a class="tag" href={`/atuacao/${a.id}`}>{a.data.title}</a>
+                  ))}
+                </div>
+
+                <a class="link" href={`/socios/${s.id}`} data-up>
+                  Ver perfil completo <Icon name="arrow" />
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

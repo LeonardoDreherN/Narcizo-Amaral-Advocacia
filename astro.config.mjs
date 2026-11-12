@@ -18,8 +18,14 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      i18n: undefined,
-      filter: (page) => !page.includes('/404'),
+      // Fora do sitemap: o 404 e as variações do formulário de contato, que
+      // são atalhos com a área pré-selecionada e já vão com noindex no HTML.
+      filter: (page) => {
+        const { pathname } = new URL(page);
+        if (pathname.startsWith('/404')) return false;
+        if (pathname.startsWith('/contato/')) return false;
+        return true;
+      },
       changefreq: 'monthly',
       lastmod: new Date(),
     }),

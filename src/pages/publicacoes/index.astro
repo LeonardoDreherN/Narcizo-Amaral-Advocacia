@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '~/layouts/Base.astro';
+import PageHero from '~/components/PageHero.astro';
+import PubCard from '~/components/PubCard.astro';
+import CtaBand from '~/components/CtaBand.astro';
+import { breadcrumbSchema } from '~/lib/schema';
+
+const pubs = (await getCollection('publicacoes', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const areas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
+/** Só entram no filtro as áreas que têm pelo menos uma publicação. */
+const comPubs = areas.filter((a) => pubs.some((p) => p.data.area.id === a.id));
+
+const trail = [{ label: 'Publicações' }];
+const siteUrl = Astro.site!.origin;
+---
+
+<Base
+  title="Publicações"
+  description="Textos informativos sobre direitos e procedimentos nas áreas de atuação do escritório."
+  schema={[breadcrumbSchema(siteUrl, [{ label: 'Início', href: '/' }, ...trail])]}
+>
+  <PageHero
+    title="Publicações"
+    lead="Textos informativos sobre direitos e procedimentos nas áreas de atuação do escritório."
+    trail={trail}
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <nav class="chips" aria-label="Filtrar por área">
+        <a class="chip" href="/publicacoes" aria-current="page">Todas</a>
+        {
+          comPubs.map((a) => (
+            <a class="chip" href={`/publicacoes/area/${a.id}`}>{a.data.title}</a>
+          ))
+        }
+      </nav>
+
+      <div class="pubs">
+        {pubs.map((p) => <PubCard pub={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

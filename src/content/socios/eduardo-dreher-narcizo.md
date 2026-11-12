@@ -7,6 +7,10 @@ nucleo: civil
 order: 1
 role: Coordenador do Núcleo de Direito Civil
 lead: Especialista em Direito Público, com trajetória em assessoria jurídica a órgãos públicos. Hoje coordena o Núcleo de Direito Civil do escritório.
+summary: >-
+  Especialista em Direito Público, prestou assessoria jurídica a órgãos públicos ao longo
+  de sua trajetória. Essa experiência lhe deu um conhecimento aprofundado sobre o
+  funcionamento da administração pública e sobre a sua relação com os particulares.
 photo: ../../assets/img/eduardo.jpg
 also:
   - Assessoria empresarial

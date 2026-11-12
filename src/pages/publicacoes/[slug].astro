@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, getEntry, render, type CollectionEntry } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/Icon.astro';
+import Crumbs from '~/components/Crumbs.astro';
+import PubCard from '~/components/PubCard.astro';
+import { NUCLEOS, DISCLAIMER, SITE } from '~/data/site';
+import { dataCurta, dataISO, tempoLeitura } from '~/lib/format';
+import { articleSchema, breadcrumbSchema } from '~/lib/schema';
+
+export const getStaticPaths = (async () => {
+  const pubs = await getCollection('publicacoes', ({ data }) => !data.draft);
+  return pubs.map((pub) => ({
+    params: { slug: pub.id },
+    props: { pub },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  pub: CollectionEntry<'publicacoes'>;
+}
+const { pub } = Astro.props;
+const { title, intro, date, photo } = pub.data;
+
+const { Content } = await render(pub);
+
+const area = (await getEntry(pub.data.area))!;
+
+const outras = (await getCollection('publicacoes', ({ data }) => !data.draft))
+  .filter((p) => p.id !== pub.id)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const leitura = tempoLeitura(pub.body ?? '');
+const trail = [{ label: 'Publicações', href: '/publicacoes' }, { label: title }];
+const siteUrl = Astro.site!.origin;
+const url = `${siteUrl}/publicacoes/${pub.id}`;
+---
+
+<Base
+  title={title}
+  description={intro}
+  progress
+  schema={[
+    articleSchema({
+      siteUrl,
+      url,
+      title,
+      description: intro,
+      image: new URL(photo.src, siteUrl).href,
+      published: date,
+      authorName: SITE.legalName,
+    }),
+    breadcrumbSchema(siteUrl, [{ label: 'Início', href: '/' }, ...trail]),
+  ]}
+>
+  <header class="art-head on-dark">
+    <div class="wrap">
+      <Crumbs trail={[{ label: 'Publicações', href: '/publicacoes' }, { label: title }]} />
+      <h1>{title}</h1>
+      <div class="pub-meta">
+        <b>{area.data.title}</b>
+        <time datetime={dataISO(date)}>{dataCurta(date)}</time>
+        <span>{NUCLEOS[area.data.nucleo].title}</span>
+        <span>Leitura de {leitura}</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="art-cover-wrap">
+    <div class="wrap">
+      <div class="art-cover px" data-reveal data-parallax>
+        <Image src={photo} alt="" width={1600} height={686} loading="eager" fetchpriority="high" />
+      </div>
+    </div>
+  </div>
+
+  <section class="sec-tight">
+    <div class="wrap">
+      <article class="article">
+        <p class="intro" data-up>{intro}</p>
+
+        <Content />
+
+        <p class="disclaimer">{DISCLAIMER}</p>
+
+        <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center">
+          <a class="btn btn-dark" href={`/contato/${area.id}`}>
+            Conversar sobre o meu caso <Icon name="arrow" />
+          </a>
+          <a class="link" href={`/atuacao/${area.id}`}>
+            Sobre a área de {area.data.title} <Icon name="arrow" />
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:clamp(40px,5vw,80px)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 data-title>Leia também</h2>
+        <a class="link" href="/publicacoes" data-up>
+          Todas as publicações <Icon name="arrow" />
+        </a>
+      </div>
+      <div class="pubs">
+        {outras.map((p) => <PubCard pub={p} />)}
+      </div>
+    </div>
+  </section>
+</Base>

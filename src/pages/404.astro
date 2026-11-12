@@ -1,0 +1,24 @@
+---
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/Icon.astro';
+import PageHero from '~/components/PageHero.astro';
+---
+
+<Base
+  title="Página não encontrada"
+  description="O endereço pode ter mudado. Volte para o início ou fale com o escritório."
+  noindex
+>
+  <PageHero
+    title="Página não encontrada"
+    lead="O endereço pode ter mudado. Volte para o início ou fale com o escritório."
+    trail={[{ label: 'Página não encontrada' }]}
+  />
+
+  <section class="sec">
+    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center">
+      <a class="btn btn-dark" href="/">Ir para o início <Icon name="arrow" /></a>
+      <a class="link" href="/contato">Agendar reunião <Icon name="arrow" /></a>
+    </div>
+  </section>
+</Base>

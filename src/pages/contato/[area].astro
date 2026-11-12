@@ -1,0 +1,48 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Base from '~/layouts/Base.astro';
+import PageHero from '~/components/PageHero.astro';
+import ContactBlock from '~/components/ContactBlock.astro';
+import PlaceBlock from '~/components/PlaceBlock.astro';
+import { breadcrumbSchema } from '~/lib/schema';
+
+/**
+ * Página de contato com a área já selecionada no formulário. Uma página
+ * estática por área evita depender de JavaScript para pré-selecionar o campo.
+ */
+export const getStaticPaths = (async () => {
+  const areas = await getCollection('areas');
+  return areas.map((area) => ({
+    params: { area: area.id },
+    props: { area },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  area: CollectionEntry<'areas'>;
+}
+const { area } = Astro.props;
+
+const trail = [
+  { label: 'Contato', href: '/contato' },
+  { label: area.data.title },
+];
+const siteUrl = Astro.site!.origin;
+---
+
+<Base
+  title={`Agendar reunião · ${area.data.title}`}
+  description={`Fale com o escritório sobre ${area.data.title.toLowerCase()}. Atendimento presencial em Palhoça ou por videoconferência.`}
+  schema={[breadcrumbSchema(siteUrl, [{ label: 'Início', href: '/' }, ...trail])]}
+  noindex
+>
+  <PageHero
+    title="Agende uma reunião"
+    lead={`Sobre ${area.data.title}. O atendimento é presencial em Palhoça ou por videoconferência, sempre com um dos sócios.`}
+    trail={trail}
+  />
+
+  <ContactBlock preset={area.id} />
+  <PlaceBlock />
+</Base>

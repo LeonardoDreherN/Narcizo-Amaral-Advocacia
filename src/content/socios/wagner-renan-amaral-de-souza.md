@@ -7,6 +7,12 @@ nucleo: penal
 order: 2
 role: Coordenador do Núcleo de Direito Penal
 lead: Advogado criminalista e pós-graduando em Direito Penal. Tem no Tribunal do Júri a sua grande vocação profissional.
+summary: >-
+  Advogado criminalista e pós-graduando em Direito Penal, possui ampla experiência na
+  defesa em inquéritos policiais, audiências de custódia, ações penais e recursos. Tem
+  vasta atuação em processos envolvendo a Lei de Drogas, a Lei Maria da Penha e
+  organizações criminosas, sempre pautada pela defesa técnica e pelo respeito às
+  garantias fundamentais.
 photo: ../../assets/img/wagner.jpg
 also:
   - Inquéritos policiais

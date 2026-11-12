@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/Icon.astro';
+import PageHero from '~/components/PageHero.astro';
+import CtaBand from '~/components/CtaBand.astro';
+import { NUCLEOS, type NucleoId } from '~/data/site';
+import { breadcrumbSchema } from '~/lib/schema';
+
+const areas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
+const socios = await getCollection('socios');
+const socioDo = (n: NucleoId) => socios.find((s) => s.data.nucleo === n)!;
+
+const trail = [{ label: 'Atuação' }];
+const siteUrl = Astro.site!.origin;
+---
+
+<Base
+  title="Áreas de atuação"
+  description="Imobiliário, família e sucessões, consumidor e bancário, direito à saúde, Tribunal do Júri, organizações criminosas e Lei de Drogas."
+  schema={[breadcrumbSchema(siteUrl, [{ label: 'Início', href: '/' }, ...trail])]}
+>
+  <PageHero
+    title="Áreas de atuação"
+    lead="Questões que afetam diretamente a vida das pessoas e das famílias, tratadas com proximidade e clareza."
+    trail={trail}
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      {
+        (['civil', 'penal'] as const).map((n) => {
+          const socio = socioDo(n);
+          const lista = areas.filter((a) => a.data.nucleo === n);
+          return (
+            <div class="nuc-sec" id={`nucleo-${n}`}>
+              <div class="nuc-head">
+                <div>
+                  <h2 data-title>{NUCLEOS[n].title}</h2>
+                  <a class="coord" href={`/socios/${socio.id}`} data-up>
+                    <Image
+                      src={socio.data.photo}
+                      alt=""
+                      width={112}
+                      height={112}
+                      loading="lazy"
+                    />
+                    <span>
+                      <small>Coordenação</small>
+                      <b>{socio.data.treat}</b>
+                    </span>
+                  </a>
+                </div>
+                <p data-up>{NUCLEOS[n].intro}</p>
+              </div>
+
+              <div class="alist">
+                {
+                  lista.map((a) => (
+                    <a class:list={['arow', n]} href={`/atuacao/${a.id}`} data-stagger-item>
+                      <Image
+                        class="thumb"
+                        src={a.data.photo}
+                        alt=""
+                        width={152}
+                        height={192}
+                        loading="lazy"
+                      />
+                      <h3>{a.data.title}</h3>
+                      <p>{a.data.short}</p>
+                      <span class="arr"><Icon name="arrow" /></span>
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
