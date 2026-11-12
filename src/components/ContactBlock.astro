@@ -50,6 +50,8 @@ const areas = (await getCollection('areas')).sort((a, b) => {
       telefone ou e-mail que você informar.
     </p>
 
+    <p class="form-erro" id="form-erro" role="alert" hidden></p>
+
     <!-- Envio processado por uma função no servidor; a validação é nativa do
          navegador, sem JavaScript próprio. -->
     <form class="form" method="POST" action="/api/contato" data-up>
@@ -123,3 +125,23 @@ const areas = (await getCollection('areas')).sort((a, b) => {
     </form>
   </div>
 </section>
+
+{/* Exibe o motivo de uma recusa do servidor. Sem JavaScript, o visitante
+    apenas volta ao formulário, que continua funcional. */}
+<script is:inline>
+  (function () {
+    var MENSAGENS = {
+      campos: 'Preencha o nome, a descrição da situação e o aceite da LGPD.',
+      contato: 'Informe um e-mail ou um telefone para o retorno.',
+      email: 'Verifique o endereço de e-mail informado.',
+      envio: 'Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.',
+      formato: 'Não foi possível ler o formulário. Tente novamente.',
+    };
+    var erro = new URLSearchParams(location.search).get('erro');
+    var alvo = document.getElementById('form-erro');
+    if (erro && alvo && MENSAGENS[erro]) {
+      alvo.textContent = MENSAGENS[erro];
+      alvo.hidden = false;
+    }
+  })();
+</script>

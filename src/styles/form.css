@@ -97,3 +97,13 @@
   .contact-l, .contact-r { padding-left: var(--gut); padding-right: var(--gut-r); }
 }
 @media (max-width: 560px) { .form { grid-template-columns: minmax(0, 1fr); } }
+
+/* Aviso de recusa no envio, preenchido pelo script inline do bloco de contato. */
+.form-erro {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: #fdf3f1;
+  border-left: 2px solid var(--danger);
+  color: #7d3326;
+  font-size: 0.9rem;
+}
