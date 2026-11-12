@@ -1,0 +1,146 @@
+/* Animações 100% CSS, via scroll-driven animations (animation-timeline).
+   Sem GSAP, sem ScrollTrigger, sem Lenis.
+
+   Navegadores sem suporte simplesmente mostram o conteúdo no estado final:
+   todo keyframe parte de um estado visível no @supports, e o conteúdo nunca
+   depende de JS para aparecer. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* Entrada padrão: sobe e revela */
+    [data-up],
+    [data-stagger-item] {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    /* Títulos entram um pouco mais tarde e mais longe */
+    [data-title] {
+      animation: rise-lg linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 50%;
+    }
+
+    /* Imagens: revelação por clip-path, de baixo para cima */
+    [data-reveal] {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+
+    /* Parallax suave: a imagem desliza dentro da moldura .px */
+    [data-parallax] > img,
+    [data-parallax] > picture > img {
+      height: 112%;
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+
+    /* Linha de destaque que cresce */
+    [data-line] {
+      animation: grow-x linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 60%;
+    }
+
+    /* Texto que clareia conforme entra (substitui o scrub do GSAP) */
+    [data-scrub] {
+      animation: fade-in linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 35%;
+    }
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes rise-lg {
+  from { opacity: 0; transform: translateY(42px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes reveal {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes drift {
+  from { transform: translateY(-5%); }
+  to { transform: translateY(5%); }
+}
+@keyframes grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes fade-in {
+  from { opacity: 0.25; }
+  to { opacity: 1; }
+}
+
+/* Barra de progresso de leitura dos artigos: scroll() do documento, sem JS */
+.progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: env(safe-area-inset-top, 0px);
+  height: 2px;
+  z-index: 70;
+  background: var(--bronze);
+  transform-origin: left;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .progress {
+    animation: grow-x linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+/* Dica de rolagem do hero */
+.scroll-cue { display: flex; align-items: center; gap: 14px; }
+.scroll-cue i {
+  display: block;
+  width: 1px;
+  height: 46px;
+  background: rgba(241, 241, 236, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-cue i::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -40%;
+  width: 1px;
+  height: 40%;
+  background: var(--on-deep);
+  animation: cue 2.2s var(--ease) infinite;
+}
+@keyframes cue { to { top: 100%; } }
+
+/* Transições de página nativas (View Transitions) */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: vt-out 0.28s var(--ease) both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-in 0.42s var(--ease) both;
+  }
+}
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
