@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import { getEntry, type CollectionEntry } from 'astro:content';
+import { dataCurta, dataISO } from '~/lib/format';
+
+interface Props {
+  pub: CollectionEntry<'publicacoes'>;
+}
+const { pub } = Astro.props;
+const area = await getEntry(pub.data.area);
+---
+
+<a class="pub" href={`/publicacoes/${pub.id}`} data-stagger-item>
+  <div class="pub-img">
+    <Image src={pub.data.photo} alt="" width={720} height={480} loading="lazy" />
+  </div>
+  <div class="pub-meta">
+    <b>{area?.data.title}</b>
+    <time datetime={dataISO(pub.data.date)}>{dataCurta(pub.data.date)}</time>
+  </div>
+  <h3><span>{pub.data.title}</span></h3>
+</a>

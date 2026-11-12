@@ -1,0 +1,9 @@
+/* Entrada única de estilos, importada no layout base.
+   A ordem importa: tokens, depois base, depois os blocos. */
+@import './tokens.css';
+@import './base.css';
+@import './chrome.css';
+@import './components.css';
+@import './pages.css';
+@import './form.css';
+@import './motion.css';

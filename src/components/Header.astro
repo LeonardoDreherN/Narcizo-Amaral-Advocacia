@@ -1,0 +1,63 @@
+---
+import { NAV, SITE, CONTACT, ADDRESS } from '~/data/site';
+
+interface Props {
+  /** Páginas de fundo claro precisam do header já sólido no topo. */
+  solid?: boolean;
+}
+const { solid = false } = Astro.props;
+
+const path = Astro.url.pathname;
+/** Marca o item do menu como atual, inclusive nas páginas filhas. */
+const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
+---
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="hdr" data-solid={solid ? '' : undefined}>
+  <div class="wrap hdr-in">
+    <a class="logo" href="/" aria-label={`${SITE.name}, página inicial`}>
+      <b>{SITE.name}</b>
+      <small>{SITE.tagline}</small>
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      {
+        NAV.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a class="hdr-cta" href="/contato">Agendar reunião</a>
+
+    <button
+      class="burger"
+      type="button"
+      popovertarget="menu"
+      aria-label="Abrir menu"
+    >
+      <i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="menu" popover>
+  <button class="drawer-close" type="button" popovertarget="menu" popovertargetaction="hide" aria-label="Fechar menu"></button>
+
+  <nav aria-label="Menu">
+    <a href="/">Início</a>
+    {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+
+  <div class="drawer-foot">
+    <span>{ADDRESS.street} · {ADDRESS.city}/{ADDRESS.state}</span>
+    <span>
+      <a href={`tel:${CONTACT.phoneRaw}`}>{CONTACT.phone}</a>
+      ·
+      <a href={CONTACT.instagram} target="_blank" rel="noopener">{CONTACT.instagramHandle}</a>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,177 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '~/layouts/Base.astro';
+import Icon from '~/components/Icon.astro';
+import AreaCard from '~/components/AreaCard.astro';
+import PubCard from '~/components/PubCard.astro';
+import PlaceBlock from '~/components/PlaceBlock.astro';
+import ContactBlock from '~/components/ContactBlock.astro';
+import { SITE, NUCLEOS, type NucleoId } from '~/data/site';
+import { legalServiceSchema } from '~/lib/schema';
+import hero from '~/assets/img/hero.jpg';
+import escritorio from '~/assets/img/escritorio.jpg';
+import detalhe from '~/assets/img/detalhe.jpg';
+
+const socios = (await getCollection('socios')).sort((a, b) => a.data.order - b.data.order);
+const areas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
+const pubs = (await getCollection('publicacoes', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const porNucleo = (n: NucleoId) => areas.filter((a) => a.data.nucleo === n);
+const socioDo = (n: NucleoId) => socios.find((s) => s.data.nucleo === n)!;
+
+const siteUrl = Astro.site!.origin;
+---
+
+<Base
+  title={`${SITE.legalName}`}
+  description="Assessoria jurídica para as decisões que importam. Direito civil e penal, com sede em Palhoça, Santa Catarina, e atendimento em todo o Brasil."
+  schema={[legalServiceSchema(siteUrl)]}
+>
+  <section class="hero on-dark">
+    <div class="hero-media">
+      <Image
+        src={hero}
+        alt="Sala de reuniões do escritório, com sofá de couro e nichos de madeira iluminados"
+        width={1920}
+        height={1200}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+
+    <div class="wrap hero-in">
+      <h1 class="hero-title">Para cada problema,<br /> uma solução.</h1>
+      <p class="hero-sub">Nosso trabalho é encontrá-la.</p>
+      <div class="hero-actions">
+        <a class="btn btn-light" href="/contato">Agendar uma reunião <Icon name="arrow" /></a>
+        <a class="link link-bronze" href="/atuacao">Conheça as áreas de atuação</a>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <div class="wrap">
+        <span class="scroll-cue"><i></i>Role</span>
+        <span class="place-tag">Palhoça · Santa Catarina</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap about">
+      <div class="about-txt">
+        <h2 data-title>Assessoria jurídica para as decisões que importam</h2>
+        <p data-up>
+          Somos um escritório estruturado para oferecer um atendimento próximo e exclusivo.
+          Aqui, cada cliente é recebido diretamente pelos sócios, que acompanham pessoalmente
+          o caso do primeiro contato até a solução.
+        </p>
+        <a class="link" href="/escritorio" data-up>Conheça o escritório <Icon name="arrow" /></a>
+      </div>
+
+      <div class="collage">
+        <div class="c1 px" data-reveal data-parallax>
+          <Image
+            src={escritorio}
+            alt="Sala do escritório com paredes azul-marinho, sofá de couro e estante de madeira"
+            width={720}
+            height={900}
+            loading="lazy"
+          />
+        </div>
+        <div class="c2 px" data-reveal>
+          <Image
+            src={detalhe}
+            alt="Nicho de madeira iluminado com busto clássico"
+            width={480}
+            height={480}
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="socios-t">
+    <div class="wrap sec-head">
+      <h2 id="socios-t" data-title>Os sócios</h2>
+      <p data-up>
+        Cada cliente é recebido diretamente pelos sócios, que acompanham pessoalmente o caso
+        do primeiro contato até a solução.
+      </p>
+    </div>
+
+    <div class="partners">
+      {
+        socios.map((s) => (
+          <a class="partner" href={`/socios/${s.id}`}>
+            <Image
+              src={s.data.photo}
+              alt={`Retrato de ${s.data.treat}`}
+              width={900}
+              height={1000}
+              loading="lazy"
+            />
+            <div class="partner-cap">
+              <h3>{s.data.name}</h3>
+              <p>Sócio · {s.data.oab} · {NUCLEOS[s.data.nucleo].title}</p>
+              <span class="more">Ver perfil <Icon name="arrow" /></span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="areas-t">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="areas-t" data-title>Áreas de atuação</h2>
+        <p data-up>
+          Questões que afetam diretamente a vida das pessoas e das famílias, tratadas com
+          proximidade e clareza.
+        </p>
+      </div>
+
+      {
+        (['civil', 'penal'] as const).map((n) => {
+          const lista = porNucleo(n);
+          const socio = socioDo(n);
+          return (
+            <div class="nblock">
+              <div class="nucleo-row" data-up>
+                <h3>{NUCLEOS[n].title}</h3>
+                <a href={`/socios/${socio.id}`}>
+                  Coordenação<br /><b>{socio.data.treat}</b>
+                </a>
+              </div>
+              <div class:list={['cards', `cards-${lista.length}`]}>
+                {lista.map((a) => <AreaCard area={a} />)}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <PlaceBlock />
+
+  <section class="sec" aria-labelledby="pub-t">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="pub-t" data-title>Publicações</h2>
+        <a class="link" href="/publicacoes" data-up>
+          Todas as publicações <Icon name="arrow" />
+        </a>
+      </div>
+      <div class="pubs">
+        {pubs.map((p) => <PubCard pub={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <ContactBlock />
+</Base>

@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Crumbs, { type Crumb } from './Crumbs.astro';
+import heroFallback from '~/assets/img/hero.jpg';
+
+interface Props {
+  title: string;
+  lead?: string;
+  trail: Crumb[];
+  photo?: ImageMetadata;
+  /** Reforça o escurecimento quando a foto é o assunto, não só textura. */
+  emphasis?: boolean;
+  grayscale?: boolean;
+}
+const { title, lead, trail, photo, emphasis = false, grayscale = false } = Astro.props;
+const img = photo ?? heroFallback;
+---
+
+<section class:list={['phero', 'on-dark', emphasis && 'photo', grayscale && 'grayscale']}>
+  <div class="phero-bg">
+    <Image src={img} alt="" width={1920} height={900} loading="eager" fetchpriority="high" />
+  </div>
+
+  <div class="wrap">
+    <Crumbs trail={trail} />
+    <h1 data-title>{title}</h1>
+    {lead && <p class="lead" data-up>{lead}</p>}
+    <span class="accent-line" data-line></span>
+  </div>
+</section>

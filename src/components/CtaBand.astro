@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+const {
+  title = 'Converse com um dos sócios',
+  text = 'Atendimento presencial em Palhoça ou por videoconferência, com hora marcada.',
+} = Astro.props;
+---
+
+<section class="cta on-dark">
+  <div class="wrap cta-in">
+    <h2 data-title>{title}</h2>
+    <div>
+      <p data-up>{text}</p>
+      <a class="btn btn-light" href="/contato" data-up>
+        Agendar uma reunião <Icon name="arrow" />
+      </a>
+    </div>
+  </div>
+</section>

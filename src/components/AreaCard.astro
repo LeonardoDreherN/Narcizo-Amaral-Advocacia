@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+
+interface Props {
+  area: CollectionEntry<'areas'>;
+}
+const { area } = Astro.props;
+const { title, short, photo, nucleo } = area.data;
+---
+
+<a class:list={['card', nucleo]} href={`/atuacao/${area.id}`} data-stagger-item>
+  <Image src={photo} alt="" width={640} height={480} loading="lazy" />
+  <div class="card-body">
+    <h3>{title}</h3>
+    <p>{short}</p>
+    <span class="go">Saiba mais <Icon name="arrow" /></span>
+  </div>
+</a>

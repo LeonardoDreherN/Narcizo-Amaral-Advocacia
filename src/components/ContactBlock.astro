@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import Icon from './Icon.astro';
+import { ADDRESS, CONTACT } from '~/data/site';
+
+interface Props {
+  /** Pré-seleciona a área no campo Assunto. */
+  preset?: string;
+}
+const { preset } = Astro.props;
+
+const areas = (await getCollection('areas')).sort((a, b) => {
+  if (a.data.nucleo !== b.data.nucleo) return a.data.nucleo === 'civil' ? -1 : 1;
+  return a.data.order - b.data.order;
+});
+---
+
+<section class="contact" id="agendar" aria-labelledby="ct-t">
+  <div class="contact-l on-dark">
+    <h2 id="ct-t" data-title>Converse com um dos sócios</h2>
+
+    <dl>
+      <div data-stagger-item>
+        <dt>Endereço</dt>
+        <dd>{ADDRESS.street}<br />{ADDRESS.district}, {ADDRESS.city}/{ADDRESS.state} · {ADDRESS.zip}</dd>
+      </div>
+      <div data-stagger-item>
+        <dt>Telefone e WhatsApp</dt>
+        <dd>
+          <a href={CONTACT.whatsapp} target="_blank" rel="noopener">{CONTACT.phone}</a>
+        </dd>
+      </div>
+      <div data-stagger-item>
+        <dt>Instagram</dt>
+        <dd>
+          <a href={CONTACT.instagram} target="_blank" rel="noopener">{CONTACT.instagramHandle}</a>
+        </dd>
+      </div>
+      <div data-stagger-item>
+        <dt>Atendimento</dt>
+        <dd>{CONTACT.hours}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="contact-r">
+    <h3 data-up>Agende uma reunião</h3>
+    <p data-up>
+      As informações enviadas estão protegidas pelo sigilo profissional. Responderemos pelo
+      telefone ou e-mail que você informar.
+    </p>
+
+    <!-- Envio processado por uma função no servidor; a validação é nativa do
+         navegador, sem JavaScript próprio. -->
+    <form class="form" method="POST" action="/api/contato" data-up>
+      <div class="field">
+        <label for="f-nome">Nome</label>
+        <input id="f-nome" name="nome" autocomplete="name" required maxlength="120" />
+        <span class="err" data-msg="Informe o seu nome."></span>
+      </div>
+
+      <div class="field">
+        <label for="f-email">E-mail</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" maxlength="180" />
+        <span class="err" data-msg="Verifique o endereço de e-mail."></span>
+      </div>
+
+      <div class="field">
+        <label for="f-tel">Telefone</label>
+        <input
+          id="f-tel"
+          name="telefone"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel"
+          placeholder="(48) 90000-0000"
+          maxlength="20"
+        />
+        <span class="err" data-msg="Verifique o telefone."></span>
+      </div>
+
+      <div class="field">
+        <label for="f-assunto">Assunto</label>
+        <select id="f-assunto" name="assunto">
+          {!preset && <option value="">Selecione a área</option>}
+          {
+            areas.map((a) => (
+              <option value={a.data.title} selected={preset === a.id}>
+                {a.data.title}
+              </option>
+            ))
+          }
+          <option value="Outro assunto">Outro assunto</option>
+        </select>
+        <span class="err"></span>
+      </div>
+
+      <div class="field full">
+        <label for="f-msg">Conte brevemente a situação</label>
+        <textarea id="f-msg" name="mensagem" rows="3" required maxlength="2000"></textarea>
+        <span class="err" data-msg="Descreva brevemente a situação."></span>
+      </div>
+
+      <!-- Campo-armadilha para robôs: invisível e sempre vazio. -->
+      <div class="sr" aria-hidden="true">
+        <label for="f-url">Não preencha este campo</label>
+        <input id="f-url" name="url" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <label class="check" for="f-lgpd">
+        <input id="f-lgpd" name="lgpd" type="checkbox" value="sim" required />
+        <span>
+          Autorizo o uso destes dados apenas para retorno do contato, conforme a LGPD
+          (Lei 13.709/2018) e a <a href="/privacidade">política de privacidade</a>.
+        </span>
+      </label>
+
+      <div class="form-actions">
+        <button class="btn btn-dark" type="submit">
+          Enviar <Icon name="arrow" />
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

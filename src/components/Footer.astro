@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import { SITE, CONTACT, ADDRESS } from '~/data/site';
+
+const areas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
+const destaque = [
+  areas.find((a) => a.id === 'familia-sucessoes'),
+  areas.find((a) => a.id === 'tribunal-juri'),
+].filter(Boolean);
+
+const ano = new Date().getFullYear();
+---
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div>
+        <a class="logo" href="/">
+          <b>{SITE.name}</b>
+          <small>{SITE.tagline}</small>
+        </a>
+        <p class="ftr-note">
+          Sede em {ADDRESS.city}, {ADDRESS.state === 'SC' ? 'Santa Catarina' : ADDRESS.state}.
+          Atendimento presencial ou on-line em todo o Brasil.
+        </p>
+      </div>
+
+      <div>
+        <h5>Escritório</h5>
+        <ul>
+          <li><a href="/escritorio">Sobre</a></li>
+          <li><a href="/socios">Sócios</a></li>
+          <li><a href="/publicacoes">Publicações</a></li>
+          <li><a href="/privacidade">Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Atuação</h5>
+        <ul>
+          <li><a href="/atuacao#nucleo-civil">Núcleo de Direito Civil</a></li>
+          <li><a href="/atuacao#nucleo-penal">Núcleo de Direito Penal</a></li>
+          {destaque.map((a) => <li><a href={`/atuacao/${a!.id}`}>{a!.data.title}</a></li>)}
+        </ul>
+      </div>
+
+      <div>
+        <h5>Contato</h5>
+        <ul>
+          <li><a href="/contato">Agendar reunião</a></li>
+          <li><a href={CONTACT.instagram} target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href={`tel:${CONTACT.phoneRaw}`}>{CONTACT.phone}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ftr-big" aria-hidden="true">{SITE.name}</div>
+
+    <div class="ftr-bot">
+      <span>{SITE.legalName} · Registro {SITE.oab}</span>
+      <span>Conteúdo informativo conforme o Provimento 205/2021 do CFOAB</span>
+      <span>
+        © {ano} {SITE.name} · <a href="/privacidade">Política de privacidade</a>
+      </span>
+    </div>
+  </div>
+</footer>

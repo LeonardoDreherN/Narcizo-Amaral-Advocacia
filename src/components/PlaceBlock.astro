@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { ADDRESS, MAPS } from '~/data/site';
+import mapa from '~/assets/img/mapa.jpg';
+---
+
+<section class="place sec-tight" aria-labelledby="sede-t">
+  <div class="wrap place-grid">
+    <div class="place-txt">
+      <h2 id="sede-t" data-title>Sede em {ADDRESS.city}. Atendimento em todo o Brasil.</h2>
+
+      <p data-up>
+        Com sede em {ADDRESS.city}, Santa Catarina, próxima ao Fórum da Comarca, o escritório
+        atende clientes em todo o território nacional. O atendimento pode ser presencial ou
+        on-line, com reuniões por videoconferência e acompanhamento de processos eletrônicos
+        em tribunais de todo o país. Onde quer que o cliente esteja, cada caso recebe a mesma
+        atenção e o mesmo cuidado técnico.
+      </p>
+
+      <details class="how">
+        <summary>
+          Como chegar <Icon name="chevron" />
+        </summary>
+        <div class="how-menu">
+          <a href={MAPS.google} target="_blank" rel="noopener">Google Maps</a>
+          <a href={MAPS.waze} target="_blank" rel="noopener">Waze</a>
+          <a href={MAPS.apple} target="_blank" rel="noopener">Apple Maps</a>
+        </div>
+      </details>
+
+      <dl class="place-info">
+        <div data-stagger-item>
+          <dt>Endereço</dt>
+          <dd>{ADDRESS.street}<br />{ADDRESS.district}, {ADDRESS.city}/{ADDRESS.state} · {ADDRESS.zip}</dd>
+        </div>
+        <div data-stagger-item>
+          <dt>Atendimento</dt>
+          <dd>Com hora marcada<br />até as 19h</dd>
+        </div>
+        <div data-stagger-item>
+          <dt>Formato</dt>
+          <dd>Presencial ou<br />por videoconferência</dd>
+        </div>
+        <div data-stagger-item>
+          <dt>Referência</dt>
+          <dd>{ADDRESS.reference}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="place-map">
+      <Image
+        src={mapa}
+        alt={`Mapa do bairro ${ADDRESS.district}, em ${ADDRESS.city}, com a localização do escritório`}
+        width={1200}
+        height={900}
+        loading="lazy"
+      />
+      <span class="pin" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>

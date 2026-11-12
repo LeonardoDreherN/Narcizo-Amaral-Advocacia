@@ -1,0 +1,30 @@
+---
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  trail: Crumb[];
+  /** Usa as cores de texto escuro, para fundos claros. */
+  dark?: boolean;
+}
+const { trail, dark = false } = Astro.props;
+---
+
+<nav class:list={['crumbs', dark && 'crumbs-dark']} aria-label="Você está em">
+  <ol>
+    <li><a href="/">Início</a></li>
+    {
+      trail.map((c, i) => (
+        <li>
+          {c.href && i < trail.length - 1 ? (
+            <a href={c.href}>{c.label}</a>
+          ) : (
+            <span aria-current="page">{c.label}</span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
