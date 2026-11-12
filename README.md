@@ -128,9 +128,13 @@ da Cloudflare.
 - **Saída estática, não SPA.** O protótipo usava rotas em hash (`#area-imobiliario`),
   o que deixava o site inteiro em uma única URL para os buscadores. Agora cada página
   é uma URL real e indexável, o que é o ponto central para a busca local.
-- **Sem GSAP, ScrollTrigger ou Lenis.** As animações são scroll-driven animations do
-  CSS, e as transições entre páginas usam a View Transitions API. O conteúdo nunca
-  depende de JavaScript para aparecer.
+- **Animações com GSAP, ScrollTrigger e Lenis, como aprimoramento.** Ficam em
+  `src/scripts/motion.ts`: abertura na primeira visita, cortina entre páginas (ligada
+  ao ClientRouter), títulos palavra por palavra, revelação e parallax das fotos,
+  rolagem suave, header que some ao rolar, rodapé revelado e cursores nos sócios e na
+  lista de áreas. O conteúdo nunca depende de JavaScript para aparecer: sem o script,
+  ou com "reduzir movimento" ativo, valem as scroll-driven animations do CSS em
+  `motion.css`, e tudo fica visível.
 - **CSS próprio, não Tailwind.** Os estilos vieram do layout original, que já era
   enxuto e baseado em tokens no `:root`.
 - **Fontes self-hosted** pela API de Fontes do Astro, com preload e métricas de

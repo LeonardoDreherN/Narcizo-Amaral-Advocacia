@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '~/layouts/Base.astro';
 import Icon from '~/components/Icon.astro';
@@ -11,6 +11,13 @@ import { breadcrumbSchema } from '~/lib/schema';
 const areas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
 const socios = await getCollection('socios');
 const socioDo = (n: NucleoId) => socios.find((s) => s.data.nucleo === n)!;
+
+/** Versão maior da foto, para a imagem que segue o cursor na lista. */
+const flutuante: Record<string, string> = Object.fromEntries(
+  await Promise.all(
+    areas.map(async (a) => [a.id, (await getImage({ src: a.data.photo, width: 600, format: 'webp' })).src]),
+  ),
+);
 
 const trail = [{ label: 'Atuação' }];
 const siteUrl = Astro.site!.origin;
@@ -43,7 +50,6 @@ const siteUrl = Astro.site!.origin;
                       src={socio.data.photo}
                       alt=""
                       width={112}
-                      height={112}
                       loading="lazy"
                     />
                     <span>
@@ -58,7 +64,7 @@ const siteUrl = Astro.site!.origin;
               <div class="alist">
                 {
                   lista.map((a) => (
-                    <a class:list={['arow', n]} href={`/atuacao/${a.id}`} data-stagger-item>
+                    <a class:list={['arow', n]} href={`/atuacao/${a.id}`} data-float={flutuante[a.id]} data-stagger-item>
                       <Image
                         class="thumb"
                         src={a.data.photo}

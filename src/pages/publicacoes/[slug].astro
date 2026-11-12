@@ -59,7 +59,7 @@ const url = `${siteUrl}/publicacoes/${pub.id}`;
   <header class="art-head on-dark">
     <div class="wrap">
       <Crumbs trail={[{ label: 'Publicações', href: '/publicacoes' }, { label: title }]} />
-      <h1>{title}</h1>
+      <h1 data-title>{title}</h1>
       <div class="pub-meta">
         <b>{area.data.title}</b>
         <time datetime={dataISO(date)}>{dataCurta(date)}</time>

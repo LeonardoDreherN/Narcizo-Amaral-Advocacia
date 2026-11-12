@@ -155,10 +155,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 20%;
-  transition: transform 1.4s var(--ease);
+  /* Retratos ancorados no topo: o corte acontece embaixo, nunca na cabeca.
+     As fotos tem pouca folga acima do cabelo. */
+  object-position: 50% 0%;
+  transition: scale 1.4s var(--ease);
 }
-.partner:hover img { transform: scale(1.04); }
+.partner:hover img { scale: 1.04; }
 .partner::after {
   content: "";
   position: absolute;

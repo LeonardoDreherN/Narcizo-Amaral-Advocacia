@@ -43,7 +43,7 @@ const fullTitle = path === '/' ? title : `${title} · ${SITE.name}`;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" transition:animate="none">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -78,11 +78,43 @@ const fullTitle = path === '/' ? title : `${title} · ${SITE.name}`;
       ))
     }
 
+    <!-- Animações: decide antes do primeiro paint. Se o script não carregar
+         em 4 s, tudo volta ao estado estático. -->
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        d.classList.add('motion-js', 'motion-pending');
+        try { if (!sessionStorage.getItem('na-seen')) d.classList.add('has-loader'); } catch (e) {}
+        setTimeout(function () {
+          d.classList.remove('motion-pending', 'has-loader');
+          if (!window.__motionReady) {
+            // O script demorou ou falhou: o conteudo volta a aparecer pelas
+            // regras de reserva. A marca avisa o script, se ele ainda chegar,
+            // para nao esconder de novo o que ja esta na tela.
+            d.classList.remove('motion-js');
+            window.__motionGaveUp = true;
+          }
+        }, 4000);
+      })();
+    </script>
+
     <ClientRouter />
   </head>
 
   <body>
     {progress && <div class="progress" aria-hidden="true"></div>}
+
+    <div id="loader" aria-hidden="true">
+      <div class="ld-mark">
+        <div class="ld-name">{SITE.name}</div>
+        <div class="ld-sub">{SITE.tagline}</div>
+        <div class="ld-bar"><i></i></div>
+      </div>
+    </div>
+    <div id="curtain" aria-hidden="true" transition:persist><span>{SITE.name}</span></div>
+    <div class="cursor" id="cursor" aria-hidden="true" transition:persist>Ver perfil</div>
+    <div class="float-img" id="float-img" aria-hidden="true" transition:persist><img alt="" /></div>
 
     <Header solid={solidHeader} />
 
@@ -91,5 +123,9 @@ const fullTitle = path === '/' ? title : `${title} · ${SITE.name}`;
     </main>
 
     <Footer />
+
+    <script>
+      import '~/scripts/motion';
+    </script>
   </body>
 </html>

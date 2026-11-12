@@ -54,7 +54,7 @@ const schema = {
     <div class="wrap prof-grid">
       <div class="prof-txt">
         <Crumbs trail={[{ label: 'Sócios', href: '/socios' }, { label: name }]} />
-        <h1>{treat}</h1>
+        <h1 data-title>{treat}</h1>
         <div class="meta">
           <b>Sócio</b>
           <span>{oab}</span>
@@ -68,7 +68,6 @@ const schema = {
           src={photo}
           alt={`Retrato de ${treat}`}
           width={900}
-          height={1100}
           loading="eager"
           fetchpriority="high"
         />
@@ -121,13 +120,14 @@ const schema = {
   <section class="sec" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head"><h2 data-title>Conheça também</h2></div>
-      <div class="partners" style="grid-template-columns:minmax(0,1fr);max-width:760px">
-        <a class="partner" href={`/socios/${outro.id}`} style="aspect-ratio:16/11">
+      {/* Moldura em retrato, como nos demais cards: a foto é vertical e
+          fechada, e qualquer proporção deitada aqui vira um close no rosto. */}
+      <div class="partners" style="grid-template-columns:minmax(0,1fr);max-width:420px">
+        <a class="partner" href={`/socios/${outro.id}`}>
           <Image
             src={outro.data.photo}
             alt={`Retrato de ${outro.data.treat}`}
             width={900}
-            height={620}
             loading="lazy"
           />
           <div class="partner-cap">
