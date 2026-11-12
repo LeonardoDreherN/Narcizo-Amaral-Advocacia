@@ -3,7 +3,7 @@ import { Font } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
-import { SITE } from '~/data/site';
+import { SITE, INDEXAVEL } from '~/data/site';
 import { caminhoLimpo } from '~/lib/url';
 import '~/styles/global.css';
 
@@ -51,7 +51,8 @@ const fullTitle = path === '/' ? title : `${title} · ${SITE.name}`;
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, follow" />}
+    {/* Fora do domínio definitivo, nenhuma página deve ser indexada. */}
+    {(noindex || !INDEXAVEL) && <meta name="robots" content="noindex, follow" />}
 
     <!-- Fontes self-hosted, com preload do que o primeiro paint precisa -->
     <Font cssVariable="--font-serif" preload />
