@@ -120,8 +120,10 @@ const schema = {
   <section class="sec" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head"><h2 data-title>Conheça também</h2></div>
-      <div class="partners" style="grid-template-columns:minmax(0,1fr);max-width:760px">
-        <a class="partner" href={`/socios/${outro.id}`} style="aspect-ratio:16/11">
+      {/* Moldura em retrato, como nos demais cards: a foto é vertical e
+          fechada, e qualquer proporção deitada aqui vira um close no rosto. */}
+      <div class="partners" style="grid-template-columns:minmax(0,1fr);max-width:420px">
+        <a class="partner" href={`/socios/${outro.id}`}>
           <Image
             src={outro.data.photo}
             alt={`Retrato de ${outro.data.treat}`}
