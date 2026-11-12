@@ -1,5 +1,6 @@
 ---
 import { NAV, SITE, CONTACT, ADDRESS } from '~/data/site';
+import { caminhoLimpo } from '~/lib/url';
 
 interface Props {
   /** Páginas de fundo claro precisam do header já sólido no topo. */
@@ -7,7 +8,8 @@ interface Props {
 }
 const { solid = false } = Astro.props;
 
-const path = Astro.url.pathname;
+/** Caminho público, sem a extensão .html que o build acrescenta. */
+const path = caminhoLimpo(Astro.url.pathname);
 /** Marca o item do menu como atual, inclusive nas páginas filhas. */
 const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
 ---
