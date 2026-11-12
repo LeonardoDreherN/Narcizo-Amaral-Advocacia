@@ -1,0 +1,1283 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Narcizo &amp; Amaral Advogados</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Narcizo & Amaral Advogados Associados. Sede em Palhoça, atendimento em todo o Brasil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: grafite + papel + verde-petróleo do Figma; fotografia guia cada seção, serifa leve em escala grande, sans discreta para leitura. */
+:root{
+  --paper:#FFFFFF;
+  --stone:#F1F0EB;
+  --ink:#141A1D;
+  --ink-soft:#5B6367;
+  --line:#E2E1DC;
+  --graphite:#2B2E31;
+  --graphite-2:#1D2023;
+  --deep:#0F2328;
+  --deep-2:#0B1B1F;
+  --on-deep:#F1F1EC;
+  --on-deep-soft:#9FB1B3;
+  --bronze:#A9834F;
+  --bronze-light:#D0A46C;
+  --serif:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --gut:max(16px,5vw,env(safe-area-inset-left,0px));
+  --gut-r:max(16px,5vw,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:300;margin:0;letter-spacing:-.015em;line-height:1.08;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:2px solid var(--bronze);outline-offset:3px}
+::selection{background:var(--bronze);color:#fff}
+.wrap{margin-inline:auto;padding-left:var(--gut);padding-right:var(--gut-r)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* split words */
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .06em .12em 0;margin:0 -.06em -.12em 0}
+.wi{display:inline-block;will-change:transform}
+
+/* ---------- loader + curtain ---------- */
+#loader{position:fixed;inset:0;z-index:200;background:var(--graphite-2);color:var(--on-deep);display:none;place-items:center}
+.has-loader #loader{display:grid}
+.ld-mark{display:flex;flex-direction:column;align-items:center;gap:14px}
+.ld-name{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,1.2rem + 3vw,3.6rem);letter-spacing:-.01em;line-height:1}
+.ld-sub{font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;color:var(--on-deep-soft);padding-left:.42em}
+.ld-bar{width:min(220px,50vw);height:1px;background:rgba(241,241,236,.16);position:relative;overflow:hidden}
+.ld-bar i{position:absolute;inset:0;background:var(--bronze-light);transform:scaleX(0);transform-origin:left}
+#curtain{position:fixed;inset:0;z-index:150;background:var(--deep);transform:translateY(100%);pointer-events:none;display:grid;place-items:center}
+#curtain span{font-family:var(--serif);font-weight:300;font-size:clamp(1.6rem,1rem + 2vw,2.6rem);color:var(--on-deep);opacity:0}
+
+/* ---------- header ---------- */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:60;padding-top:env(safe-area-inset-top,0px);color:var(--on-deep);transition:transform .6s var(--ease),background-color .4s,color .4s,box-shadow .4s}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:96px;transition:height .4s var(--ease)}
+.hdr.is-solid{background:rgba(255,255,255,.96);color:var(--ink);box-shadow:0 1px 0 var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.hdr.is-solid .hdr-in{height:74px}
+.hdr.is-hidden{transform:translateY(-110%)}
+.logo{display:flex;flex-direction:column;text-decoration:none;line-height:1;flex-shrink:0}
+.logo b{font-family:var(--serif);font-weight:400;font-size:1.6rem;letter-spacing:-.005em}
+.logo small{font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;margin-top:7px;opacity:.78}
+.nav{display:flex;align-items:center;gap:clamp(18px,2.6vw,44px)}
+.nav a{text-decoration:none;font-size:.95rem;position:relative;padding:6px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
+.hdr-cta{display:inline-flex;align-items:center;gap:10px;border:1px solid currentColor;padding:13px 24px;text-decoration:none;font-size:.92rem;transition:background-color .3s,color .3s,border-color .3s}
+.hdr-cta:hover{background:var(--on-deep);color:var(--ink);border-color:var(--on-deep)}
+.hdr.is-solid .hdr-cta:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.burger{display:none;width:46px;height:46px;border:0;background:none;cursor:pointer;position:relative;margin-right:-10px}
+.burger i{position:absolute;left:11px;right:11px;height:1px;background:currentColor;transition:transform .5s var(--ease),top .5s var(--ease)}
+.burger i:nth-child(1){top:18px}.burger i:nth-child(2){top:27px}
+.menu-open .burger i:nth-child(1){top:23px;transform:rotate(45deg)}
+.menu-open .burger i:nth-child(2){top:23px;transform:rotate(-45deg)}
+@media (max-width:1000px){.nav,.hdr .hdr-cta{display:none}.burger{display:block}.hdr-in{height:78px}}
+
+.drawer{position:fixed;inset:0;z-index:55;background:var(--graphite-2);color:var(--on-deep);padding:calc(110px + env(safe-area-inset-top,0px)) var(--gut-r) calc(40px + env(safe-area-inset-bottom,0px)) var(--gut);display:flex;flex-direction:column;justify-content:space-between;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .8s cubic-bezier(.7,0,.2,1),visibility 0s .8s}
+.menu-open .drawer{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .8s cubic-bezier(.7,0,.2,1)}
+.menu-open .hdr{color:var(--on-deep);background:transparent;box-shadow:none}
+.drawer nav{display:flex;flex-direction:column}
+.drawer nav a{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,8vw,3.4rem);line-height:1.3;text-decoration:none;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .8s var(--ease)}
+.menu-open .drawer nav a{opacity:1;transform:none}
+.menu-open .drawer nav a:nth-child(2){transition-delay:.05s}.menu-open .drawer nav a:nth-child(3){transition-delay:.1s}.menu-open .drawer nav a:nth-child(4){transition-delay:.15s}.menu-open .drawer nav a:nth-child(5){transition-delay:.2s}.menu-open .drawer nav a:nth-child(6){transition-delay:.25s}
+.drawer-foot{font-size:.9rem;color:var(--on-deep-soft);display:grid;gap:4px}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:14px;padding:17px 28px;font-size:.95rem;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background-color .35s,color .35s,border-color .35s;position:relative}
+.btn svg{width:16px;height:16px;transition:transform .5s var(--ease)}
+.btn:hover svg{transform:translateX(5px)}
+.btn-light{background:var(--on-deep);color:var(--ink)}
+.btn-light:hover{background:#fff}
+.btn-dark{background:var(--ink);color:var(--paper)}
+.btn-dark:hover{background:var(--deep)}
+.btn-ghost{border-color:currentColor}
+.btn-ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.on-dark .btn-ghost:hover{background:var(--on-deep);color:var(--ink);border-color:var(--on-deep)}
+.link{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-size:.95rem;padding-bottom:6px;background:linear-gradient(currentColor,currentColor) left bottom/100% 1px no-repeat;transition:background-size .6s var(--ease)}
+.link:hover{background-size:0 1px;background-position:right bottom}
+.link svg{width:15px;height:15px;transition:transform .5s var(--ease)}
+.link:hover svg{transform:translateX(5px)}
+.link-bronze{color:var(--bronze-light)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:clamp(640px,100svh,1000px);background:var(--graphite);color:var(--on-deep);overflow:hidden;isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.hero-media img{position:absolute;inset:-6% 0 0;width:100%;height:112%;object-fit:cover;object-position:68% 50%}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(29,32,35,.62) 0%,rgba(29,32,35,.25) 45%,rgba(29,32,35,0) 70%),linear-gradient(180deg,rgba(29,32,35,.35),transparent 22%)}
+.hero-in{height:100%;display:flex;flex-direction:column;justify-content:center;padding-top:80px}
+.hero-title{font-size:clamp(2.5rem,1.2rem + 4.2vw,5.6rem);line-height:1.04;letter-spacing:-.025em;max-width:16ch}
+.hero-sub{font-family:var(--serif);font-size:clamp(1.15rem,1rem + .5vw,1.5rem);color:var(--bronze-light);margin-top:22px}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:20px 36px;margin-top:clamp(36px,5vh,60px)}
+.hero-foot{position:absolute;left:0;right:0;bottom:clamp(22px,4vh,40px)}
+.hero-foot .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(241,241,236,.7)}
+.scroll-cue{display:flex;align-items:center;gap:14px}
+.scroll-cue i{display:block;width:1px;height:46px;background:rgba(241,241,236,.25);position:relative;overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--on-deep);animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{to{top:100%}}
+@media (max-width:760px){
+  .hero{height:auto;min-height:max(600px,92svh)}
+  .hero-media img{object-position:84% 50%}
+  .hero::before{background:linear-gradient(180deg,rgba(29,32,35,.45) 0%,rgba(29,32,35,.35) 35%,rgba(29,32,35,.88) 72%,rgba(29,32,35,.95) 100%)}
+  .hero-in{justify-content:flex-end;min-height:max(600px,92svh);padding-top:120px;padding-bottom:110px}
+  .hero-foot .place-tag{display:none}
+}
+
+/* ---------- inner page hero ---------- */
+.phero{position:relative;background:var(--graphite);color:var(--on-deep);overflow:hidden;isolation:isolate;padding-block:clamp(150px,22vh,220px) clamp(64px,10vh,110px)}
+.phero-bg{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.phero-bg img{position:absolute;inset:-8% 0 0;width:100%;height:116%;object-fit:cover;object-position:12% 40%}
+.phero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(29,32,35,.7),rgba(29,32,35,.25))}
+.phero.photo::before{background:linear-gradient(90deg,rgba(20,24,27,.86) 0%,rgba(20,24,27,.55) 55%,rgba(20,24,27,.3) 100%)}
+.phero.photo .phero-bg img{object-position:50% 50%;filter:grayscale(.35)}
+.crumbs{display:flex;flex-wrap:wrap;gap:10px;font-size:.82rem;color:var(--on-deep-soft);margin-bottom:28px}
+.crumbs a{text-decoration:none}.crumbs a:hover{color:var(--on-deep)}
+.crumbs span{opacity:.5}
+.phero h1{font-size:clamp(2.5rem,1.4rem + 3.8vw,5.2rem);max-width:16ch;letter-spacing:-.022em}
+.phero .lead{margin-top:26px;max-width:56ch;color:rgba(241,241,236,.8);font-size:clamp(1rem,.95rem + .3vw,1.2rem)}
+.phero .accent-line{display:block;width:72px;height:1px;background:var(--bronze-light);margin-top:34px;transform-origin:left}
+
+/* ---------- sections ---------- */
+.sec{padding-block:clamp(60px,7vw,108px)}
+.sec-tight{padding-block:clamp(44px,5vw,76px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:clamp(26px,3vw,44px)}
+.sec-head h2{font-size:clamp(2.3rem,1.4rem + 3vw,4.4rem)}
+.sec-head p{color:var(--ink-soft);max-width:46ch;justify-self:end}
+.sec-head .link{justify-self:end}
+@media (max-width:800px){.sec-head{grid-template-columns:minmax(0,1fr)}.sec-head p,.sec-head .link{justify-self:start}}
+.kicker{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze)}
+.on-dark .kicker{color:var(--bronze-light)}
+
+/* about (home) */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:center}
+.about h2{font-size:clamp(2.3rem,1.3rem + 3.1vw,4.4rem);letter-spacing:.005em}
+.about-txt p{color:var(--ink-soft);max-width:48ch;margin-top:36px}
+.about-txt .link{margin-top:44px}
+.collage{position:relative;padding-bottom:14%;max-width:640px;margin-left:auto;width:100%}
+.collage .c1{width:68%;margin-left:auto;aspect-ratio:4/5;max-height:62vh}
+.collage .c2{position:absolute;left:0;bottom:0;width:40%;aspect-ratio:1;border:clamp(8px,1.2vw,16px) solid var(--paper);box-sizing:content-box;margin-left:-16px}
+@media (max-width:860px){.about{grid-template-columns:minmax(0,1fr)}.collage .c2{margin-left:0}}
+
+.px{position:relative;overflow:hidden;background:var(--stone)}
+.px>img{position:absolute;left:0;top:-8%;width:100%;height:116%;object-fit:cover}
+.rv{will-change:clip-path}
+
+/* partners (home) */
+.partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));background:var(--graphite-2)}
+.partner{position:relative;display:block;color:var(--on-deep);text-decoration:none;aspect-ratio:5/5.6;overflow:hidden;isolation:isolate}
+.partner img{position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;object-position:50% 20%;transition:transform 1.4s var(--ease),filter 1s}
+.partner:hover img{transform:scale(1.04)}
+.partner::after{content:"";position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(transparent,rgba(12,14,16,.88));z-index:1}
+.partner-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(22px,3vw,44px)}
+.partner-cap h3{font-size:clamp(1.7rem,1.1rem + 1.7vw,2.7rem);letter-spacing:.01em}
+.partner-cap p{font-size:.85rem;color:rgba(241,241,236,.75);margin-top:10px}
+.partner-cap .more{display:inline-flex;align-items:center;gap:10px;margin-top:20px;font-size:.92rem;border-bottom:1px solid rgba(241,241,236,.5);padding-bottom:4px}
+.partner-cap .more svg{width:15px;height:15px;transition:transform .5s var(--ease)}
+.partner:hover .more svg{transform:translateX(6px)}
+@media (max-width:700px){.partners{grid-template-columns:minmax(0,1fr)}.partner{aspect-ratio:4/4.6}}
+
+/* area cards (home) */
+.nucleo-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.nucleo-row h3{font-size:clamp(1.5rem,1.2rem + 1vw,2.1rem)}
+.nucleo-row a{font-size:.88rem;color:var(--ink-soft);text-decoration:none}
+.nucleo-row a:hover{color:var(--ink)}
+.nucleo-row a b{font-weight:500;color:var(--ink)}
+.cards{display:grid;gap:clamp(10px,1.2vw,18px)}
+.cards-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.cards-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.nblock{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,4.2fr);gap:20px clamp(24px,3vw,48px)}
+.nblock+.nblock{margin-top:clamp(10px,1.2vw,18px)}
+.nblock .nucleo-row{flex-direction:column;flex-wrap:nowrap;align-items:flex-start;justify-content:space-between;gap:14px;border-bottom:0;border-top:1px solid var(--ink);padding:16px 0 4px;margin:0}
+.nblock .nucleo-row a{line-height:1.5}
+@media (max-width:900px){.nblock{grid-template-columns:minmax(0,1fr)}.nblock+.nblock{margin-top:40px}.nblock .nucleo-row{flex-direction:row;flex-wrap:wrap;align-items:baseline;border-top:0;border-bottom:1px solid var(--line);padding:0 0 14px}.nblock .nucleo-row a br{display:none}}
+.card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:clamp(230px,30vh,320px);color:var(--on-deep);text-decoration:none;overflow:hidden;isolation:isolate;background:var(--graphite)}
+.cards-3 .card{min-height:clamp(230px,30vh,320px)}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.4s var(--ease),filter .8s}
+.card.penal img{filter:grayscale(1) contrast(1.05)}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,18,20,.05) 25%,rgba(15,18,20,.82) 100%);transition:opacity .6s}
+.card:hover img{transform:scale(1.06)}
+.card-body{padding:clamp(18px,2vw,28px)}
+.card h4{font-size:clamp(1.35rem,1.1rem + .7vw,1.75rem);letter-spacing:0}
+.card p{font-size:.86rem;line-height:1.55;color:rgba(241,241,236,.8);margin-top:10px;max-width:36ch}
+.card .go{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;margin-top:14px;color:var(--bronze-light);opacity:0;transform:translateY(8px);transition:opacity .5s,transform .6s var(--ease)}
+.card .go svg{width:14px;height:14px}
+.card:hover .go,.card:focus-visible .go{opacity:1;transform:none}
+@media (hover:none){.card .go{opacity:1;transform:none}}
+@media (max-width:1100px){.cards-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.cards-3{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:520px){.cards-4{grid-template-columns:minmax(0,1fr)}.card{min-height:300px}}
+
+/* place / map */
+.place-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:clamp(32px,4vw,72px);align-items:center}
+.place-txt h2{font-size:clamp(2rem,1.3rem + 2vw,3.3rem)}
+.place-txt p{color:var(--ink-soft);margin-top:20px;max-width:52ch}
+.place-map{position:relative;height:clamp(360px,62vh,600px);overflow:hidden;background:#EDEDEA}
+.place-map img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:64% 40%;transform-origin:64% 40%}
+.pin{position:absolute;left:64%;top:39.9%;width:0;height:0}
+.pin::before,.pin::after{content:"";position:absolute;left:-23px;top:-23px;width:46px;height:46px;border-radius:50%;border:1px solid var(--deep);opacity:0;animation:pulse 2.8s ease-out infinite}
+.pin::after{animation-delay:1.4s}
+@keyframes pulse{0%{transform:scale(.4);opacity:.7}100%{transform:scale(2.2);opacity:0}}
+.place-info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 28px;margin:32px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+.place-info dt{font-size:.78rem;color:var(--ink-soft);margin-bottom:4px}
+.place-info dd{margin:0;font-size:.95rem}
+.how{position:relative;display:inline-block;margin-top:30px}
+.how-btn{display:inline-flex;align-items:center;gap:10px;background:none;border:0;border-bottom:1px solid currentColor;padding:0 0 6px;cursor:pointer;font-size:.95rem}
+.how-btn svg{width:12px;height:12px;transition:transform .4s var(--ease)}
+.how.open .how-btn svg{transform:rotate(180deg)}
+.how-menu{position:absolute;left:0;top:calc(100% + 10px);min-width:230px;background:var(--paper);border:1px solid var(--line);box-shadow:0 18px 40px rgba(20,26,29,.12);padding:8px;display:grid;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .3s,transform .4s var(--ease);z-index:5}
+.how.open .how-menu{opacity:1;transform:none;pointer-events:auto}
+.how-menu a,.how-menu button{display:block;text-align:left;padding:11px 14px;font-size:.92rem;text-decoration:none;background:none;border:0;cursor:pointer}
+.how-menu a:hover,.how-menu button:hover{background:var(--stone)}
+@media (max-width:860px){
+  .place-grid{grid-template-columns:minmax(0,1fr)}
+  .place-map{height:min(80vw,420px);min-height:280px}
+}
+
+/* publications */
+.pubs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px clamp(20px,2.6vw,40px)}
+.pub{display:block;text-decoration:none;color:inherit}
+.pub-img{aspect-ratio:3/2;overflow:hidden;background:var(--stone)}
+.pub-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.pub:hover .pub-img img{transform:scale(1.05)}
+.pub-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.78rem;margin-top:20px;color:var(--ink-soft)}
+.pub-meta b{font-weight:500;color:var(--bronze)}
+.pub h3{font-size:clamp(1.3rem,1.1rem + .5vw,1.6rem);line-height:1.22;margin-top:12px;letter-spacing:-.005em}
+.pub h3 span{background:linear-gradient(currentColor,currentColor) left 100%/0 1px no-repeat;transition:background-size .7s var(--ease)}
+.pub:hover h3 span{background-size:100% 1px}
+@media (max-width:960px){.pubs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.pubs{grid-template-columns:minmax(0,1fr)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(36px,4vw,56px)}
+.chip{border:1px solid var(--line);background:none;padding:9px 18px;font-size:.88rem;cursor:pointer;transition:background-color .3s,color .3s,border-color .3s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.contact-l{background:var(--deep);color:var(--on-deep);padding-block:clamp(56px,6vw,96px);padding-left:var(--gut);padding-right:clamp(24px,5vw,80px)}
+.contact-l h2{font-size:clamp(2.3rem,1.4rem + 2.8vw,4rem);max-width:12ch}
+.contact-l dl{margin:clamp(32px,3.5vw,52px) 0 0;display:grid;gap:20px}
+.contact-l dt{font-size:.76rem;color:var(--on-deep-soft);margin-bottom:6px}
+.contact-l dd{margin:0;font-size:1rem}
+.copy{background:none;border:0;color:var(--bronze-light);font-size:.78rem;cursor:pointer;margin-left:12px;padding:2px 0}
+.contact-r{background:var(--stone);padding-block:clamp(56px,6vw,96px);padding-right:var(--gut-r);padding-left:clamp(24px,5vw,80px)}
+.contact-r h3{font-size:clamp(1.6rem,1.3rem + .9vw,2.2rem)}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 36px;margin-top:28px}
+.field{display:grid;gap:4px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:.76rem;color:var(--ink-soft)}
+.field input,.field select,.field textarea{font:inherit;font-size:1rem;color:var(--ink);background:transparent;border:0;border-bottom:1px solid #C9C8C1;padding:10px 0;border-radius:0;outline:none;transition:border-color .3s;width:100%}
+.field select{appearance:none;-webkit-appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23141A1D' stroke-width='1.3'/%3E%3C/svg%3E") right 4px center/11px no-repeat;padding-right:24px;cursor:pointer}
+.field textarea{resize:vertical;min-height:96px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink)}
+.field .err{font-size:.76rem;color:#A2412F;min-height:0}
+.field.invalid input,.field.invalid textarea,.field.invalid select{border-color:#A2412F}
+.check{grid-column:1/-1;display:flex;gap:12px;align-items:flex-start;font-size:.8rem;color:var(--ink-soft);line-height:1.5}
+.check input{margin-top:3px;accent-color:var(--ink);width:15px;height:15px;flex-shrink:0}
+.check.invalid{color:#A2412F}
+.form-actions{grid-column:1/-1}
+.sent{margin-top:40px;padding:32px;border:1px solid #D8D7D0;background:var(--paper)}
+.sent h4{font-size:1.7rem}
+.sent p{color:var(--ink-soft);margin-top:12px;max-width:52ch}
+@media (max-width:900px){.contact{grid-template-columns:minmax(0,1fr)}.contact-l,.contact-r{padding-left:var(--gut);padding-right:var(--gut-r)}}
+@media (max-width:560px){.form{grid-template-columns:minmax(0,1fr)}}
+
+/* footer */
+.site{position:relative;z-index:2;background:var(--paper)}
+.ftr{background:var(--deep-2);color:var(--on-deep);position:relative;z-index:1}
+.reveal-footer .ftr{position:fixed;left:0;right:0;bottom:0}
+.ftr-top{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr));gap:40px;padding-block:clamp(64px,7vw,100px) clamp(48px,5vw,72px)}
+.ftr .logo b{font-size:1.75rem}
+.ftr-note{font-size:.88rem;color:var(--on-deep-soft);margin-top:24px;max-width:30ch}
+.ftr h5{font-size:.76rem;font-weight:500;color:var(--on-deep-soft);margin:0 0 16px;letter-spacing:.04em}
+.ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:.93rem}
+.ftr ul a{text-decoration:none;opacity:.88}
+.ftr ul a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+.ftr-bot{border-top:1px solid rgba(241,241,236,.1);padding-block:26px calc(26px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:.78rem;color:var(--on-deep-soft)}
+.ftr-bot a{text-decoration:none}.ftr-bot a:hover{color:var(--on-deep)}
+.ftr-big{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,11.5vw,11rem);line-height:.8;letter-spacing:-.04em;color:rgba(241,241,236,.06);white-space:nowrap;overflow:hidden;padding-top:8px;user-select:none}
+@media (max-width:900px){.ftr-top{grid-template-columns:repeat(2,minmax(0,1fr))}.ftr-top>div:first-child{grid-column:1/-1}}
+@media (max-width:480px){.ftr-top{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- inner pages ---------- */
+.manifesto{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,1.1rem + 2.6vw,3.6rem);line-height:1.2;letter-spacing:-.015em;max-width:24ch}
+.manifesto .w2{opacity:1}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:center}
+.split.top{align-items:start}
+.prose p{color:var(--ink-soft);max-width:56ch}
+.prose p+p{margin-top:1.1em}
+.prose.dark p{color:var(--ink)}
+@media (max-width:860px){.split{grid-template-columns:minmax(0,1fr)}}
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px 64px;padding-block:clamp(28px,3.4vw,48px);border-bottom:1px solid var(--line);align-items:baseline}
+.row h3{font-size:clamp(1.6rem,1.2rem + 1.3vw,2.5rem)}
+.row p{color:var(--ink-soft);max-width:52ch}
+@media (max-width:760px){.row{grid-template-columns:minmax(0,1fr)}}
+
+.nuc-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,18px)}
+.nuc-tile{position:relative;min-height:clamp(300px,46vh,460px);display:flex;flex-direction:column;justify-content:flex-end;color:var(--on-deep);text-decoration:none;overflow:hidden;isolation:isolate;padding:clamp(24px,3vw,48px)}
+.nuc-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.6s var(--ease)}
+.nuc-tile::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,18,20,.1),rgba(15,18,20,.85))}
+.nuc-tile:hover img{transform:scale(1.05)}
+.nuc-tile h3{font-size:clamp(2rem,1.3rem + 2vw,3.2rem)}
+.nuc-tile p{margin-top:12px;color:rgba(241,241,236,.78);font-size:.92rem;max-width:44ch}
+.nuc-tile .go{margin-top:22px;display:inline-flex;gap:10px;align-items:center;font-size:.9rem;border-bottom:1px solid rgba(241,241,236,.5);padding-bottom:4px;align-self:flex-start}
+.nuc-tile .go svg{width:15px;height:15px;transition:transform .5s var(--ease)}
+.nuc-tile:hover .go svg{transform:translateX(6px)}
+@media (max-width:760px){.nuc-duo{grid-template-columns:minmax(0,1fr)}}
+
+/* partners page */
+.pp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,7vw,120px);align-items:center}
+.pp+.pp{margin-top:clamp(90px,11vw,170px)}
+.pp.rev .pp-img{order:2}
+.pp-img{aspect-ratio:4/5;max-height:76vh}
+.pp-img img{object-position:50% 20%}
+.pp h2{font-size:clamp(2.2rem,1.4rem + 2.6vw,4rem)}
+.pp .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.88rem;color:var(--ink-soft);margin-top:18px}
+.pp .meta b{font-weight:500;color:var(--bronze)}
+.pp .prose{margin-top:30px}
+.pp .tags{margin-top:30px}
+.pp .link{margin-top:38px}
+@media (max-width:860px){.pp{grid-template-columns:minmax(0,1fr)}.pp.rev .pp-img{order:0}.pp-img{max-width:520px}}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:.82rem;border:1px solid var(--line);padding:7px 14px;text-decoration:none;transition:border-color .3s,background-color .3s}
+a.tag:hover{border-color:var(--ink)}
+.on-dark .tag{border-color:rgba(241,241,236,.22)}
+
+/* profile */
+.prof-hero{position:relative;background:var(--graphite-2);color:var(--on-deep);overflow:hidden}
+.prof-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:end;min-height:min(92svh,860px)}
+.prof-txt{padding-block:clamp(150px,20vh,200px) clamp(56px,8vh,96px)}
+.prof-txt h1{font-size:clamp(2.6rem,1.4rem + 4vw,5.6rem);letter-spacing:-.025em;max-width:11ch}
+.prof-txt .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.92rem;color:var(--on-deep-soft);margin-top:26px}
+.prof-txt .meta b{color:var(--bronze-light);font-weight:500}
+.prof-txt .lead{margin-top:28px;max-width:46ch;color:rgba(241,241,236,.82);font-size:1.08rem}
+.prof-img{position:relative;align-self:stretch;min-height:520px}
+.prof-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.prof-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--graphite-2) 0%,rgba(29,32,35,0) 28%)}
+@media (max-width:900px){.prof-grid{grid-template-columns:minmax(0,1fr)}.prof-img{order:-1;min-height:0;aspect-ratio:4/4.4;margin-inline:calc(-1 * var(--gut)) calc(-1 * var(--gut-r))}.prof-img::after{background:linear-gradient(180deg,rgba(29,32,35,0) 55%,var(--graphite-2) 100%)}.prof-txt{padding-top:0;margin-top:-80px;position:relative}}
+.prof-body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:start}
+.prof-body .prose p{font-size:1.1rem;color:var(--ink)}
+.prof-body .prose p:first-child{font-family:var(--serif);font-size:clamp(1.5rem,1.2rem + 1vw,2.1rem);line-height:1.3;font-weight:300;letter-spacing:-.01em}
+.aside{position:sticky;top:110px;display:grid;gap:34px}
+.aside h4{font-family:var(--sans);font-size:.78rem;font-weight:500;color:var(--ink-soft);letter-spacing:.04em;margin-bottom:14px}
+.aside ul{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+.aside li{border-bottom:1px solid var(--line)}
+.aside li a{display:flex;justify-content:space-between;align-items:center;padding:14px 0;text-decoration:none;font-size:1rem;transition:padding .5s var(--ease),color .3s}
+.aside li a:hover{padding-left:10px;color:var(--bronze)}
+.aside li a svg{width:14px;height:14px}
+.aside li span{display:block;padding:14px 0;font-size:.98rem;color:var(--ink-soft)}
+@media (max-width:860px){.prof-body{grid-template-columns:minmax(0,1fr)}.aside{position:static}}
+
+/* areas index */
+.nuc-sec+.nuc-sec{margin-top:clamp(90px,10vw,150px)}
+.nuc-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 64px;align-items:end;margin-bottom:clamp(32px,4vw,56px)}
+.nuc-head h2{font-size:clamp(2.2rem,1.4rem + 2.6vw,4rem)}
+.nuc-head p{color:var(--ink-soft);max-width:50ch}
+.coord{display:flex;align-items:center;gap:16px;text-decoration:none;margin-top:22px}
+.coord img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:50% 18%}
+.coord small{display:block;font-size:.76rem;color:var(--ink-soft)}
+.coord b{font-weight:500;font-size:.98rem}
+.coord:hover b{text-decoration:underline;text-underline-offset:4px}
+@media (max-width:860px){.nuc-head{grid-template-columns:minmax(0,1fr)}}
+.alist{border-top:1px solid var(--ink)}
+.arow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) 40px;gap:16px 48px;align-items:center;padding-block:clamp(26px,3vw,40px);border-bottom:1px solid var(--line);text-decoration:none;position:relative;transition:padding .6s var(--ease)}
+.arow::before{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
+.arow:hover::before{transform:scaleX(1)}
+.arow h3{font-size:clamp(1.9rem,1.3rem + 2vw,3.3rem);letter-spacing:-.02em;transition:transform .7s var(--ease)}
+.arow p{color:var(--ink-soft);font-size:.95rem;max-width:52ch}
+.arow .arr{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:background-color .4s,border-color .4s,color .4s}
+.arow .arr svg{width:15px;height:15px}
+.arow:hover .arr{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.arow .thumb{display:none}
+@media (hover:hover) and (pointer:fine){.arow:hover h3{transform:translateX(14px)}}
+@media (max-width:760px){.arow{grid-template-columns:76px minmax(0,1fr);gap:6px 18px}.arow .thumb{display:block;grid-row:span 2;width:76px;height:96px;object-fit:cover}.arow.penal .thumb{filter:grayscale(1)}.arow .arr{display:none}.arow h3{font-size:1.65rem}.arow p{font-size:.88rem}}
+.float-img{position:fixed;left:0;top:0;width:min(300px,22vw);aspect-ratio:3/4;pointer-events:none;z-index:40;overflow:hidden;opacity:0;visibility:hidden}
+.float-img img{width:100%;height:100%;object-fit:cover}
+.float-img.penal img{filter:grayscale(1)}
+
+/* area page */
+.area-body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:start}
+.area-body h2{font-size:clamp(1.9rem,1.3rem + 1.8vw,3rem)}
+.help{list-style:none;padding:0;margin:30px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px;border-top:1px solid var(--line)}
+.help li{padding:16px 0;border-bottom:1px solid var(--line);font-size:1.02rem;display:flex;gap:14px;align-items:baseline}
+.help li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--bronze);flex-shrink:0;transform:translateY(-2px)}
+@media (max-width:600px){.help{grid-template-columns:minmax(0,1fr)}}
+.coord-card{background:var(--stone);padding:clamp(24px,2.6vw,36px);display:grid;gap:18px}
+.coord-card .who{display:flex;gap:18px;align-items:center}
+.coord-card img{width:84px;height:104px;object-fit:cover;object-position:50% 18%}
+.coord-card h4{font-size:1.45rem;line-height:1.15}
+.coord-card small{display:block;font-size:.8rem;color:var(--ink-soft);margin-top:6px}
+.coord-card .btn{justify-content:space-between}
+.note{font-size:.86rem;color:var(--ink-soft);border-left:1px solid var(--bronze);padding-left:18px}
+@media (max-width:860px){.area-body{grid-template-columns:minmax(0,1fr)}}
+
+/* article */
+.progress{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:2px;z-index:70;background:var(--bronze);transform:scaleX(0);transform-origin:left;pointer-events:none}
+.art-head{padding-block:clamp(150px,20vh,200px) 0;background:var(--graphite);color:var(--on-deep)}
+.art-head h1{font-size:clamp(2.3rem,1.3rem + 3.3vw,4.6rem);max-width:20ch;letter-spacing:-.02em}
+.art-head .pub-meta{color:var(--on-deep-soft);font-size:.86rem;margin-top:30px;margin-bottom:clamp(44px,5vw,70px)}
+.art-head .pub-meta b{color:var(--bronze-light)}
+.art-cover{aspect-ratio:21/9;max-height:60vh;width:100%}
+.art-cover-wrap{background:linear-gradient(var(--graphite) 50%,var(--paper) 50%)}
+.article{max-width:720px;margin-inline:auto}
+.article p{font-size:1.12rem;line-height:1.75;color:#2A3236}
+.article p+p{margin-top:1.2em}
+.article .intro{font-family:var(--serif);font-weight:300;font-size:clamp(1.4rem,1.2rem + .8vw,1.85rem);line-height:1.4;color:var(--ink);letter-spacing:-.01em}
+.article h2{font-size:clamp(1.6rem,1.3rem + 1vw,2.2rem);margin:2em 0 .7em}
+.article .disclaimer{margin-top:3em;padding-top:24px;border-top:1px solid var(--line);font-size:.86rem;color:var(--ink-soft)}
+@media (max-width:600px){.art-cover{aspect-ratio:4/3}}
+
+/* cta band */
+.cta{background:var(--deep);color:var(--on-deep);overflow:hidden;position:relative}
+.cta-in{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:36px 64px;align-items:end;padding-block:clamp(60px,7vw,104px)}
+.cta h2{font-size:clamp(2.4rem,1.4rem + 3.2vw,4.8rem);max-width:13ch}
+.cta p{color:var(--on-deep-soft);max-width:42ch;margin-bottom:28px}
+@media (max-width:860px){.cta-in{grid-template-columns:minmax(0,1fr)}}
+
+.legal h2{font-size:1.7rem;margin:1.8em 0 .6em}
+.legal p,.legal li{color:#2A3236;max-width:68ch}
+.legal ul{padding-left:1.2em;display:grid;gap:6px;margin:0}
+
+/* custom cursor */
+.cursor{position:fixed;left:0;top:0;z-index:80;pointer-events:none;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;background:var(--on-deep);color:var(--ink);display:grid;place-items:center;font-size:.8rem;letter-spacing:.04em;transform:scale(0);opacity:0}
+@media (hover:none),(pointer:coarse){.cursor,.float-img{display:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+
+<script>
+try{ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ var s=sessionStorage.getItem('na-seen'); if(!s) document.documentElement.classList.add('has-loader'); } }catch(e){ document.documentElement.classList.add('has-loader'); }
+setTimeout(function(){var l=document.getElementById('loader'); if(l && !window.__loaderDone){document.documentElement.classList.remove('has-loader');}},4500);
+</script>
+
+<div id="loader" aria-hidden="true">
+  <div class="ld-mark">
+    <div class="ld-name" id="ld-name">Narcizo &amp; Amaral</div>
+    <div class="ld-sub">Advogados Associados</div>
+    <div class="ld-bar"><i></i></div>
+  </div>
+</div>
+<div id="curtain" aria-hidden="true"><span>Narcizo &amp; Amaral</span></div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#inicio" aria-label="Narcizo &amp; Amaral, página inicial"><b>Narcizo &amp; Amaral</b><small>Advogados Associados</small></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#escritorio" data-nav="escritorio">Escritório</a>
+      <a href="#socios" data-nav="socios">Sócios</a>
+      <a href="#atuacao" data-nav="atuacao">Atuação</a>
+      <a href="#publicacoes" data-nav="publicacoes">Publicações</a>
+      <a href="#contato" data-nav="contato">Contato</a>
+    </nav>
+    <a class="hdr-cta" href="#contato">Agendar reunião</a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <nav aria-label="Menu">
+    <a href="#inicio">Início</a>
+    <a href="#escritorio">Escritório</a>
+    <a href="#socios">Sócios</a>
+    <a href="#atuacao">Atuação</a>
+    <a href="#publicacoes">Publicações</a>
+    <a href="#contato">Agendar reunião</a>
+  </nav>
+  <div class="drawer-foot">
+    <span>R. Najla Carone Guedert, 1080, sala 102 · Palhoça/SC</span>
+    <span>(48) 98458-6534 · @advogado.eduardo</span>
+  </div>
+</div>
+
+<div class="site" id="site">
+  <main id="app"></main>
+</div>
+
+<footer class="ftr" id="ftr">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div>
+        <a class="logo" href="#inicio"><b>Narcizo &amp; Amaral</b><small>Advogados Associados</small></a>
+        <p class="ftr-note">Sede em Palhoça, Santa Catarina. Atendimento presencial ou on-line em todo o Brasil.</p>
+      </div>
+      <div>
+        <h5>Escritório</h5>
+        <ul><li><a href="#escritorio">Sobre</a></li><li><a href="#socios">Sócios</a></li><li><a href="#publicacoes">Publicações</a></li><li><a href="#privacidade">Privacidade</a></li></ul>
+      </div>
+      <div>
+        <h5>Atuação</h5>
+        <ul><li><a href="#atuacao">Núcleo de Direito Civil</a></li><li><a href="#atuacao">Núcleo de Direito Penal</a></li><li><a href="#area-familia-sucessoes">Família e Sucessões</a></li><li><a href="#area-tribunal-juri">Tribunal do Júri</a></li></ul>
+      </div>
+      <div>
+        <h5>Contato</h5>
+        <ul><li><a href="#contato">Agendar reunião</a></li><li><a href="https://www.instagram.com/advogado.eduardo/" target="_blank" rel="noopener">Instagram</a></li><li><span style="opacity:.88">(48) 98458-6534</span></li></ul>
+      </div>
+    </div>
+    <div class="ftr-big" aria-hidden="true">Narcizo &amp; Amaral</div>
+    <div class="ftr-bot">
+      <span>Narcizo &amp; Amaral Advogados Associados · Registro OAB/SC nº 6673</span>
+      <span>Conteúdo informativo conforme o Provimento 205/2021 do CFOAB</span>
+      <span>© 2026 Narcizo &amp; Amaral · <a href="#privacidade">Política de privacidade</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="cursor" id="cursor" aria-hidden="true">Ver perfil</div>
+<div class="float-img" id="floatImg" aria-hidden="true"><img alt="" src="img/imobiliario.jpg"></div>
+<div class="progress" id="progress" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+"use strict";
+var REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
+var G = window.gsap && !REDUCE ? window.gsap : null;
+if (G && window.ScrollTrigger) G.registerPlugin(ScrollTrigger);
+
+var ARROW = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.2"/></svg>';
+var CHEV = '<svg viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.3"/></svg>';
+var img = function(n){ return 'img/' + n + '.jpg'; };
+var ADDRESS = 'R. Najla Carone Guedert, 1080, sala 102, Pagani, Palhoça/SC, 88132-150';
+
+/* ================= conteúdo ================= */
+var PARTNERS = {
+  eduardo: {
+    route:'socio-eduardo', name:'Eduardo Dreher Narcizo', treat:'Dr. Eduardo Dreher Narcizo', first:'Dr. Eduardo',
+    oab:'OAB/SC 54.574', nucleo:'civil', role:'Coordenador do Núcleo de Direito Civil', photo:'eduardo',
+    lead:'Especialista em Direito Público, com trajetória em assessoria jurídica a órgãos públicos. Hoje coordena o Núcleo de Direito Civil do escritório.',
+    bio:[
+      'Eduardo Dreher Narcizo é o sócio que coordena o Núcleo de Direito Civil do escritório.',
+      'Especialista em Direito Público, prestou assessoria jurídica a órgãos públicos ao longo de sua trajetória. Essa experiência lhe deu um conhecimento aprofundado sobre o funcionamento da administração pública e sobre a sua relação com os particulares.',
+      'No Direito Civil, atua em questões imobiliárias, sucessórias e familiares, além de assessorias empresariais, contratos, cobranças e responsabilidade civil. Conduz cada caso de acordo com sua singularidade, em busca de soluções práticas e seguras, construídas a partir da realidade de cada cliente.'
+    ],
+    also:['Assessoria empresarial','Contratos','Cobranças','Responsabilidade civil'],
+    background:['Especialista em Direito Público','Assessoria jurídica a órgãos públicos']
+  },
+  wagner: {
+    route:'socio-wagner', name:'Wagner Renan Amaral de Souza', treat:'Dr. Wagner Renan Amaral de Souza', first:'Dr. Wagner',
+    oab:'OAB/SC 54.618', nucleo:'penal', role:'Coordenador do Núcleo de Direito Penal', photo:'wagner',
+    lead:'Advogado criminalista e pós-graduando em Direito Penal. Tem no Tribunal do Júri a sua grande vocação profissional.',
+    bio:[
+      'Wagner Renan Amaral de Souza é o sócio que coordena o Núcleo de Direito Penal do escritório.',
+      'Advogado criminalista e pós-graduando em Direito Penal, possui ampla experiência na defesa em inquéritos policiais, audiências de custódia, ações penais e recursos. Tem vasta atuação em processos envolvendo a Lei de Drogas, a Lei Maria da Penha e organizações criminosas, sempre pautada pela defesa técnica e pelo respeito às garantias fundamentais.',
+      'Tem no Tribunal do Júri a sua grande vocação profissional. Dedica-se à defesa nos julgamentos de crimes dolosos contra a vida, em que a preparação minuciosa do caso e a clareza na comunicação com os jurados são decisivas.'
+    ],
+    also:['Inquéritos policiais','Audiências de custódia','Ações penais e recursos','Lei Maria da Penha'],
+    background:['Advogado criminalista','Pós-graduando em Direito Penal']
+  }
+};
+
+var NUCLEOS = {
+  civil:{ id:'civil', title:'Núcleo de Direito Civil', partner:'eduardo',
+    intro:'Questões imobiliárias, familiares e sucessórias, relações de consumo e o acesso à saúde, com soluções práticas e seguras construídas a partir da realidade de cada cliente.' },
+  penal:{ id:'penal', title:'Núcleo de Direito Penal', partner:'wagner',
+    intro:'Defesa técnica em inquéritos policiais, audiências de custódia, ações penais e recursos, sempre pautada pelo respeito às garantias fundamentais.' }
+};
+
+var AREAS = [
+  { id:'imobiliario', nucleo:'civil', title:'Imobiliário', photo:'imobiliario',
+    short:'Compra e venda, locação, regularização de imóveis, condomínio, posse e vizinhança.',
+    text:'Assessoria em compra e venda, locação e regularização de imóveis, além de questões de condomínio, posse e vizinhança, com análise criteriosa de documentos e contratos para prevenir riscos e resolver conflitos com segurança.',
+    items:['Compra e venda de imóveis','Locação','Regularização de imóveis','Condomínio','Posse','Direito de vizinhança','Análise de documentos','Contratos imobiliários'] },
+  { id:'familia-sucessoes', nucleo:'civil', title:'Família e Sucessões', photo:'familia',
+    short:'Divórcio, união estável, guarda, pensão alimentícia, inventário e planejamento sucessório.',
+    text:'Atuação em divórcio, união estável, guarda, pensão alimentícia, partilha de bens, inventário e planejamento sucessório, com condução discreta e atenção às relações familiares envolvidas em cada caso.',
+    items:['Divórcio','União estável','Guarda','Pensão alimentícia','Partilha de bens','Inventário','Planejamento sucessório'] },
+  { id:'consumidor-bancario', nucleo:'civil', title:'Consumidor e Bancário', photo:'consumidor',
+    short:'Revisão de contratos, cobranças indevidas, juros abusivos e falhas na prestação de serviços.',
+    text:'Defesa dos direitos do consumidor perante fornecedores, seguradoras e instituições financeiras, com atuação em revisão de contratos, cobranças indevidas, juros abusivos e falhas na prestação de serviços.',
+    items:['Revisão de contratos','Cobranças indevidas','Juros abusivos','Falhas na prestação de serviços','Seguradoras','Instituições financeiras'] },
+  { id:'direito-saude', nucleo:'civil', title:'Direito à Saúde', photo:'saude',
+    short:'Medicamentos, tratamentos, cirurgias e internações negados por planos de saúde ou pelo poder público.',
+    text:'Atuação em demandas contra planos de saúde e o poder público para garantir o acesso a medicamentos, tratamentos, cirurgias e internações, com atenção à urgência e às particularidades de cada situação.',
+    items:['Medicamentos','Tratamentos','Cirurgias','Internações','Negativas de planos de saúde','Demandas contra o poder público'] },
+  { id:'tribunal-juri', nucleo:'penal', title:'Tribunal do Júri', photo:'juri',
+    short:'Defesa em processos de crimes dolosos contra a vida, do inquérito ao plenário.',
+    text:'Defesa técnica e estratégica em processos de crimes dolosos contra a vida, com atuação em julgamentos de elevada complexidade e casos de grande repercussão.',
+    extra:'No Júri, a preparação minuciosa do caso e a clareza na comunicação com os jurados são decisivas.',
+    items:['Crimes dolosos contra a vida','Inquérito policial','Primeira fase do processo','Julgamento em plenário','Casos de grande repercussão','Recursos'] },
+  { id:'organizacoes-criminosas', nucleo:'penal', title:'Organizações Criminosas', photo:'organizacoes',
+    short:'Defesa em investigações e ações penais, com análise aprofundada das provas.',
+    text:'Atuação na defesa em investigações e ações penais envolvendo imputações de participação em organizações criminosas, com análise aprofundada das provas e construção de estratégias defensivas.',
+    items:['Investigações','Ações penais','Análise das provas','Estratégia defensiva','Audiências de custódia','Recursos'] },
+  { id:'lei-drogas', nucleo:'penal', title:'Lei de Drogas', photo:'drogas',
+    short:'Defesa em investigações e processos por tráfico e demais delitos da legislação.',
+    text:'Defesa em investigações e processos relacionados ao tráfico de drogas e demais delitos previstos na legislação, com atenção à legalidade das provas e às particularidades de cada caso.',
+    items:['Tráfico de drogas','Demais delitos da Lei 11.343/2006','Legalidade das provas','Inquérito policial','Audiências de custódia','Ações penais e recursos'] }
+];
+var AREA = {}; AREAS.forEach(function(a){ AREA[a.id]=a; });
+
+var PUBS = [
+  { id:'plano-saude-negativa', area:'direito-saude', photo:'pub-saude', date:'28 out 2026', read:'5 min',
+    title:'Plano de saúde negou o tratamento: quando a recusa pode ser contestada',
+    intro:'A negativa de cobertura costuma chegar no momento mais delicado. Nem toda recusa é definitiva, e alguns cuidados no início fazem diferença.',
+    body:[
+      ['h','Peça a negativa por escrito'],
+      ['p','A operadora deve informar com clareza o motivo da recusa, e o beneficiário tem direito de receber essa resposta por escrito quando solicitar. Esse documento, junto com a prescrição e o relatório médico, é a base de qualquer contestação.'],
+      ['h','O rol da ANS não encerra a discussão'],
+      ['p','Desde a Lei 14.454/2022, a lista de procedimentos da ANS funciona como referência básica de cobertura. Tratamentos fora dela podem ser exigidos quando atendem aos critérios da lei, como a comprovação de eficácia com base em evidências científicas ou a recomendação de órgãos técnicos de avaliação.'],
+      ['h','Urgência e emergência'],
+      ['p','Nos atendimentos de urgência e emergência, a Lei 9.656/1998 limita a carência a 24 horas. Recusas fundadas em carência nesses casos merecem atenção imediata.'],
+      ['h','Quando a demora coloca a saúde em risco'],
+      ['p','Se esperar o fim de um processo pode comprometer o tratamento, é possível pedir ao juiz uma decisão de urgência para que a cobertura seja garantida desde logo. Um laudo médico detalhado, que explique a necessidade e a urgência, costuma ser decisivo.'],
+      ['p','Quando o pedido é dirigido ao poder público, como no fornecimento de medicamentos pelo SUS, os tribunais superiores fixaram critérios próprios, entre eles laudo médico fundamentado e registro do medicamento na Anvisa.']
+    ]},
+  { id:'usucapiao-extrajudicial', area:'imobiliario', photo:'pub-usucapiao', date:'14 out 2026', read:'5 min',
+    title:'Usucapião extrajudicial: quando é possível regularizar o imóvel em cartório',
+    intro:'Quem exerce a posse de um imóvel há muitos anos, sem conflito, pode obter a propriedade sem processo judicial, diretamente no Registro de Imóveis.',
+    body:[
+      ['h','O que diz a lei'],
+      ['p','O procedimento está previsto no artigo 216-A da Lei de Registros Públicos, incluído pelo Código de Processo Civil de 2015. Ele é processado no Cartório de Registro de Imóveis da comarca onde o bem está localizado, e a assistência de advogado é obrigatória.'],
+      ['h','Requisitos da posse'],
+      ['p','A posse precisa ser contínua, sem oposição e exercida como se o possuidor fosse dono, pelo prazo exigido na modalidade de usucapião aplicável ao caso. Esse prazo varia conforme a situação do imóvel e do possuidor.'],
+      ['h','Documentos principais'],
+      ['p','O pedido reúne ata notarial lavrada por tabelião, que atesta o tempo e as características da posse; planta e memorial descritivo assinados por profissional habilitado; certidões negativas dos distribuidores; e documentos que demonstrem a posse, como contratos, carnês de IPTU e contas de consumo.'],
+      ['h','Vizinhos e confrontantes'],
+      ['p','Os titulares de direitos sobre o imóvel e os confrontantes são notificados. Desde 2017, o silêncio após a notificação é interpretado como concordância. Havendo impugnação que não se resolva, o caso pode seguir para a via judicial.']
+    ]},
+  { id:'inventario-cartorio', area:'familia-sucessoes', photo:'pub-documento', date:'30 set 2026', read:'4 min',
+    title:'Inventário em cartório: quando a família pode evitar o processo judicial',
+    intro:'O inventário extrajudicial costuma ser mais rápido e menos desgastante. Saber se a família se enquadra é o primeiro passo.',
+    body:[
+      ['h','Escritura pública em cartório de notas'],
+      ['p','Desde a Lei 11.441/2007, o inventário e a partilha de bens podem ser feitos por escritura pública em qualquer cartório de notas, com a assistência de advogado.'],
+      ['h','Quando é possível'],
+      ['p','A regra é que todos os herdeiros estejam de acordo com a partilha. Em 2024, o Conselho Nacional de Justiça ampliou as hipóteses e passou a admitir a via extrajudicial em situações específicas, mesmo com herdeiros menores ou quando há testamento, desde que cumpridas as condições previstas.'],
+      ['h','Prazo e imposto'],
+      ['p','O Código de Processo Civil prevê a abertura do inventário em até dois meses após o falecimento. O atraso pode gerar multa sobre o imposto de transmissão, conforme a lei de cada estado.'],
+      ['h','Planejamento'],
+      ['p','Em muitos casos, um planejamento sucessório feito em vida reduz custos e evita conflitos. Cada família tem uma realidade, e a solução adequada depende dos bens envolvidos e das relações entre os herdeiros.']
+    ]},
+  { id:'tribunal-juri-etapas', area:'tribunal-juri', photo:'juri', date:'16 set 2026', read:'6 min',
+    title:'Tribunal do Júri: as etapas de um julgamento',
+    intro:'Os crimes dolosos contra a vida são julgados por cidadãos. Entender o caminho até o plenário ajuda a acompanhar cada decisão do processo.',
+    body:[
+      ['h','Competência do Júri'],
+      ['p','A Constituição atribui ao Tribunal do Júri o julgamento dos crimes dolosos contra a vida, tentados ou consumados, como o homicídio. A instituição tem garantidos a plenitude de defesa, o sigilo das votações e a soberania dos veredictos.'],
+      ['h','Primeira fase'],
+      ['p','Perante o juiz, são ouvidas testemunhas e produzidas as provas. Ao final, o juiz pode pronunciar o acusado, enviando o caso ao plenário, impronunciá-lo, absolvê-lo sumariamente ou desclassificar o crime para outro que não seja da competência do Júri.'],
+      ['h','O plenário'],
+      ['p','Sete jurados, sorteados entre os convocados, formam o Conselho de Sentença. Defesa e acusação podem recusar até três jurados cada uma sem precisar justificar. Depois da instrução em plenário, cada parte tem uma hora e meia para os debates, com possibilidade de réplica e tréplica.'],
+      ['h','Os quesitos'],
+      ['p','Os jurados respondem a perguntas objetivas em votação sigilosa, e a decisão é tomada por maioria. Por isso a preparação do caso e a clareza na comunicação com os jurados são tão importantes.']
+    ]},
+  { id:'audiencia-custodia', area:'organizacoes-criminosas', photo:'organizacoes', date:'2 set 2026', read:'4 min',
+    title:'Audiência de custódia: o que acontece depois da prisão em flagrante',
+    intro:'As primeiras horas depois de uma prisão são decisivas. A audiência de custódia é o momento em que um juiz avalia se a prisão deve continuar.',
+    body:[
+      ['h','Prazo de 24 horas'],
+      ['p','O Código de Processo Penal determina que a pessoa presa em flagrante seja apresentada ao juiz em até 24 horas, em audiência com a presença do Ministério Público e da defesa.'],
+      ['h','O que o juiz examina'],
+      ['p','A audiência não julga se a pessoa é culpada. O juiz verifica a legalidade da prisão, as condições em que ela ocorreu e se há necessidade de manter alguém preso enquanto o caso é investigado.'],
+      ['h','Decisões possíveis'],
+      ['p','A prisão ilegal deve ser relaxada. Nos demais casos, o juiz pode conceder liberdade provisória, com ou sem fiança, impor medidas cautelares, como comparecimento periódico em juízo, ou converter o flagrante em prisão preventiva quando presentes os requisitos legais.'],
+      ['h','A importância da defesa desde o início'],
+      ['p','Uma defesa técnica presente desde a audiência de custódia pode apontar ilegalidades, apresentar documentos sobre residência e trabalho e propor alternativas à prisão.']
+    ]},
+  { id:'juros-cartao', area:'consumidor-bancario', photo:'consumidor', date:'19 ago 2026', read:'4 min',
+    title:'Juros do cartão de crédito: quando a cobrança passa do limite',
+    intro:'Juros altos nem sempre são ilegais. O que define o abuso é a comparação com o mercado e o respeito às regras específicas do cartão.',
+    body:[
+      ['h','A taxa média como referência'],
+      ['p','O Superior Tribunal de Justiça entende que juros acima de 12% ao ano, por si só, não indicam abuso. A análise costuma comparar a taxa contratada com a taxa média de mercado divulgada pelo Banco Central para a mesma operação.'],
+      ['h','Limite no rotativo'],
+      ['p','Desde janeiro de 2024, a Lei 14.690/2023 limita os juros e encargos do rotativo e do parcelamento da fatura a 100% do valor original da dívida.'],
+      ['h','Cobrança indevida'],
+      ['p','Pelo Código de Defesa do Consumidor, quem paga uma quantia cobrada indevidamente tem direito à devolução em dobro do que pagou em excesso, salvo engano justificável.'],
+      ['p','Guardar faturas, contratos e comprovantes de pagamento facilita a análise e a revisão do contrato, seja em negociação com a instituição financeira, seja na Justiça.']
+    ]}
+];
+var PUB = {}; PUBS.forEach(function(p){ PUB[p.id]=p; });
+
+/* ================= componentes ================= */
+function pubCard(p){
+  var a = AREA[p.area];
+  return '<a class="pub" href="#pub-'+p.id+'" data-area="'+p.area+'">'+
+    '<div class="pub-img"><img src="'+img(p.photo)+'" alt="" loading="lazy"></div>'+
+    '<div class="pub-meta"><b>'+a.title+'</b><span>'+p.date+'</span></div>'+
+    '<h3><span>'+p.title+'</span></h3></a>';
+}
+function areaCard(a){
+  return '<a class="card '+a.nucleo+'" href="#area-'+a.id+'" data-stagger-item>'+
+    '<img src="'+img(a.photo)+'" alt="" loading="lazy">'+
+    '<div class="card-body"><h4>'+a.title+'</h4><p>'+a.short+'</p><span class="go">Saiba mais '+ARROW+'</span></div></a>';
+}
+function placeBlock(){
+  return '<section class="place sec-tight" aria-labelledby="sede-t"><div class="wrap place-grid">'+
+      '<div class="place-txt" data-up><h2 id="sede-t">Sede em Palhoça. Atendimento em todo o Brasil.</h2>'+
+      '<p>Com sede em Palhoça, Santa Catarina, próxima ao Fórum da Comarca, o escritório atende clientes em todo o território nacional. O atendimento pode ser presencial ou on-line, com reuniões por videoconferência e acompanhamento de processos eletrônicos em tribunais de todo o país. Onde quer que o cliente esteja, cada caso recebe a mesma atenção e o mesmo cuidado técnico.</p>'+
+      '<div class="how" data-how><button class="how-btn" type="button" aria-expanded="false">Como chegar '+CHEV+'</button>'+
+        '<div class="how-menu" role="menu">'+
+          '<a role="menuitem" href="https://www.google.com/maps/search/?api=1&query=R.%20Najla%20Carone%20Guedert%2C%201080%2C%20Palho%C3%A7a%20SC" target="_blank" rel="noopener">Google Maps</a>'+
+          '<a role="menuitem" href="https://waze.com/ul?ll=-27.6419025,-48.6772373&navigate=yes" target="_blank" rel="noopener">Waze</a>'+
+          '<a role="menuitem" href="https://maps.apple.com/?q=Narcizo%20%26%20Amaral&ll=-27.6419025,-48.6772373" target="_blank" rel="noopener">Apple Maps</a>'+
+          '<button role="menuitem" type="button" data-copy="'+ADDRESS+'">Copiar endereço</button>'+
+        '</div></div>'+
+      '<dl class="place-info">'+
+        '<div data-stagger-item><dt>Endereço</dt><dd>R. Najla Carone Guedert, 1080, sala 102<br>Pagani, Palhoça/SC · 88132-150</dd></div>'+
+        '<div data-stagger-item><dt>Atendimento</dt><dd>Com hora marcada<br>até as 19h</dd></div>'+
+        '<div data-stagger-item><dt>Formato</dt><dd>Presencial ou<br>por videoconferência</dd></div>'+
+        '<div data-stagger-item><dt>Referência</dt><dd>Próximo ao Fórum<br>da Comarca de Palhoça</dd></div>'+
+      '</dl></div>'+
+    '<div class="place-map" data-mapzoom><img src="'+img('mapa')+'" alt="Mapa do bairro Pagani, em Palhoça, com a localização do escritório" loading="lazy"><span class="pin" aria-hidden="true"></span></div>'+
+    '</div></section>';
+}
+function contactBlock(preset){
+  var opts = AREAS.map(function(a){ return '<option'+(preset===a.id?' selected':'')+'>'+a.title+'</option>'; }).join('');
+  return '<section class="contact" id="agendar" aria-labelledby="ct-t">'+
+    '<div class="contact-l on-dark"><h2 id="ct-t" data-split>Converse com um dos sócios</h2>'+
+      '<dl data-stagger>'+
+        '<div data-stagger-item><dt>Endereço</dt><dd>R. Najla Carone Guedert, 1080, sala 102<br>Pagani, Palhoça/SC · 88132-150</dd></div>'+
+        '<div data-stagger-item><dt>Telefone e WhatsApp</dt><dd><span id="tel">(48) 98458-6534</span><button class="copy" type="button" data-copy="(48) 98458-6534">Copiar</button></dd></div>'+
+        '<div data-stagger-item><dt>Instagram</dt><dd><a href="https://www.instagram.com/advogado.eduardo/" target="_blank" rel="noopener">@advogado.eduardo</a></dd></div>'+
+        '<div data-stagger-item><dt>Atendimento</dt><dd>Com hora marcada, até as 19h</dd></div>'+
+      '</dl></div>'+
+    '<div class="contact-r"><h3>Agende uma reunião</h3>'+
+      '<form class="form" id="form" novalidate>'+
+        '<div class="field"><label for="f-nome">Nome</label><input id="f-nome" name="nome" autocomplete="name" required><span class="err"></span></div>'+
+        '<div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email"><span class="err"></span></div>'+
+        '<div class="field"><label for="f-tel">Telefone</label><input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="(48) 90000-0000"><span class="err"></span></div>'+
+        '<div class="field"><label for="f-assunto">Assunto</label><select id="f-assunto" name="assunto">'+(preset?'':'<option selected>Selecione a área</option>')+opts+'<option>Outro assunto</option></select><span class="err"></span></div>'+
+        '<div class="field full"><label for="f-msg">Conte brevemente a situação</label><textarea id="f-msg" name="msg" rows="3" required></textarea><span class="err"></span></div>'+
+        '<label class="check" for="f-lgpd"><input id="f-lgpd" type="checkbox" required> Autorizo o uso destes dados apenas para retorno do contato, conforme a LGPD (Lei 13.709/2018) e a <a href="#privacidade">política de privacidade</a>.</label>'+
+        '<div class="form-actions"><button class="btn btn-dark" type="submit">Enviar '+ARROW+'</button></div>'+
+      '</form>'+
+      '<div class="sent" id="sent" hidden><h4>Obrigado, <span id="sent-name"></span>.</h4><p>Este é o protótipo navegável do site. Na versão publicada, a mensagem segue direto para os sócios, que retornam pelo telefone ou e-mail informado.</p><p>Se preferir, fale agora pelo telefone e WhatsApp (48) 98458-6534.</p></div>'+
+    '</div></section>';
+}
+function ctaBand(title, text){
+  return '<section class="cta on-dark"><div class="wrap cta-in"><h2 data-split>'+(title||'Converse com um dos sócios')+'</h2>'+
+    '<div><p>'+(text||'Atendimento presencial em Palhoça ou por videoconferência, com hora marcada.')+'</p><a class="btn btn-light" href="#contato">Agendar uma reunião '+ARROW+'</a></div></div></section>';
+}
+function pageHero(o){
+  var crumbs = '<nav class="crumbs" aria-label="Você está em"><a href="#inicio">Início</a>'+(o.crumbs||[]).map(function(c){ return '<span>/</span>'+(c[1]?'<a href="#'+c[1]+'">'+c[0]+'</a>':'<span style="opacity:1">'+c[0]+'</span>'); }).join('')+'</nav>';
+  return '<section class="phero on-dark'+(o.photo?' photo':'')+'"><div class="phero-bg"><img src="'+img(o.photo||'hero')+'" alt="" data-heroimg></div>'+
+    '<div class="wrap">'+crumbs+'<h1 data-split-load>'+o.title+'</h1>'+(o.lead?'<p class="lead" data-fade-load>'+o.lead+'</p>':'')+'<span class="accent-line" data-line-load></span></div></section>';
+}
+
+/* ================= páginas ================= */
+var V = {};
+V.inicio = function(){
+  return { title:'Narcizo & Amaral Advogados', html:
+  '<section class="hero on-dark" id="hero">'+
+    '<div class="hero-media"><img src="'+img('hero')+'" alt="Sala de reuniões do escritório, com sofá de couro e nichos de madeira iluminados" id="heroImg" fetchpriority="high"></div>'+
+    '<div class="wrap hero-in" id="heroIn">'+
+      '<h1 class="hero-title" id="heroTitle">Para cada problema,<br> uma solução.</h1>'+
+      '<p class="hero-sub" data-hero-fade>Nosso trabalho é encontrá-la.</p>'+
+      '<div class="hero-actions" data-hero-fade><a class="btn btn-light" href="#contato">Agendar uma reunião '+ARROW+'</a><a class="link link-bronze" href="#atuacao">Conheça as áreas de atuação</a></div>'+
+    '</div>'+
+    '<div class="hero-foot" data-hero-fade><div class="wrap"><span class="scroll-cue"><i></i>Role</span><span class="place-tag">Palhoça · Santa Catarina</span></div></div>'+
+  '</section>'+
+
+  '<section class="sec"><div class="wrap about">'+
+    '<div class="about-txt"><h2 data-split>Assessoria jurídica para as decisões que importam</h2>'+
+      '<p data-up>Somos um escritório estruturado para oferecer um atendimento próximo e exclusivo. Aqui, cada cliente é recebido diretamente pelos sócios, que acompanham pessoalmente o caso do primeiro contato até a solução.</p>'+
+      '<a class="link" href="#escritorio" data-up>Conheça o escritório '+ARROW+'</a></div>'+
+    '<div class="collage"><div class="c1 px rv" data-reveal data-parallax><img src="'+img('escritorio')+'" alt="Sala do escritório com paredes azul-marinho, sofá de couro e estante de madeira" loading="lazy"></div>'+
+      '<div class="c2 px rv" data-reveal data-speed="-0.12"><img src="'+img('detalhe')+'" alt="Nicho de madeira iluminado com busto clássico" loading="lazy"></div></div>'+
+  '</div></section>'+
+
+  '<section aria-labelledby="socios-t"><div class="wrap sec-head"><h2 id="socios-t" data-split>Os sócios</h2><p data-up>Cada cliente é recebido diretamente pelos sócios, que acompanham pessoalmente o caso do primeiro contato até a solução.</p></div>'+
+    '<div class="partners">'+['eduardo','wagner'].map(function(k){ var p=PARTNERS[k]; return '<a class="partner" href="#'+p.route+'" data-cursor="Ver perfil"><img src="'+img(p.photo)+'" alt="Retrato de '+p.treat+'" loading="lazy" data-pimg>'+
+      '<div class="partner-cap"><h3>'+p.name+'</h3><p>Sócio · '+p.oab+' · '+NUCLEOS[p.nucleo].title+'</p><span class="more">Ver perfil '+ARROW+'</span></div></a>'; }).join('')+'</div>'+
+  '</section>'+
+
+  '<section class="sec" aria-labelledby="areas-t"><div class="wrap">'+
+    '<div class="sec-head"><h2 id="areas-t" data-split>Áreas de atuação</h2><p data-up>Questões que afetam diretamente a vida das pessoas e das famílias, tratadas com proximidade e clareza.</p></div>'+
+    ['civil','penal'].map(function(n){ var N=NUCLEOS[n], P=PARTNERS[N.partner];
+      var list=AREAS.filter(function(a){return a.nucleo===n;});
+      return '<div class="nblock"><div class="nucleo-row" data-up><h3>'+N.title+'</h3><a href="#'+P.route+'">Coordenação<br><b>'+P.treat+'</b></a></div>'+
+        '<div class="cards cards-'+list.length+'" data-stagger>'+list.map(areaCard).join('')+'</div></div>'; }).join('')+
+  '</div></section>'+
+  placeBlock()+
+
+  '<section class="sec" aria-labelledby="pub-t"><div class="wrap">'+
+    '<div class="sec-head"><h2 id="pub-t" data-split>Publicações</h2><a class="link" href="#publicacoes" data-up>Todas as publicações '+ARROW+'</a></div>'+
+    '<div class="pubs" data-stagger>'+PUBS.slice(0,3).map(function(p){ return pubCard(p).replace('class="pub"','class="pub" data-stagger-item'); }).join('')+'</div>'+
+  '</div></section>'+
+  contactBlock()
+  };
+};
+
+V.escritorio = function(){
+  return { title:'O escritório', html:
+  pageHero({title:'Um escritório estruturado para o atendimento próximo e exclusivo', crumbs:[['Escritório']], photo:'escritorio'})+
+  '<section class="sec"><div class="wrap"><p class="kicker" data-up>Sobre nós</p><p class="manifesto" data-scrub style="margin-top:28px">Aqui, cada cliente é recebido diretamente pelos sócios, que acompanham pessoalmente o caso do primeiro contato até a solução.</p></div></section>'+
+  '<section class="sec" style="padding-top:0"><div class="wrap split">'+
+    '<div class="px rv" data-reveal data-parallax style="aspect-ratio:4/5;max-height:78vh"><img src="'+img('escritorio')+'" alt="Sala de reuniões do escritório em Palhoça" loading="lazy"></div>'+
+    '<div><h2 data-split style="font-size:clamp(2rem,1.3rem + 2.2vw,3.4rem)">Nenhuma questão jurídica é igual a outra</h2>'+
+      '<div class="prose" style="margin-top:32px" data-up><p>Somos um escritório estruturado para oferecer um atendimento próximo e exclusivo.</p><p>Acreditamos que nenhuma questão jurídica é igual a outra. Por isso, cada estratégia é construída sob medida, a partir da história e dos objetivos de quem nos procura, com sigilo, clareza e o cuidado de quem conhece cada cliente pelo nome.</p></div>'+
+      '<div class="px rv" data-reveal style="aspect-ratio:1;max-width:260px;margin-top:48px"><img src="'+img('detalhe')+'" alt="Detalhe do escritório: nicho de madeira com busto" loading="lazy"></div></div>'+
+  '</div></section>'+
+  '<section class="sec" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 data-split>Como trabalhamos</h2></div><div class="rows" data-stagger>'+
+    '<div class="row" data-stagger-item><h3>Do primeiro contato até a solução</h3><p>O cliente é recebido diretamente pelos sócios, que acompanham pessoalmente cada etapa do caso.</p></div>'+
+    '<div class="row" data-stagger-item><h3>Estratégia sob medida</h3><p>Cada estratégia é construída a partir da história e dos objetivos de quem nos procura, com sigilo e clareza.</p></div>'+
+    '<div class="row" data-stagger-item><h3>Presencial ou on-line</h3><p>Reuniões no escritório em Palhoça ou por videoconferência, com acompanhamento de processos eletrônicos em tribunais de todo o país.</p></div>'+
+  '</div></div></section>'+
+  '<section class="sec" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 data-split>Dois núcleos de atuação</h2><p data-up>Cada núcleo é coordenado por um dos sócios.</p></div><div class="nuc-duo" data-stagger>'+
+    ['civil','penal'].map(function(n){ var N=NUCLEOS[n], P=PARTNERS[N.partner]; return '<a class="nuc-tile" href="#atuacao" data-stagger-item><img src="'+img(n==='civil'?'familia':'juri')+'" alt="" loading="lazy"'+(n==='penal'?' style="filter:grayscale(1)"':'')+'><h3>'+N.title+'</h3><p>Coordenação: '+P.treat+'. '+N.intro+'</p><span class="go">Ver áreas '+ARROW+'</span></a>'; }).join('')+
+  '</div></div></section>'+
+  placeBlock()+ctaBand()
+  };
+};
+
+V.socios = function(){
+  return { title:'Sócios', html:
+  pageHero({title:'Os sócios', lead:'Cada cliente é recebido diretamente pelos sócios, que acompanham pessoalmente o caso do primeiro contato até a solução.', crumbs:[['Sócios']]})+
+  '<section class="sec"><div class="wrap">'+['eduardo','wagner'].map(function(k,i){ var p=PARTNERS[k], N=NUCLEOS[p.nucleo];
+    var areas=AREAS.filter(function(a){return a.nucleo===p.nucleo;});
+    return '<article class="pp'+(i?' rev':'')+'"><a class="pp-img px rv" href="#'+p.route+'" data-reveal data-parallax data-cursor="Ver perfil"><img src="'+img(p.photo)+'" alt="Retrato de '+p.treat+'" loading="lazy"></a>'+
+      '<div><p class="kicker" data-up>'+N.title+'</p><h2 data-split style="margin-top:18px">'+p.treat+'</h2>'+
+      '<div class="meta" data-up><b>Sócio</b><span>'+p.oab+'</span><span>'+p.role+'</span></div>'+
+      '<div class="prose" data-up><p>'+p.bio[1]+'</p></div>'+
+      '<div class="tags" data-up>'+areas.map(function(a){return '<a class="tag" href="#area-'+a.id+'">'+a.title+'</a>';}).join('')+'</div>'+
+      '<a class="link" href="#'+p.route+'" data-up>Ver perfil completo '+ARROW+'</a></div></article>'; }).join('')+
+  '</div></section>'+ctaBand()
+  };
+};
+
+function profile(k){
+  var p=PARTNERS[k], N=NUCLEOS[p.nucleo], other=PARTNERS[k==='eduardo'?'wagner':'eduardo'];
+  var areas=AREAS.filter(function(a){return a.nucleo===p.nucleo;});
+  return { title:p.treat, html:
+  '<section class="prof-hero on-dark"><div class="wrap prof-grid">'+
+    '<div class="prof-txt"><nav class="crumbs" aria-label="Você está em"><a href="#inicio">Início</a><span>/</span><a href="#socios">Sócios</a></nav>'+
+      '<h1 data-split-load>'+p.treat+'</h1><div class="meta" data-fade-load><b>Sócio</b><span>'+p.oab+'</span><span>'+p.role+'</span></div>'+
+      '<p class="lead" data-fade-load>'+p.lead+'</p></div>'+
+    '<div class="prof-img"><img src="'+img(p.photo)+'" alt="Retrato de '+p.treat+'" data-heroimg></div>'+
+  '</div></section>'+
+  '<section class="sec"><div class="wrap prof-body">'+
+    '<div class="prose dark">'+p.bio.map(function(b,i){ return '<p'+(i?' data-up':' data-scrub')+'>'+b+'</p>'; }).join('')+
+      '<div style="margin-top:48px" data-up><a class="btn btn-dark" href="#contato" data-preset="'+areas[0].id+'">Agendar reunião com '+p.first+' '+ARROW+'</a></div></div>'+
+    '<aside class="aside" data-up>'+
+      '<div><h4>'+N.title+'</h4><ul>'+areas.map(function(a){ return '<li><a href="#area-'+a.id+'">'+a.title+ARROW+'</a></li>'; }).join('')+'</ul></div>'+
+      '<div><h4>Também atua em</h4><div class="tags">'+p.also.map(function(t){return '<span class="tag">'+t+'</span>';}).join('')+'</div></div>'+
+      '<div><h4>Formação e trajetória</h4><ul>'+p.background.map(function(t){return '<li><span>'+t+'</span></li>';}).join('')+'</ul></div>'+
+    '</aside>'+
+  '</div></section>'+
+  '<section class="sec" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 data-split>Conheça também</h2></div>'+
+    '<div class="partners" style="grid-template-columns:minmax(0,1fr);max-width:760px"><a class="partner" href="#'+other.route+'" data-cursor="Ver perfil" style="aspect-ratio:16/11"><img src="'+img(other.photo)+'" alt="Retrato de '+other.treat+'" loading="lazy" data-pimg>'+
+    '<div class="partner-cap"><h3>'+other.name+'</h3><p>Sócio · '+other.oab+' · '+NUCLEOS[other.nucleo].title+'</p><span class="more">Ver perfil '+ARROW+'</span></div></a></div>'+
+  '</div></section>'+ctaBand()
+  };
+}
+
+V.atuacao = function(){
+  return { title:'Áreas de atuação', html:
+  pageHero({title:'Áreas de atuação', lead:'Questões que afetam diretamente a vida das pessoas e das famílias, tratadas com proximidade e clareza.', crumbs:[['Atuação']]})+
+  '<section class="sec"><div class="wrap">'+['civil','penal'].map(function(n){ var N=NUCLEOS[n], P=PARTNERS[N.partner];
+    return '<div class="nuc-sec" id="nucleo-'+n+'"><div class="nuc-head"><div><h2 data-split>'+N.title+'</h2>'+
+      '<a class="coord" href="#'+P.route+'" data-up><img src="'+img(P.photo)+'" alt=""><span><small>Coordenação</small><b>'+P.treat+'</b></span></a></div><p data-up>'+N.intro+'</p></div>'+
+      '<div class="alist" data-stagger>'+AREAS.filter(function(a){return a.nucleo===n;}).map(function(a){
+        return '<a class="arow '+n+'" href="#area-'+a.id+'" data-float="'+img(a.photo)+'" data-stagger-item><img class="thumb" src="'+img(a.photo)+'" alt="" loading="lazy"><h3>'+a.title+'</h3><p>'+a.short+'</p><span class="arr">'+ARROW+'</span></a>'; }).join('')+
+      '</div></div>'; }).join('')+
+  '</div></section>'+ctaBand()
+  };
+};
+
+function areaPage(id){
+  var a=AREA[id]; if(!a) return null;
+  var N=NUCLEOS[a.nucleo], P=PARTNERS[N.partner];
+  var siblings=AREAS.filter(function(x){return x.nucleo===a.nucleo && x.id!==a.id;});
+  var pubs=PUBS.filter(function(p){return p.area===a.id;});
+  return { title:a.title, html:
+  pageHero({title:a.title, lead:a.text, crumbs:[['Atuação','atuacao'],[N.title]], photo:a.photo})+
+  '<section class="sec"><div class="wrap area-body">'+
+    '<div><h2 data-split>Em que podemos ajudar</h2><ul class="help" data-stagger>'+a.items.map(function(t){return '<li data-stagger-item>'+t+'</li>';}).join('')+'</ul>'+
+      (a.extra?'<p class="note" style="margin-top:36px" data-up>'+a.extra+'</p>':'')+
+      (a.nucleo==='penal'?'<p class="note" style="margin-top:24px" data-up>Atuação em todas as fases: inquéritos policiais, audiências de custódia, ações penais e recursos.</p>':'')+
+      '<div style="margin-top:72px"><h2 data-split style="font-size:clamp(1.7rem,1.3rem + 1.2vw,2.4rem)">Como é o atendimento</h2>'+
+      '<div class="prose" style="margin-top:22px" data-up><p>A primeira conversa é com o sócio que coordena o '+N.title+', presencialmente em Palhoça ou por videoconferência. A partir da história e dos objetivos de quem nos procura, a estratégia é construída sob medida, com sigilo e clareza em cada etapa.</p></div></div>'+
+    '</div>'+
+    '<aside class="aside" data-up><div class="coord-card"><div class="who"><img src="'+img(P.photo)+'" alt="Retrato de '+P.treat+'"><div><h4>'+P.treat+'</h4><small>'+P.oab+' · '+P.role+'</small></div></div>'+
+      '<a class="btn btn-dark" href="#contato" data-preset="'+a.id+'">Agendar reunião '+ARROW+'</a><a class="link" href="#'+P.route+'">Ver perfil '+ARROW+'</a></div>'+
+      '<div><h4>Outras áreas do núcleo</h4><ul>'+siblings.map(function(s){return '<li><a href="#area-'+s.id+'">'+s.title+ARROW+'</a></li>';}).join('')+'</ul></div></aside>'+
+  '</div></section>'+
+  (pubs.length?'<section class="sec" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 data-split>Leia sobre o tema</h2><a class="link" href="#publicacoes" data-up>Todas as publicações '+ARROW+'</a></div><div class="pubs" data-stagger>'+pubs.map(function(p){return pubCard(p).replace('class="pub"','class="pub" data-stagger-item');}).join('')+'</div></div></section>':'')+
+  ctaBand('Converse com o '+P.first, 'O sócio que coordena o '+N.title+' recebe você pessoalmente, no escritório ou por videoconferência.')
+  };
+}
+
+V.publicacoes = function(){
+  var used = AREAS.filter(function(a){ return PUBS.some(function(p){return p.area===a.id;}); });
+  return { title:'Publicações', html:
+  pageHero({title:'Publicações', lead:'Textos informativos sobre direitos e procedimentos nas áreas de atuação do escritório.', crumbs:[['Publicações']]})+
+  '<section class="sec"><div class="wrap">'+
+    '<div class="chips" role="group" aria-label="Filtrar por área"><button class="chip" type="button" data-filter="all" aria-pressed="true">Todas</button>'+used.map(function(a){return '<button class="chip" type="button" data-filter="'+a.id+'" aria-pressed="false">'+a.title+'</button>';}).join('')+'</div>'+
+    '<div class="pubs" id="pubGrid" data-stagger>'+PUBS.map(function(p){ return pubCard(p).replace('class="pub"','class="pub" data-stagger-item'); }).join('')+'</div>'+
+  '</div></section>'+ctaBand()
+  };
+};
+
+function article(id){
+  var p=PUB[id]; if(!p) return null; var a=AREA[p.area], N=NUCLEOS[a.nucleo];
+  var more=PUBS.filter(function(x){return x.id!==id;}).slice(0,3);
+  return { title:p.title, article:true, html:
+  '<header class="art-head on-dark"><div class="wrap"><nav class="crumbs" aria-label="Você está em"><a href="#inicio">Início</a><span>/</span><a href="#publicacoes">Publicações</a></nav>'+
+    '<h1 data-split-load>'+p.title+'</h1><div class="pub-meta" data-fade-load><b>'+a.title+'</b><span>'+p.date+'</span><span>'+N.title+'</span><span>Leitura de '+p.read+'</span></div></div></header>'+
+  '<div class="art-cover-wrap"><div class="wrap"><div class="art-cover px rv" data-reveal data-parallax><img src="'+img(p.photo)+'" alt=""></div></div></div>'+
+  '<section class="sec-tight"><div class="wrap"><article class="article" id="article"><p class="intro" data-up>'+p.intro+'</p>'+
+    p.body.map(function(b){ return b[0]==='h'?'<h2 data-up>'+b[1]+'</h2>':'<p data-up>'+b[1]+'</p>'; }).join('')+
+    '<p class="disclaimer">Conteúdo informativo, conforme o Provimento 205/2021 do Conselho Federal da OAB. Não substitui a análise individual do caso por um advogado.</p>'+
+    '<div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center"><a class="btn btn-dark" href="#contato" data-preset="'+a.id+'">Conversar sobre o meu caso '+ARROW+'</a><a class="link" href="#area-'+a.id+'">Sobre a área de '+a.title+' '+ARROW+'</a></div>'+
+  '</article></div></section>'+
+  '<section class="sec" style="padding-top:clamp(40px,5vw,80px)"><div class="wrap"><div class="sec-head"><h2 data-split>Leia também</h2><a class="link" href="#publicacoes">Todas as publicações '+ARROW+'</a></div><div class="pubs" data-stagger>'+more.map(function(x){return pubCard(x).replace('class="pub"','class="pub" data-stagger-item');}).join('')+'</div></div></section>'
+  };
+}
+
+V.contato = function(preset){
+  return { title:'Agendar reunião', html:
+  pageHero({title:'Agende uma reunião', lead:'Atendimento presencial em Palhoça ou on-line, para clientes de todo o Brasil. Cada cliente é recebido diretamente por um dos sócios.', crumbs:[['Contato']]})+
+  contactBlock(preset)+placeBlock()
+  };
+};
+
+V.privacidade = function(){
+  return { title:'Política de privacidade', html:
+  pageHero({title:'Política de privacidade', lead:'Como o escritório trata os dados enviados por este site, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).', crumbs:[['Privacidade']]})+
+  '<section class="sec"><div class="wrap"><div class="article legal">'+
+    '<h2 style="margin-top:0">Quais dados coletamos</h2><p>Apenas os dados que você informa no formulário de contato: nome, e-mail, telefone, área de interesse e a descrição da situação.</p>'+
+    '<h2>Para que usamos</h2><p>Exclusivamente para retornar o seu contato e agendar a reunião solicitada. Os dados não são usados para publicidade nem compartilhados com terceiros para esse fim.</p>'+
+    '<h2>Sigilo profissional</h2><p>As informações relatadas ao escritório estão protegidas pelo sigilo profissional previsto no Estatuto da Advocacia e no Código de Ética e Disciplina da OAB.</p>'+
+    '<h2>Seus direitos</h2><ul><li>Confirmar se tratamos seus dados e acessá-los</li><li>Corrigir dados incompletos ou desatualizados</li><li>Pedir a eliminação dos dados tratados com o seu consentimento</li><li>Revogar o consentimento a qualquer momento</li></ul>'+
+    '<h2>Contato</h2><p>Para exercer esses direitos, fale com o escritório pelo telefone (48) 98458-6534 ou presencialmente na sede, em '+ADDRESS+'.</p>'+
+  '</div></div></section>'
+  };
+};
+
+V.notfound = function(){
+  return { title:'Página não encontrada', html:
+  pageHero({title:'Página não encontrada', lead:'O endereço pode ter mudado. Volte para o início ou fale com o escritório.', crumbs:[['Página não encontrada']]})+
+  '<section class="sec"><div class="wrap" style="display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center"><a class="btn btn-dark" href="#inicio">Ir para o início '+ARROW+'</a><a class="link" href="#contato">Agendar reunião '+ARROW+'</a></div></section>'
+  };
+};
+
+function resolve(r){
+  if (r==='' || r==='inicio') return V.inicio();
+  if (r==='contato') return V.contato(PRESET);
+  if (Object.prototype.hasOwnProperty.call(V,r) && r!=='notfound') return V[r]();
+  if (r==='socio-eduardo') return profile('eduardo');
+  if (r==='socio-wagner') return profile('wagner');
+  if (r.indexOf('area-')===0) return areaPage(r.slice(5)) || V.notfound();
+  if (r.indexOf('pub-')===0) return article(r.slice(4)) || V.notfound();
+  return V.notfound();
+}
+
+/* ================= motor ================= */
+var app=document.getElementById('app'), hdr=document.getElementById('hdr'), curtain=document.getElementById('curtain');
+var cursor=document.getElementById('cursor'), floatImg=document.getElementById('floatImg'), progress=document.getElementById('progress');
+if (G) G.set(curtain,{y:0,yPercent:100});
+var lenis=null, PRESET=null, current=null, busy=false, pending=null, navId=0;
+
+if (window.Lenis && !REDUCE){
+  try{
+    lenis = new Lenis({ duration:1.15, smoothWheel:true, easing:function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
+    if (G && window.ScrollTrigger){ lenis.on('scroll', ScrollTrigger.update); G.ticker.add(function(t){ lenis.raf(t*1000); }); G.ticker.lagSmoothing(0); }
+    else { (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(0); }
+  }catch(e){ lenis=null; }
+}
+
+function route(){ var h=location.hash.replace(/^#/,''); try{ h=decodeURIComponent(h); }catch(e){} return h||'inicio'; }
+
+function render(r){
+  var v=resolve(r);
+  if (G && window.ScrollTrigger) ScrollTrigger.getAll().forEach(function(t){ t.kill(); });
+  app.innerHTML=v.html;
+  document.title = r===''||r==='inicio' ? 'Narcizo & Amaral Advogados' : v.title+' · Narcizo & Amaral';
+  var key = r.split('-')[0];
+  var navKey = {socio:'socios', area:'atuacao', pub:'publicacoes'}[key] || r;
+  document.querySelectorAll('[data-nav]').forEach(function(a){ a.toggleAttribute('aria-current', a.getAttribute('data-nav')===navKey); if(a.hasAttribute('aria-current')) a.setAttribute('aria-current','page'); });
+  progress.hidden = !v.article;
+  if (lenis) lenis.scrollTo(0,{immediate:true,force:true}); window.scrollTo(0,0);
+  hdr.classList.remove('is-hidden'); updateHeader(true);
+  current=r;
+  bindPage();
+  footerReveal();
+  return v;
+}
+
+function go(r, first){
+  closeMenu();
+  if (first || !G){ render(r); intro(first); return; }
+  if (busy){ pending=r; return; } busy=true; pending=null;
+  var label=curtain.querySelector('span');
+  var my=++navId;
+  var finish=function(){ if(!busy || my!==navId) return; busy=false; G.set(curtain,{y:0,yPercent:-100}); if(current!==r) render(r); if(pending && pending!==current){ var p=pending; pending=null; go(p,false); } };
+  var ttl=G.timeline({onComplete:finish});
+  setTimeout(function(){ if(busy && ttl.progress()<1) ttl.progress(1); finish(); }, 2600);
+  ttl
+    .set(curtain,{y:0,yPercent:100}).set(label,{opacity:0,y:20})
+    .to(curtain,{yPercent:0,duration:.75,ease:'expo.inOut'})
+    .to(label,{opacity:1,y:0,duration:.4,ease:'power2.out'},'-=.25')
+    .add(function(){ render(r); })
+    .to(label,{opacity:0,y:-16,duration:.3,ease:'power2.in'},'+=.12')
+    .to(curtain,{yPercent:-100,duration:.85,ease:'expo.inOut'},'-=.1')
+    .add(function(){ intro(false); },'-=.55');
+}
+
+window.addEventListener('hashchange', function(){ var r=route(); if (r===current) return; go(r,false); });
+
+/* ---- split ---- */
+function splitWords(el){
+  if (el.__split) return el.querySelectorAll('.wi'); el.__split=true;
+  (function walk(node){
+    Array.prototype.slice.call(node.childNodes).forEach(function(n){
+      if (n.nodeType===3){
+        var frag=document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function(part){
+          if (!part) return;
+          if (/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(' ')); return; }
+          var o=document.createElement('span'); o.className='w'; var i=document.createElement('span'); i.className='wi'; i.textContent=part; o.appendChild(i); frag.appendChild(o);
+        });
+        n.parentNode.replaceChild(frag,n);
+      } else if (n.nodeType===1 && n.tagName!=='BR' && !n.classList.contains('w')) walk(n);
+    });
+  })(el);
+  return el.querySelectorAll('.wi');
+}
+
+/* ---- load-in of each page ---- */
+var introTls=[];
+function settle(){ introTls.forEach(function(t){ if(t.progress()<1) t.progress(1); }); introTls=[]; if(G) G.set('.hdr-in > *',{clearProps:'opacity,transform'}); document.documentElement.classList.remove('has-loader'); var l=document.getElementById('loader'); if(l) l.style.display='none'; }
+function intro(first){
+  if (!G) return;
+  var heroTitle=document.getElementById('heroTitle');
+  var tl=G.timeline({delay:first?0:.05}); introTls.push(tl);
+  setTimeout(settle, first?5200:3200);
+  if (heroTitle){
+    var words=splitWords(heroTitle);
+    tl.fromTo('#heroImg',{scale:1.18},{scale:1,duration:2.4,ease:'expo.out'},0)
+      .from(words,{yPercent:115,duration:1.3,ease:'expo.out',stagger:.07},.15)
+      .from('[data-hero-fade]',{y:24,opacity:0,duration:1.1,ease:'expo.out',stagger:.12},.65)
+      ;
+    if (first) tl.from('.hdr-in > *',{y:-14,opacity:0,duration:.9,ease:'expo.out',stagger:.06},.4);
+  }
+  document.querySelectorAll('[data-split-load]').forEach(function(el){ tl.from(splitWords(el),{yPercent:115,duration:1.2,ease:'expo.out',stagger:.05},.1); });
+  var fades=document.querySelectorAll('[data-fade-load]'); if (fades.length) tl.from(fades,{y:20,opacity:0,duration:1,ease:'expo.out',stagger:.1},.45);
+  var lines=document.querySelectorAll('[data-line-load]'); if (lines.length) tl.from(lines,{scaleX:0,duration:1.2,ease:'expo.inOut'},.55);
+  var himg=document.querySelectorAll('[data-heroimg]'); if (himg.length) tl.fromTo(himg,{scale:1.14},{scale:1,duration:2.2,ease:'expo.out'},0);
+}
+
+/* ---- per-page bindings + scroll animations ---- */
+function bindPage(){
+  // copy buttons
+  app.querySelectorAll('[data-copy]').forEach(function(b){ b.addEventListener('click',function(){ copyText(b.getAttribute('data-copy'), b); }); });
+  // como chegar
+  app.querySelectorAll('[data-how]').forEach(function(h){
+    var btn=h.querySelector('.how-btn');
+    btn.addEventListener('click',function(e){ e.stopPropagation(); var o=h.classList.toggle('open'); btn.setAttribute('aria-expanded',o); });
+    document.addEventListener('click',function(){ h.classList.remove('open'); btn.setAttribute('aria-expanded','false'); });
+  });
+  // preset subject
+  app.querySelectorAll('[data-preset]').forEach(function(a){ a.addEventListener('click',function(){ PRESET=a.getAttribute('data-preset'); }); });
+  if (current!=='contato') PRESET=null;
+  // filters
+  var grid=document.getElementById('pubGrid');
+  if (grid){
+    app.querySelectorAll('[data-filter]').forEach(function(c){ c.addEventListener('click',function(){
+      app.querySelectorAll('[data-filter]').forEach(function(x){ x.setAttribute('aria-pressed', x===c); });
+      var f=c.getAttribute('data-filter');
+      var items=grid.querySelectorAll('.pub');
+      var show=function(){ items.forEach(function(it){ it.hidden = !(f==='all' || it.getAttribute('data-area')===f); }); if (window.ScrollTrigger) ScrollTrigger.refresh(); };
+      if (G){ G.to(grid,{opacity:0,y:12,duration:.25,onComplete:function(){ show(); G.set(grid.querySelectorAll('.pub'),{clearProps:'all'}); G.fromTo(grid,{opacity:0,y:12},{opacity:1,y:0,duration:.6,ease:'expo.out'}); }}); }
+      else show();
+    }); });
+  }
+  bindForm();
+  bindCursor();
+  bindFloat();
+  scrollAnims();
+}
+
+function scrollAnims(){
+  if (!G || !window.ScrollTrigger) return;
+  var ST=ScrollTrigger;
+  app.querySelectorAll('[data-split]').forEach(function(el){
+    G.from(splitWords(el),{yPercent:115,duration:1.25,ease:'expo.out',stagger:.045,scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+  app.querySelectorAll('[data-up]').forEach(function(el){
+    G.from(el,{y:36,opacity:0,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 92%'}});
+  });
+  app.querySelectorAll('[data-stagger]').forEach(function(el){
+    var items=el.querySelectorAll('[data-stagger-item]'); if(!items.length) return;
+    G.from(items,{y:56,opacity:0,duration:1.2,ease:'expo.out',stagger:.09,scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+  app.querySelectorAll('[data-reveal]').forEach(function(el){
+    var im=el.querySelector('img');
+    G.fromTo(el,{clipPath:'inset(100% 0% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:1.5,ease:'expo.inOut',scrollTrigger:{trigger:el,start:'top 88%'}});
+    if (im) G.from(im,{scale:1.3,duration:2,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+  app.querySelectorAll('[data-parallax]').forEach(function(el){
+    var im=el.querySelector('img'); if(!im) return;
+    G.fromTo(im,{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  app.querySelectorAll('[data-speed]').forEach(function(el){
+    var s=parseFloat(el.getAttribute('data-speed'))||0;
+    G.to(el,{y:function(){ return s*window.innerHeight; },ease:'none',scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:true,invalidateOnRefresh:true}});
+  });
+  app.querySelectorAll('[data-pimg]').forEach(function(im){
+    G.fromTo(im,{yPercent:-5},{yPercent:5,ease:'none',scrollTrigger:{trigger:im.parentNode,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  app.querySelectorAll('[data-scrub]').forEach(function(el){
+    var w=splitWords(el); el.querySelectorAll('.w').forEach(function(x){ x.style.overflow='visible'; });
+    G.fromTo(w,{opacity:.16},{opacity:1,ease:'none',stagger:.1,scrollTrigger:{trigger:el,start:'top 82%',end:'bottom 45%',scrub:true}});
+  });
+  app.querySelectorAll('[data-mapzoom]').forEach(function(el){
+    G.fromTo(el.querySelector('img'),{scale:1.14},{scale:1,ease:'none',scrollTrigger:{trigger:el,start:'top bottom',end:'bottom 40%',scrub:true}});
+  });
+  app.querySelectorAll('[data-heroimg]').forEach(function(im){
+    var sec=im.closest('section'); if(!sec) return;
+    G.to(im,{yPercent:10,ease:'none',scrollTrigger:{trigger:sec,start:'top top',end:'bottom top',scrub:true}});
+  });
+  var hero=document.getElementById('hero');
+  if (hero){
+    G.to('.hero-media',{yPercent:18,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
+    G.to('#heroIn',{yPercent:-22,opacity:.15,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
+  }
+  // article progress
+  var art=document.getElementById('article');
+  if (art){ G.fromTo(progress,{scaleX:0},{scaleX:1,ease:'none',scrollTrigger:{trigger:art,start:'top 30%',end:'bottom 70%',scrub:true}}); }
+  requestAnimationFrame(function(){ ST.refresh(); });
+}
+
+/* ---- header ---- */
+var lastY=0, ticking=false;
+function updateHeader(force){
+  var y=window.scrollY||document.documentElement.scrollTop;
+  hdr.classList.toggle('is-solid', y>60);
+  if (!document.documentElement.classList.contains('menu-open')){
+    if (y>lastY+4 && y>320) hdr.classList.add('is-hidden');
+    else if (y<lastY-4 || y<320 || force) hdr.classList.remove('is-hidden');
+  }
+  lastY=y; ticking=false;
+}
+window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(function(){ updateHeader(false); }); } },{passive:true});
+
+/* ---- menu ---- */
+var burger=document.getElementById('burger');
+function closeMenu(){ document.documentElement.classList.remove('menu-open'); burger.setAttribute('aria-expanded','false'); burger.setAttribute('aria-label','Abrir menu'); if(lenis) lenis.start(); }
+burger.addEventListener('click',function(){
+  var o=document.documentElement.classList.toggle('menu-open');
+  burger.setAttribute('aria-expanded',o); burger.setAttribute('aria-label',o?'Fechar menu':'Abrir menu');
+  if (lenis){ o?lenis.stop():lenis.start(); }
+});
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
+
+/* ---- footer reveal ---- */
+var site=document.getElementById('site'), ftr=document.getElementById('ftr');
+function footerReveal(){
+  var h=ftr.offsetHeight, ok = window.innerWidth>=900 && h < window.innerHeight*0.9 && !REDUCE;
+  document.body.classList.toggle('reveal-footer', ok);
+  site.style.marginBottom = ok ? h+'px' : '';
+}
+window.addEventListener('resize',function(){ footerReveal(); });
+window.addEventListener('load',function(){ footerReveal(); if(window.ScrollTrigger) ScrollTrigger.refresh(); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ footerReveal(); if(window.ScrollTrigger) ScrollTrigger.refresh(); });
+document.querySelectorAll('#drawer a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+/* ---- cursor bubble ---- */
+var cx=null, cy=null;
+if (G && FINE){ cx=G.quickTo(cursor,'x',{duration:.5,ease:'power3'}); cy=G.quickTo(cursor,'y',{duration:.5,ease:'power3'}); }
+var fx=null, fy=null;
+if (G && FINE){ fx=G.quickTo(floatImg,'x',{duration:.7,ease:'power3'}); fy=G.quickTo(floatImg,'y',{duration:.7,ease:'power3'}); G.set(floatImg,{xPercent:-50,yPercent:-50,x:innerWidth/2,y:innerHeight/2}); }
+window.addEventListener('mousemove',function(e){ if(cx){ cx(e.clientX); cy(e.clientY); } if(fx){ fx(e.clientX+40); fy(e.clientY); } },{passive:true});
+function bindCursor(){
+  if (!G || !FINE) return;
+  G.set(cursor,{scale:0,opacity:0});
+  app.querySelectorAll('[data-cursor]').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ cursor.textContent=el.getAttribute('data-cursor'); G.to(cursor,{scale:1,opacity:1,duration:.5,ease:'expo.out'}); });
+    el.addEventListener('mouseleave',function(){ G.to(cursor,{scale:0,opacity:0,duration:.4,ease:'expo.out'}); });
+  });
+}
+function bindFloat(){
+  if (!G || !FINE) return;
+  G.set(floatImg,{autoAlpha:0,scale:.85});
+  var im=floatImg.querySelector('img');
+  app.querySelectorAll('[data-float]').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ im.src=el.getAttribute('data-float'); floatImg.classList.toggle('penal', el.classList.contains('penal')); G.to(floatImg,{autoAlpha:1,scale:1,rotation:-2,duration:.6,ease:'expo.out'}); });
+    el.addEventListener('mouseleave',function(){ G.to(floatImg,{autoAlpha:0,scale:.85,rotation:0,duration:.4,ease:'expo.out'}); });
+  });
+}
+
+/* ---- form ---- */
+function bindForm(){
+  var f=document.getElementById('form'); if(!f) return;
+  var tel=f.querySelector('#f-tel');
+  tel.addEventListener('input',function(){
+    var d=tel.value.replace(/\D/g,'').slice(0,11), o='';
+    if (d.length>0) o='('+d.slice(0,2); if (d.length>=2) o+=') ';
+    if (d.length>2) o+= d.length>10 ? d.slice(2,7)+'-'+d.slice(7) : d.slice(2,6)+(d.length>6?'-'+d.slice(6):'');
+    tel.value=o;
+  });
+  function setErr(id,msg){ var el=f.querySelector('#'+id), fl=el.closest('.field'); if(fl){ fl.classList.toggle('invalid',!!msg); fl.querySelector('.err').textContent=msg||''; } }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var nome=f.querySelector('#f-nome').value.trim(), email=f.querySelector('#f-email').value.trim(), t=tel.value.replace(/\D/g,''), msg=f.querySelector('#f-msg').value.trim(), lg=f.querySelector('#f-lgpd');
+    var ok=true;
+    setErr('f-nome', nome?'':'Informe seu nome.'); ok=ok&&!!nome;
+    var emailOk=!email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setErr('f-email', emailOk?'':'Confira o e-mail.'); ok=ok&&emailOk;
+    var reach = (email && emailOk) || t.length>=10;
+    setErr('f-tel', reach?'':'Informe um telefone ou e-mail para retorno.'); ok=ok&&reach;
+    setErr('f-msg', msg?'':'Conte brevemente a situação.'); ok=ok&&!!msg;
+    lg.closest('.check').classList.toggle('invalid',!lg.checked); ok=ok&&lg.checked;
+    if (!ok){ var first=f.querySelector('.invalid input, .invalid textarea, .check.invalid input'); if(first) first.focus(); return; }
+    document.getElementById('sent-name').textContent=nome.split(' ')[0];
+    var sent=document.getElementById('sent');
+    f.hidden=true; sent.hidden=false;
+    if (G) G.from(sent,{y:20,opacity:0,duration:.8,ease:'expo.out'});
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  });
+}
+
+/* ---- clipboard ---- */
+function copyText(t, btn){
+  var done=function(){ var o=btn.textContent; btn.textContent='Copiado'; setTimeout(function(){ btn.textContent=o; },1600); };
+  try{
+    navigator.clipboard.writeText(t).then(done,function(){ fallback(); });
+  }catch(e){ fallback(); }
+  function fallback(){
+    var ta=document.createElement('textarea'); ta.value=t; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); done(); }catch(e){ btn.textContent=t; }
+    document.body.removeChild(ta);
+  }
+}
+
+/* ================= início ================= */
+var first=route();
+var showLoader=document.documentElement.classList.contains('has-loader') && G;
+if (!showLoader) document.documentElement.classList.remove('has-loader');
+render(first);
+if (showLoader){
+  var nm=document.getElementById('ld-name'); var letters=splitWords(nm);
+  G.set('.hdr-in > *',{opacity:0});
+  var ltl=G.timeline({onComplete:function(){ window.__loaderDone=true; document.documentElement.classList.remove('has-loader'); try{ sessionStorage.setItem('na-seen','1'); }catch(e){} }})
+    .from(letters,{yPercent:115,duration:1,ease:'expo.out',stagger:.08})
+    .from('.ld-sub',{opacity:0,y:10,duration:.7,ease:'expo.out'},'-=.6')
+    .to('.ld-bar i',{scaleX:1,duration:.9,ease:'expo.inOut'},'-=.5')
+    .to('#loader',{yPercent:-100,duration:1,ease:'expo.inOut'},'+=.1')
+    .add(function(){ G.set('.hdr-in > *',{clearProps:'opacity'}); intro(true); },'<');
+  introTls.push(ltl);
+  setTimeout(settle, 5000);
+} else {
+  window.__loaderDone=true;
+  intro(true);
+}
+})();
+</script>
+
+</body></html>
