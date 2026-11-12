@@ -92,7 +92,7 @@ p { margin: 0; }
   font-size: 0.8rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--bronze-text);
 }
 .on-dark .kicker { color: var(--bronze-light); }
 

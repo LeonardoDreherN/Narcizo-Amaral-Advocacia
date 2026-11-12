@@ -5,8 +5,15 @@ import { dataCurta, dataISO } from '~/lib/format';
 
 interface Props {
   pub: CollectionEntry<'publicacoes'>;
+  /**
+   * Nível do título do card. Sob uma seção com h2 o padrão 3 está certo; nas
+   * listagens, onde os cards vêm logo abaixo do h1, precisa ser 2 para não
+   * pular nível.
+   */
+  nivel?: 2 | 3;
 }
-const { pub } = Astro.props;
+const { pub, nivel = 3 } = Astro.props;
+const Titulo = `h${nivel}` as 'h2' | 'h3';
 const area = await getEntry(pub.data.area);
 ---
 
@@ -18,5 +25,5 @@ const area = await getEntry(pub.data.area);
     <b>{area?.data.title}</b>
     <time datetime={dataISO(pub.data.date)}>{dataCurta(pub.data.date)}</time>
   </div>
-  <h3><span>{pub.data.title}</span></h3>
+  <Titulo><span>{pub.data.title}</span></Titulo>
 </a>

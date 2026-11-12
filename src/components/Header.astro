@@ -18,7 +18,9 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
 
 <header class="hdr" data-solid={solid ? '' : undefined}>
   <div class="wrap hdr-in">
-    <a class="logo" href="/" aria-label={`${SITE.name}, página inicial`}>
+    {/* Sem aria-label: o texto visível já nomeia o link, e um rótulo que
+        omitisse "Advogados Associados" divergiria do que se vê na tela. */}
+    <a class="logo" href="/">
       <b>{SITE.name}</b>
       <small>{SITE.tagline}</small>
     </a>
