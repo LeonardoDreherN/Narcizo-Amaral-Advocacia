@@ -12,7 +12,7 @@
  */
 
 import { Buffer } from 'node:buffer';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -101,11 +101,12 @@ const icone = path.join(saida, 'apple-touch-icon.png');
 await sharp(iconeSvg(180)).png({ compressionLevel: 9 }).toFile(icone);
 
 for (const arquivo of [og, icone]) {
-  const { size } = await sharp(arquivo).metadata().then(
-    async (m) => ({ size: (await sharp(arquivo).toBuffer()).length, ...m }),
-  );
-  const m = await sharp(arquivo).metadata();
-  console.log(
-    `${path.relative(raiz, arquivo).replace(/\\/g, '/')}  ${m.width}x${m.height}  ${Math.round(size / 1024)} kB`,
-  );
+  // O tamanho vem do arquivo gravado. Medir com toBuffer() daria o resultado
+  // de uma nova codificação em memória, que não é o que foi para o disco.
+  const [{ size }, { width, height }] = await Promise.all([
+    stat(arquivo),
+    sharp(arquivo).metadata(),
+  ]);
+  const nome = path.relative(raiz, arquivo).replace(/\\/g, '/');
+  console.log(`${nome}  ${width}x${height}  ${(size / 1024).toFixed(1)} kB`);
 }
