@@ -33,7 +33,8 @@ if (Test-Path $fnmExe) {
 | `npm run dev` | sobe o servidor de desenvolvimento em `localhost:4321` |
 | `npm run build` | gera o site em `dist/` |
 | `npm run preview` | serve o `dist/` localmente, como em produção |
-| `npm run check` | checagem de tipos e de templates |
+| `npm run check` | checagem de tipos do site e da function |
+| `node scripts/gerar-imagens-sociais.mjs` | regenera `og.jpg` e o ícone |
 
 ## Estrutura
 
@@ -117,8 +118,8 @@ da Cloudflare.
 ## Pendências antes de ir ao ar
 
 - [ ] Trocar o domínio em `astro.config.mjs` (`SITE`) e em `public/robots.txt`
-- [ ] Criar a imagem de compartilhamento em `public/og.jpg` (1200×630)
-- [ ] Criar `public/apple-touch-icon.png` (180×180)
+- [x] ~~Criar a imagem de compartilhamento em `public/og.jpg` (1200×630)~~
+- [x] ~~Criar `public/apple-touch-icon.png` (180×180)~~
 - [ ] Configurar as variáveis do Resend
 - [ ] Cadastrar o site no Google Search Console e enviar o sitemap
 
