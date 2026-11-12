@@ -1,5 +1,13 @@
 /** Dados fixos do escritório, usados em metadados, rodapé e dados estruturados. */
 
+/**
+ * O site só deve ser indexado quando estiver no domínio definitivo. Enquanto
+ * roda num endereço provisório, as páginas saem com noindex e o robots.txt
+ * bloqueia tudo, para não criar URLs que depois competem com as do domínio
+ * real. Para liberar, defina INDEXAR=true no ambiente de build.
+ */
+export const INDEXAVEL = import.meta.env.INDEXAR === 'true';
+
 export const SITE = {
   name: 'Narcizo & Amaral',
   legalName: 'Narcizo & Amaral Advogados Associados',

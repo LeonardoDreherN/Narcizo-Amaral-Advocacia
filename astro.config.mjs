@@ -1,9 +1,10 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// TODO: trocar pelo domínio real antes do deploy. O sitemap e as URLs
-// canônicas são gerados a partir daqui.
-const SITE = 'https://narcizoamaral.adv.br';
+// A URL pública do site. Enquanto não houver domínio próprio, use a URL que a
+// hospedagem fornece, definindo SITE_URL no ambiente de build.
+// O sitemap, as URLs canônicas e o Open Graph saem daqui.
+const SITE = process.env.SITE_URL || 'https://narcizo-amaral.pages.dev';
 
 export default defineConfig({
   site: SITE,
