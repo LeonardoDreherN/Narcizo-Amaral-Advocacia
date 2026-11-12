@@ -123,6 +123,16 @@ da Cloudflare.
 - [ ] Configurar as variáveis do Resend
 - [ ] Cadastrar o site no Google Search Console e enviar o sitemap
 
+## Origem
+
+O site nasceu de um protótipo de página única, com rotas em hash e o conteúdo
+embutido em arrays JavaScript. Esse arquivo original está preservado no
+histórico, no commit `cf59a26`, e pode ser recuperado com:
+
+```bash
+git show cf59a26:index.html > prototipo.html
+```
+
 ## Decisões técnicas
 
 - **Saída estática, não SPA.** O protótipo usava rotas em hash (`#area-imobiliario`),
