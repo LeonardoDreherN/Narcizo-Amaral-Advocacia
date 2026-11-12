@@ -1,0 +1,36 @@
+name: Tarefa
+description: Algo a fazer no site
+labels: ["tarefa"]
+body:
+  - type: textarea
+    id: objetivo
+    attributes:
+      label: O que precisa ser feito
+      placeholder: Descreva o resultado esperado, não a implementação.
+    validations:
+      required: true
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Por que importa
+      placeholder: Qual problema isso resolve para o escritório ou para quem visita o site.
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Como saber que terminou
+      placeholder: |
+        - [ ] primeiro critério
+        - [ ] segundo critério
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - Conteúdo
+        - SEO
+        - Performance
+        - Acessibilidade
+        - Infraestrutura e deploy
+        - Design
+    validations:
+      required: true
