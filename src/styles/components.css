@@ -156,9 +156,9 @@
   height: 100%;
   object-fit: cover;
   object-position: 50% 20%;
-  transition: transform 1.4s var(--ease);
+  transition: scale 1.4s var(--ease);
 }
-.partner:hover img { transform: scale(1.04); }
+.partner:hover img { scale: 1.04; }
 .partner::after {
   content: "";
   position: absolute;
