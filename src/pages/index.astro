@@ -9,9 +9,8 @@ import PlaceBlock from '~/components/PlaceBlock.astro';
 import ContactBlock from '~/components/ContactBlock.astro';
 import { SITE, NUCLEOS, type NucleoId } from '~/data/site';
 import { legalServiceSchema } from '~/lib/schema';
-import hero from '~/assets/img/hero.jpg';
-import escritorio from '~/assets/img/escritorio.jpg';
-import detalhe from '~/assets/img/detalhe.jpg';
+import hero from '~/assets/img/hero-colunas.jpg';
+import sociosJuntos from '~/assets/img/socios-juntos.jpg';
 
 const socios = (await getCollection('socios')).sort((a, b) => a.data.order - b.data.order);
 const areas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
@@ -34,17 +33,19 @@ const siteUrl = Astro.site!.origin;
     <div class="hero-media">
       <Image
         src={hero}
-        alt="Sala de reuniões do escritório, com sofá de couro e nichos de madeira iluminados"
+        alt=""
         width={1920}
-        height={1200}
+        height={1421}
         loading="eager"
         fetchpriority="high"
       />
     </div>
 
     <div class="wrap hero-in">
-      <h1 class="hero-title">Para cada problema,<br /> uma solução.</h1>
-      <p class="hero-sub">Nosso trabalho é encontrá-la.</p>
+      <h1 class="hero-title">
+        <span>Para cada problema, uma solução.</span>
+        <span>Nosso trabalho é encontrá-la.</span>
+      </h1>
       <div class="hero-actions">
         <a class="btn btn-light" href="/contato">Agendar uma reunião <Icon name="arrow" /></a>
         <a class="link link-bronze" href="/atuacao">Conheça as áreas de atuação</a>
@@ -74,19 +75,10 @@ const siteUrl = Astro.site!.origin;
       <div class="collage">
         <div class="c1 px" data-reveal data-parallax>
           <Image
-            src={escritorio}
-            alt="Sala do escritório com paredes azul-marinho, sofá de couro e estante de madeira"
+            src={sociosJuntos}
+            alt="Os sócios Eduardo Dreher Narcizo e Wagner Renan Amaral de Souza no escritório"
             width={720}
             height={900}
-            loading="lazy"
-          />
-        </div>
-        <div class="c2 px" data-reveal>
-          <Image
-            src={detalhe}
-            alt="Nicho de madeira iluminado com busto clássico"
-            width={480}
-            height={480}
             loading="lazy"
           />
         </div>
@@ -129,8 +121,8 @@ const siteUrl = Astro.site!.origin;
       <div class="sec-head">
         <h2 id="areas-t" data-title>Áreas de atuação</h2>
         <p data-up>
-          Questões que afetam diretamente a vida das pessoas e das famílias, tratadas com
-          proximidade e clareza.
+          Questões que afetam diretamente a vida das pessoas, famílias e empresas são
+          tratadas com proximidade e transparência.
         </p>
       </div>
 

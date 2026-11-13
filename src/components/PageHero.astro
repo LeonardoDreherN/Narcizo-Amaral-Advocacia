@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Crumbs, { type Crumb } from './Crumbs.astro';
-import heroFallback from '~/assets/img/hero.jpg';
+import escritorio from '~/assets/img/escritorio-sala.jpg';
 
 interface Props {
   title: string;
@@ -12,14 +12,34 @@ interface Props {
   /** Reforça o escurecimento quando a foto é o assunto, não só textura. */
   emphasis?: boolean;
   grayscale?: boolean;
+  /** Foto em painel à direita, em vez de fundo inteiro. Para retratos. */
+  side?: boolean;
+  /** Enquadramento da foto no painel (object-position). */
+  focus?: string;
 }
-const { title, lead, trail, photo, emphasis = false, grayscale = false } = Astro.props;
-const img = photo ?? heroFallback;
+const { title, lead, trail, photo, emphasis = false, grayscale = false, side = false, focus } = Astro.props;
+
+/** Sem foto própria, o topo mostra o escritório num painel lateral. */
+const img = photo ?? escritorio;
+const lateral = side || !photo;
+const enquadramento = focus ?? (photo ? undefined : '50% 64%');
 ---
 
-<section class:list={['phero', 'on-dark', emphasis && 'photo', grayscale && 'grayscale']}>
+<section
+  class:list={['phero', 'on-dark', emphasis && 'photo', grayscale && 'grayscale', lateral && 'side']}
+  style={enquadramento ? `--focus: ${enquadramento}` : undefined}
+>
   <div class="phero-bg">
-    <Image src={img} alt="" width={1920} height={900} loading="eager" fetchpriority="high" />
+    {/* O Astro recorta a imagem nas dimensões pedidas: o painel lateral recebe
+        a foto na proporção original, para não perder os rostos. */}
+    <Image
+      src={img}
+      alt=""
+      width={lateral ? 1000 : 1920}
+      height={lateral ? Math.round((1000 * img.height) / img.width) : 900}
+      loading="eager"
+      fetchpriority="high"
+    />
   </div>
 
   <div class="wrap">

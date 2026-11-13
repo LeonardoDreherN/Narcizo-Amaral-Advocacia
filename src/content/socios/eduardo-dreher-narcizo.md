@@ -6,11 +6,14 @@ oab: OAB/SC 54.574
 nucleo: civil
 order: 1
 role: Coordenador do Núcleo de Direito Civil
-lead: Especialista em Direito Público, com trajetória em assessoria jurídica a órgãos públicos. Hoje coordena o Núcleo de Direito Civil do escritório.
+lead: Coordena o Núcleo de Direito Civil do escritório, com atuação em contratos, imóveis, família e sucessões. É especialista em Direito Público e tem trajetória em assessoria jurídica a órgãos públicos.
 summary: >-
-  Especialista em Direito Público, prestou assessoria jurídica a órgãos públicos ao longo
-  de sua trajetória. Essa experiência lhe deu um conhecimento aprofundado sobre o
-  funcionamento da administração pública e sobre a sua relação com os particulares.
+  Coordena o Núcleo de Direito Civil da Narcizo & Amaral e atua em demandas cíveis com
+  foco em contratos, questões imobiliárias, família e sucessões e na prevenção de
+  litígios. É especialista em Direito Público e prestou assessoria jurídica a órgãos
+  públicos. Essa experiência lhe deu uma visão precisa da relação entre a administração
+  pública e os particulares, que ele aplica hoje na defesa dos interesses de pessoas,
+  famílias e empresas.
 photo: ../../assets/img/eduardo.jpg
 also:
   - Assessoria empresarial
@@ -19,18 +22,14 @@ also:
   - Responsabilidade civil
 background:
   - Especialista em Direito Público
-  - Assessoria jurídica a órgãos públicos
 ---
 
-Eduardo Dreher Narcizo é o sócio que coordena o Núcleo de Direito Civil do
-escritório.
+Coordena o Núcleo de Direito Civil do escritório, com atuação em questões
+imobiliárias, sucessórias e familiares, contratos, cobranças, responsabilidade
+civil e assessoria empresarial. Conduz cada caso de acordo com suas
+particularidades, em busca de soluções práticas e seguras, construídas a partir
+da realidade de cada cliente.
 
-Especialista em Direito Público, prestou assessoria jurídica a órgãos públicos ao
-longo de sua trajetória. Essa experiência lhe deu um conhecimento aprofundado
-sobre o funcionamento da administração pública e sobre a sua relação com os
-particulares.
-
-No Direito Civil, atua em questões imobiliárias, sucessórias e familiares, além
-de assessorias empresariais, contratos, cobranças e responsabilidade civil.
-Conduz cada caso de acordo com sua singularidade, em busca de soluções práticas
-e seguras, construídas a partir da realidade de cada cliente.
+É especialista em Direito Público e prestou assessoria jurídica a órgãos públicos
+ao longo de sua trajetória. Essa experiência lhe deu um conhecimento aprofundado
+do funcionamento da administração pública e de sua relação com os particulares.

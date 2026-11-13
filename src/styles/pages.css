@@ -11,21 +11,10 @@
 .about-txt p { color: var(--ink-soft); max-width: 48ch; margin-top: 36px; }
 .about-txt .link { margin-top: 44px; }
 
-.collage { position: relative; padding-bottom: 14%; max-width: 640px; margin-left: auto; width: 100%; }
-.collage .c1 { width: 68%; margin-left: auto; aspect-ratio: 4 / 5; max-height: 62vh; }
-.collage .c2 {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 40%;
-  aspect-ratio: 1;
-  border: clamp(8px, 1.2vw, 16px) solid var(--paper);
-  box-sizing: content-box;
-  margin-left: -16px;
-}
+.collage { max-width: 560px; margin-left: auto; width: 100%; }
+.collage .c1 { width: 100%; aspect-ratio: 4 / 5; max-height: 74vh; }
 @media (max-width: 860px) {
   .about { grid-template-columns: minmax(0, 1fr); }
-  .collage .c2 { margin-left: 0; }
 }
 
 /* ---------- blocos de texto das páginas internas ---------- */
@@ -136,7 +125,7 @@
 }
 
 /* ---------- perfil do sócio ---------- */
-.prof-hero { position: relative; background: var(--graphite-2); color: var(--on-deep); overflow: hidden; }
+.prof-hero { position: relative; background: var(--navy); color: var(--on-deep); overflow: hidden; }
 .prof-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
@@ -156,12 +145,22 @@
 .prof-txt .meta b { color: var(--bronze-light); font-weight: 500; }
 .prof-txt .lead { margin-top: 28px; max-width: 46ch; color: rgba(241, 241, 236, 0.82); font-size: 1.08rem; }
 .prof-img { position: relative; align-self: stretch; min-height: 520px; }
-.prof-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; }
+/* A foto preenche o painel sem ditar a altura do topo: retratos de
+   proporções diferentes deixam os dois perfis com o mesmo tamanho. */
+.prof-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 12%;
+}
 .prof-img::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--graphite-2) 0%, rgba(29, 32, 35, 0) 28%);
+  background: linear-gradient(90deg, var(--navy) 0%, rgba(33, 40, 65, 0) 30%);
 }
 @media (max-width: 900px) {
   .prof-grid { grid-template-columns: minmax(0, 1fr); }
@@ -171,7 +170,7 @@
     aspect-ratio: 4 / 4.4;
     margin-inline: calc(-1 * var(--gut)) calc(-1 * var(--gut-r));
   }
-  .prof-img::after { background: linear-gradient(180deg, rgba(29, 32, 35, 0) 55%, var(--graphite-2) 100%); }
+  .prof-img::after { background: linear-gradient(180deg, rgba(33, 40, 65, 0) 55%, var(--navy) 100%); }
   .prof-txt { padding-top: 0; margin-top: -80px; position: relative; }
 }
 
@@ -338,7 +337,7 @@
 @media (max-width: 860px) { .area-body { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- artigo ---------- */
-.art-head { padding-block: clamp(150px, 20vh, 200px) 0; background: var(--graphite); color: var(--on-deep); }
+.art-head { padding-block: clamp(150px, 20vh, 200px) 0; background: var(--navy); color: var(--on-deep); }
 .art-head h1 { font-size: clamp(2.3rem, 1.3rem + 3.3vw, 4.6rem); max-width: 20ch; letter-spacing: -0.02em; }
 .art-head .pub-meta {
   color: var(--on-deep-soft);
@@ -347,7 +346,7 @@
   margin-bottom: clamp(44px, 5vw, 70px);
 }
 .art-head .pub-meta b { color: var(--bronze-light); }
-.art-cover-wrap { background: linear-gradient(var(--graphite) 50%, var(--paper) 50%); }
+.art-cover-wrap { background: linear-gradient(var(--navy) 50%, var(--paper) 50%); }
 .art-cover { aspect-ratio: 21 / 9; max-height: 60vh; width: 100%; }
 
 .article { max-width: 720px; margin-inline: auto; }

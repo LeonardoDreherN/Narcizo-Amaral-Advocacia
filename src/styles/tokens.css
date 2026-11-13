@@ -1,5 +1,5 @@
-/* Paleta e escala do layout: grafite + papel + verde-petróleo, serifa leve
-   em escala grande e sans discreta para leitura. */
+/* Paleta e escala do layout: grafite + papel + azul-marinho (o mesmo das
+   paredes do escritório), serifa leve em escala grande e sans discreta. */
 :root {
   --paper: #ffffff;
   --stone: #f1f0eb;
@@ -8,10 +8,16 @@
   --line: #e2e1dc;
   --graphite: #2b2e31;
   --graphite-2: #1d2023;
-  --deep: #0f2328;
-  --deep-2: #0b1b1f;
+  /* Azul da parede atrás dos sócios (#24253a na foto), um pouco mais azul:
+     fundo dos topos das páginas internas e dos perfis. */
+  --navy: #212841;
+  --navy-2: #181d31;
+  /* Contato, faixas de chamada e cortina: o mesmo azul dos topos. */
+  --deep: var(--navy);
+  --deep-2: #0f1729;
   --on-deep: #f1f1ec;
-  --on-deep-soft: #9fb1b3;
+  /* 7:1 sobre o marinho do rodapé */
+  --on-deep-soft: #a3adc2;
   /* Bronze decorativo: bordas, marcadores e seleção. Elemento não-textual
      exige 3:1, e este atinge 3,47 sobre branco. */
   --bronze: #a9834f;
