@@ -125,7 +125,7 @@
 .pp-img img { object-position: 50% 0%; }
 .pp h2 { font-size: clamp(2.2rem, 1.4rem + 2.6vw, 4rem); }
 .pp .meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.88rem; color: var(--ink-soft); margin-top: 18px; }
-.pp .meta b { font-weight: 500; color: var(--bronze); }
+.pp .meta b { font-weight: 500; color: var(--bronze-text); }
 .pp .prose { margin-top: 30px; }
 .pp .tags { margin-top: 30px; }
 .pp .link { margin-top: 38px; }
@@ -193,7 +193,9 @@
 
 /* ---------- coluna lateral ---------- */
 .aside { position: sticky; top: 110px; display: grid; gap: 34px; }
-.aside h4 {
+/* Títulos da coluna lateral: são h2 para não pular nível na hierarquia da
+   página; o tamanho pequeno é decisão visual, não de estrutura. */
+.aside h2 {
   font-family: var(--sans);
   font-size: 0.78rem;
   font-weight: 500;
@@ -213,7 +215,7 @@
   font-size: 1rem;
   transition: padding 0.5s var(--ease), color 0.3s;
 }
-.aside li a:hover { padding-left: 10px; color: var(--bronze); }
+.aside li a:hover { padding-left: 10px; color: var(--bronze-text); }
 .aside li a svg { width: 14px; height: 14px; flex-shrink: 0; }
 .aside li span { display: block; padding: 14px 0; font-size: 0.98rem; color: var(--ink-soft); }
 @media (max-width: 860px) { .aside { position: static; } }
@@ -329,7 +331,7 @@
 .coord-card { background: var(--stone); padding: clamp(24px, 2.6vw, 36px); display: grid; gap: 18px; }
 .coord-card .who { display: flex; gap: 18px; align-items: center; }
 .coord-card img { width: 84px; height: 104px; object-fit: cover; object-position: 50% 2%; }
-.coord-card h4 { font-family: var(--serif); font-size: 1.45rem; line-height: 1.15; font-weight: 300; margin: 0; }
+.coord-card h2 { font-family: var(--serif); font-size: 1.45rem; line-height: 1.15; font-weight: 300; margin: 0; }
 .coord-card small { display: block; font-size: 0.8rem; color: var(--ink-soft); margin-top: 6px; }
 .coord-card .btn { justify-content: space-between; }
 .note { font-size: 0.86rem; color: var(--ink-soft); border-left: 1px solid var(--bronze); padding-left: 18px; }

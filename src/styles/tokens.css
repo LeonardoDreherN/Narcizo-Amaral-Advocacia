@@ -12,7 +12,12 @@
   --deep-2: #0b1b1f;
   --on-deep: #f1f1ec;
   --on-deep-soft: #9fb1b3;
+  /* Bronze decorativo: bordas, marcadores e seleção. Elemento não-textual
+     exige 3:1, e este atinge 3,47 sobre branco. */
   --bronze: #a9834f;
+  /* Bronze para texto sobre fundo claro. O decorativo reprova em AA para
+     texto pequeno (3,04 sobre a pedra); este atinge 4,66. */
+  --bronze-text: #84663e;
   --bronze-light: #d0a46c;
   --danger: #a2412f;
 

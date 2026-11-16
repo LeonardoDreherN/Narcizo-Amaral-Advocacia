@@ -396,18 +396,19 @@
   margin-top: 20px;
   color: var(--ink-soft);
 }
-.pub-meta b { font-weight: 500; color: var(--bronze); }
+.pub-meta b { font-weight: 500; color: var(--bronze-text); }
+.pub h2,
 .pub h3 {
   font-size: clamp(1.3rem, 1.1rem + 0.5vw, 1.6rem);
   line-height: 1.22;
   margin-top: 12px;
   letter-spacing: -0.005em;
 }
-.pub h3 span {
+.pub :is(h2, h3) span {
   background: linear-gradient(currentColor, currentColor) left 100% / 0 1px no-repeat;
   transition: background-size 0.7s var(--ease);
 }
-.pub:hover h3 span { background-size: 100% 1px; }
+.pub:hover :is(h2, h3) span { background-size: 100% 1px; }
 @media (max-width: 960px) { .pubs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .pubs { grid-template-columns: minmax(0, 1fr); } }
 

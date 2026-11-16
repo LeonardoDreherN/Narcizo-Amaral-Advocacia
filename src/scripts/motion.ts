@@ -190,6 +190,11 @@ function settleLater(tl: gsap.core.Timeline, ms: number) {
 
 function splitWords(el: HTMLElement, mask = true): HTMLElement[] {
   if (el.dataset.split === 'done') return all('.wi', el);
+
+  // Guardado antes de mexer no DOM: depois da quebra, o texto fica espalhado
+  // em dezenas de elementos.
+  const textoOriginal = (el.textContent ?? '').replace(/\s+/g, ' ').trim();
+
   const walk = (node: Node) => {
     Array.from(node.childNodes).forEach((n) => {
       if (n.nodeType === Node.TEXT_NODE) {
@@ -214,7 +219,13 @@ function splitWords(el: HTMLElement, mask = true): HTMLElement[] {
       }
     });
   };
-  walk(el);
+  // Quebrar o texto em <span> inline-block faz alguns leitores de tela
+  // anunciarem palavra por palavra, com pausas. Preserva-se o texto original
+  // como nome acessível e esconde-se a marcação da animação da árvore de
+  // acessibilidade, para quem ouve a página receber a frase inteira.
+  if (!el.getAttribute('aria-label')) el.setAttribute('aria-label', textoOriginal);
+  all('.w', el).forEach((w) => w.setAttribute('aria-hidden', 'true'));
+
   el.dataset.split = 'done';
   return all('.wi', el);
 }

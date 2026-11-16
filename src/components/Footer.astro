@@ -26,7 +26,7 @@ const ano = new Date().getFullYear();
       </div>
 
       <div>
-        <h5>Escritório</h5>
+        <h2 class="ftr-tit">Escritório</h2>
         <ul>
           <li><a href="/escritorio">Sobre</a></li>
           <li><a href="/socios">Sócios</a></li>
@@ -36,7 +36,7 @@ const ano = new Date().getFullYear();
       </div>
 
       <div>
-        <h5>Atuação</h5>
+        <h2 class="ftr-tit">Atuação</h2>
         <ul>
           <li><a href="/atuacao#nucleo-civil">Núcleo de Direito Civil</a></li>
           <li><a href="/atuacao#nucleo-penal">Núcleo de Direito Penal</a></li>
@@ -45,7 +45,7 @@ const ano = new Date().getFullYear();
       </div>
 
       <div>
-        <h5>Contato</h5>
+        <h2 class="ftr-tit">Contato</h2>
         <ul>
           <li><a href="/contato">Agendar reunião</a></li>
           <li><a href={CONTACT.instagram} target="_blank" rel="noopener">Instagram</a></li>
@@ -54,7 +54,7 @@ const ano = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="ftr-big" aria-hidden="true">{SITE.name}</div>
+    <div class="ftr-big" aria-hidden="true" style={`--marca: "${SITE.name}"`}></div>
 
     <div class="ftr-bot">
       <span>{SITE.legalName} · Registro {SITE.oab}</span>
