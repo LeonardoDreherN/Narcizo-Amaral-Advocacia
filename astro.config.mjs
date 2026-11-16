@@ -1,5 +1,6 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 
 // A URL pública do site. Enquanto não houver domínio próprio, use a URL que a
 // hospedagem fornece, definindo SITE_URL no ambiente de build.
@@ -8,7 +9,12 @@ const SITE = process.env.SITE_URL || 'https://narcizo-amaral.pages.dev';
 
 export default defineConfig({
   site: SITE,
+
+  // O site continua estático: só a rota que recebe o formulário é renderizada
+  // sob demanda, marcada com `prerender = false` no próprio arquivo.
   output: 'static',
+  adapter: vercel(),
+
   trailingSlash: 'never',
 
   build: {

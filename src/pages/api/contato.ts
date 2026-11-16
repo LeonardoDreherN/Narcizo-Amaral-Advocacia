@@ -1,11 +1,13 @@
+import type { APIRoute } from 'astro';
+
 /**
  * Recebe o formulário de contato.
  *
- * Roda como Cloudflare Pages Function: o arquivo em functions/api/contato.ts
- * atende POST em /api/contato, junto do site estático, sem servidor próprio.
+ * Roda como função sob demanda na Vercel. O resto do site continua estático:
+ * só esta rota é renderizada no servidor, por causa do `prerender = false`.
  *
- * Variáveis de ambiente necessárias (painel da Cloudflare, em
- * Settings > Environment variables):
+ * Variáveis de ambiente necessárias (painel da Vercel, em
+ * Settings > Environment Variables):
  *   RESEND_API_KEY  chave da API do Resend
  *   MAIL_TO         e-mail que recebe as mensagens
  *   MAIL_FROM       remetente em domínio verificado no Resend
@@ -14,12 +16,7 @@
  * para a página de confirmação, para o site poder ir ao ar antes do e-mail
  * estar configurado.
  */
-
-interface Env {
-  RESEND_API_KEY?: string;
-  MAIL_TO?: string;
-  MAIL_FROM?: string;
-}
+export const prerender = false;
 
 /** Limites de tamanho, alinhados aos maxlength do formulário. */
 const LIMITES = {
@@ -30,7 +27,7 @@ const LIMITES = {
   mensagem: 2000,
 } as const;
 
-/** O runtime de Workers devolve File ou string; só interessa string. */
+/** O runtime devolve File ou string; só interessa string. */
 const texto = (v: File | string | null, max: number): string =>
   typeof v === 'string' ? v.trim().slice(0, max) : '';
 
@@ -39,13 +36,14 @@ const escapeHtml = (s: string): string =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!,
   );
 
-function redirect(url: URL, path: string, status = 303): Response {
-  return new Response(null, { status, headers: { Location: new URL(path, url).href } });
+function redirect(base: URL, caminho: string): Response {
+  return new Response(null, {
+    status: 303,
+    headers: { Location: new URL(caminho, base).href },
+  });
 }
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
-  const url = new URL(request.url);
-
+export const POST: APIRoute = async ({ request, url }) => {
   let form: FormData;
   try {
     form = await request.formData();
@@ -89,13 +87,14 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     `<p><strong>Nome:</strong> ${escapeHtml(nome)}</p>`,
     email ? `<p><strong>E-mail:</strong> ${escapeHtml(email)}</p>` : '',
     telefone ? `<p><strong>Telefone:</strong> ${escapeHtml(telefone)}</p>` : '',
-    `<p><strong>Mensagem:</strong></p>`,
+    '<p><strong>Mensagem:</strong></p>',
     `<p>${escapeHtml(mensagem).replace(/\n/g, '<br>')}</p>`,
     `<hr><p style="color:#666;font-size:12px">Enviado pelo site em ${recebidoEm}.</p>`,
   ]
     .filter(Boolean)
     .join('\n');
 
+  const env = import.meta.env;
   if (!env.RESEND_API_KEY || !env.MAIL_TO || !env.MAIL_FROM) {
     console.warn('[contato] variaveis de e-mail ausentes; mensagem nao enviada', {
       assunto,
@@ -134,5 +133,5 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 };
 
 /** GET em /api/contato não tem uso: manda de volta ao formulário. */
-export const onRequestGet: PagesFunction<Env> = ({ request }) =>
-  redirect(new URL(request.url), '/contato', 302);
+export const GET: APIRoute = ({ url }) =>
+  new Response(null, { status: 302, headers: { Location: new URL('/contato', url).href } });
