@@ -396,7 +396,7 @@ function intro(first: boolean) {
     const words = splitWords(title);
     tl.fromTo('.hero-media img', { scale: 1.18 }, { scale: 1, duration: 2.4, ease: EASE }, 0)
       .from(words, { yPercent: 115, duration: 1.3, ease: EASE, stagger: 0.07 }, 0.15)
-      .from('.hero-sub, .hero-actions, .hero-foot', { y: 24, opacity: 0, duration: 1.1, ease: EASE, stagger: 0.12 }, 0.65);
+      .from('.hero-actions, .hero-foot', { y: 24, opacity: 0, duration: 1.1, ease: EASE, stagger: 0.12 }, 0.65);
   }
 
   // Só os topos que não são retrato recebem a ampliação de abertura. No

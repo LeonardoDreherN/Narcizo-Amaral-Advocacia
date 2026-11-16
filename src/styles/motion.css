@@ -158,7 +158,7 @@ html.lenis, html.lenis body { height: auto; }
 /* Até o script definir os estados iniciais, as entradas ficam ocultas.
    O <head> remove esta classe em 4 s se algo der errado. */
 .motion-pending :is([data-up], [data-stagger-item], [data-title], [data-reveal], [data-line],
-  .hero-title, .hero-sub, .hero-actions, .hero-foot) {
+  .hero-title, .hero-actions, .hero-foot) {
   visibility: hidden;
 }
 
@@ -167,8 +167,9 @@ html.lenis, html.lenis body { height: auto; }
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
-  padding: 0 0.06em 0.12em 0;
-  margin: 0 -0.06em -0.12em 0;
+  /* Folga em cima para não cortar o acento de maiúsculas (Á, É, Ó) */
+  padding: 0.22em 0.06em 0.12em 0;
+  margin: -0.22em -0.06em -0.12em 0;
 }
 .w-open { overflow: visible; }
 .wi { display: inline-block; will-change: transform; }

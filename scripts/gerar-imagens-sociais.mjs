@@ -26,7 +26,7 @@ const COR = {
   tinta: '#1D2023',
   claro: '#F1F1EC',
   bronze: '#D0A46C',
-  suave: '#9FB1B3',
+  suave: '#A3ADC2',
 };
 
 const OG = { largura: 1200, altura: 630 };

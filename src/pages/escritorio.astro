@@ -9,8 +9,9 @@ import PlaceBlock from '~/components/PlaceBlock.astro';
 import CtaBand from '~/components/CtaBand.astro';
 import { NUCLEOS, type NucleoId } from '~/data/site';
 import { breadcrumbSchema } from '~/lib/schema';
-import escritorio from '~/assets/img/escritorio.jpg';
-import detalhe from '~/assets/img/detalhe.jpg';
+import sala from '~/assets/img/escritorio-sala.jpg';
+import sociosJuntos from '~/assets/img/socios-juntos.jpg';
+import estacao from '~/assets/img/estacao.jpg';
 import familia from '~/assets/img/familia.jpg';
 import juri from '~/assets/img/juri.jpg';
 
@@ -30,7 +31,7 @@ const siteUrl = Astro.site!.origin;
   <PageHero
     title="Um escritório estruturado para o atendimento próximo e exclusivo"
     trail={trail}
-    photo={escritorio}
+    photo={sala}
     emphasis
   />
 
@@ -48,8 +49,8 @@ const siteUrl = Astro.site!.origin;
     <div class="wrap split">
       <div class="px" data-reveal data-parallax style="aspect-ratio:4/5;max-height:78vh">
         <Image
-          src={escritorio}
-          alt="Sala de reuniões do escritório em Palhoça"
+          src={sociosJuntos}
+          alt="Os sócios Eduardo Dreher Narcizo e Wagner Renan Amaral de Souza no escritório"
           width={760}
           height={950}
           loading="lazy"
@@ -70,8 +71,8 @@ const siteUrl = Astro.site!.origin;
         </div>
         <div class="px" data-reveal style="aspect-ratio:1;max-width:260px;margin-top:48px">
           <Image
-            src={detalhe}
-            alt="Detalhe do escritório: nicho de madeira com busto"
+            src={estacao}
+            alt="Estação de trabalho do escritório, com mesa de madeira e cadeiras"
             width={520}
             height={520}
             loading="lazy"

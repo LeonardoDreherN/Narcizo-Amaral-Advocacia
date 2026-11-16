@@ -7,6 +7,7 @@ import PageHero from '~/components/PageHero.astro';
 import CtaBand from '~/components/CtaBand.astro';
 import { NUCLEOS } from '~/data/site';
 import { breadcrumbSchema } from '~/lib/schema';
+import sociosJuntos from '~/assets/img/socios-juntos.jpg';
 
 const socios = (await getCollection('socios')).sort((a, b) => a.data.order - b.data.order);
 const areas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
@@ -24,6 +25,8 @@ const siteUrl = Astro.site!.origin;
     title="Os sócios"
     lead="Cada cliente é recebido diretamente pelos sócios, que acompanham pessoalmente o caso do primeiro contato até a solução."
     trail={trail}
+    photo={sociosJuntos}
+    side
   />
 
   <section class="sec">

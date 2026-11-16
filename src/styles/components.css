@@ -14,7 +14,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 68% 50%;
+  object-position: 50% 50%;
 }
 .hero::before {
   content: "";
@@ -22,8 +22,8 @@
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, rgba(29, 32, 35, 0.62) 0%, rgba(29, 32, 35, 0.25) 45%, rgba(29, 32, 35, 0) 70%),
-    linear-gradient(180deg, rgba(29, 32, 35, 0.35), transparent 22%);
+    linear-gradient(90deg, rgba(16, 19, 30, 0.78) 0%, rgba(16, 19, 30, 0.5) 42%, rgba(16, 19, 30, 0.1) 72%),
+    linear-gradient(180deg, rgba(16, 19, 30, 0.4), transparent 24%);
 }
 .hero-in {
   min-height: clamp(640px, 100svh, 1000px);
@@ -34,16 +34,13 @@
   padding-bottom: 90px;
 }
 .hero-title {
-  font-size: clamp(2.5rem, 1.2rem + 4.2vw, 5.6rem);
-  line-height: 1.04;
-  letter-spacing: -0.025em;
-  max-width: 16ch;
+  font-size: clamp(2.1rem, 0.9rem + 3.1vw, 4.3rem);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
 }
-.hero-sub {
-  font-family: var(--serif);
-  font-size: clamp(1.15rem, 1rem + 0.5vw, 1.5rem);
-  color: var(--bronze-light);
-  margin-top: 22px;
+.hero-title > span { display: block; }
+@media (min-width: 900px) {
+  .hero-title > span { white-space: nowrap; }
 }
 .hero-actions {
   display: flex;
@@ -68,10 +65,10 @@
   .hero::before {
     background: linear-gradient(
       180deg,
-      rgba(29, 32, 35, 0.45) 0%,
-      rgba(29, 32, 35, 0.35) 35%,
-      rgba(29, 32, 35, 0.88) 72%,
-      rgba(29, 32, 35, 0.95) 100%
+      rgba(18, 22, 38, 0.45) 0%,
+      rgba(18, 22, 38, 0.35) 35%,
+      rgba(18, 22, 38, 0.88) 72%,
+      rgba(18, 22, 38, 0.95) 100%
     );
   }
   .hero-in { justify-content: flex-end; padding-top: 120px; padding-bottom: 110px; }
@@ -81,7 +78,7 @@
 /* ---------- hero das páginas internas ---------- */
 .phero {
   position: relative;
-  background: var(--graphite);
+  background: var(--navy);
   color: var(--on-deep);
   overflow: hidden;
   isolation: isolate;
@@ -94,13 +91,30 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(90deg, rgba(29, 32, 35, 0.7), rgba(29, 32, 35, 0.25));
+  background: linear-gradient(90deg, rgba(33, 40, 65, 0.78), rgba(33, 40, 65, 0.3));
 }
 .phero.photo::before {
-  background: linear-gradient(90deg, rgba(20, 24, 27, 0.86) 0%, rgba(20, 24, 27, 0.55) 55%, rgba(20, 24, 27, 0.3) 100%);
+  background: linear-gradient(90deg, rgba(24, 29, 49, 0.88) 0%, rgba(24, 29, 49, 0.58) 55%, rgba(24, 29, 49, 0.3) 100%);
 }
 .phero.photo .phero-bg img { object-position: 50% 50%; }
 .phero.grayscale .phero-bg img { filter: grayscale(0.35); }
+.phero.side .phero-bg { left: auto; width: min(46%, 760px); }
+.phero.side .phero-bg img { object-position: var(--focus, 50% 18%); }
+.phero.side::before {
+  /* Escurece só o alto, para o menu ler bem sobre a foto. */
+  background: linear-gradient(180deg, rgba(24, 29, 49, 0.6), rgba(24, 29, 49, 0) 24%);
+}
+/* O azul entra na foto a partir da borda do painel, em qualquer largura. */
+.phero.side .phero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--navy) 0%, rgba(33, 40, 65, 0.6) 14%, rgba(33, 40, 65, 0) 40%);
+}
+@media (max-width: 760px) {
+  .phero.side .phero-bg { width: 100%; }
+  .phero.side::before { background: linear-gradient(180deg, rgba(33, 40, 65, 0.55), rgba(33, 40, 65, 0.92) 70%); }
+}
 .phero h1 { font-size: clamp(2.5rem, 1.4rem + 3.8vw, 5.2rem); max-width: 16ch; letter-spacing: -0.022em; }
 .phero .lead {
   margin-top: 26px;
@@ -147,7 +161,10 @@
   display: block;
   color: var(--on-deep);
   text-decoration: none;
+  width: 100%;
   aspect-ratio: 5 / 5.6;
+  /* A foto inteira e o nome cabem na tela sem rolar */
+  max-height: calc(100svh - 110px);
   overflow: hidden;
   isolation: isolate;
 }
@@ -263,8 +280,9 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgba(15, 18, 20, 0.05) 25%, rgba(15, 18, 20, 0.82) 100%);
+  background: linear-gradient(180deg, rgba(15, 18, 20, 0.12) 0%, rgba(15, 18, 20, 0.38) 38%, rgba(15, 18, 20, 0.9) 100%);
 }
+.card-body { text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45); }
 .card:hover img { transform: scale(1.06); }
 .card-body { padding: clamp(18px, 2vw, 28px); }
 .card h3 { font-size: clamp(1.35rem, 1.1rem + 0.7vw, 1.75rem); letter-spacing: 0; }
