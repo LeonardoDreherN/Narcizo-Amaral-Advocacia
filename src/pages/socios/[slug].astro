@@ -6,7 +6,7 @@ import Base from '~/layouts/Base.astro';
 import Icon from '~/components/Icon.astro';
 import Crumbs from '~/components/Crumbs.astro';
 import CtaBand from '~/components/CtaBand.astro';
-import { NUCLEOS } from '~/data/site';
+import { NUCLEOS, instagramUrl } from '~/data/site';
 import { breadcrumbSchema } from '~/lib/schema';
 
 export const getStaticPaths = (async () => {
@@ -21,7 +21,7 @@ interface Props {
   socio: CollectionEntry<'socios'>;
 }
 const { socio } = Astro.props;
-const { name, treat, first, oab, nucleo, role, lead, photo, also, background } = socio.data;
+const { name, treat, first, oab, nucleo, role, lead, photo, also, background, instagram } = socio.data;
 
 const { Content } = await render(socio);
 
@@ -42,6 +42,7 @@ const schema = {
   description: lead,
   worksFor: { '@type': 'LegalService', '@id': `${siteUrl}/#escritorio` },
   url: `${siteUrl}/socios/${socio.id}`,
+  ...(instagram ? { sameAs: [instagramUrl(instagram)] } : {}),
 };
 ---
 
@@ -106,6 +107,21 @@ const schema = {
             {also.map((t) => <span class="tag">{t}</span>)}
           </div>
         </div>
+
+        {
+          instagram && (
+            <div>
+              <h2>Onde acompanhar</h2>
+              <ul>
+                <li>
+                  <a href={instagramUrl(instagram)} target="_blank" rel="noopener">
+                    @{instagram} <Icon name="arrow" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          )
+        }
 
         <div>
           <h2>Formação e trajetória</h2>

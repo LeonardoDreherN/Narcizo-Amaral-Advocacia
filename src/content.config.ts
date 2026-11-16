@@ -52,6 +52,8 @@ const socios = defineCollection({
       /** Forma curta: "Dr. Eduardo". */
       first: z.string(),
       oab: z.string(),
+      /** Perfil do sócio no Instagram, sem o @. */
+      instagram: z.string().optional(),
       nucleo: NUCLEO,
       role: z.string(),
       /** Linha de apresentação, usada no topo do perfil. */

@@ -115,6 +115,8 @@
 .pp h2 { font-size: clamp(2.2rem, 1.4rem + 2.6vw, 4rem); }
 .pp .meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.88rem; color: var(--ink-soft); margin-top: 18px; }
 .pp .meta b { font-weight: 500; color: var(--bronze-text); }
+.pp .meta a { color: var(--bronze-text); text-decoration: none; border-bottom: 1px solid currentColor; }
+.pp .meta a:hover { color: var(--ink); }
 .pp .prose { margin-top: 30px; }
 .pp .tags { margin-top: 30px; }
 .pp .link { margin-top: 38px; }
@@ -337,13 +339,19 @@
 @media (max-width: 860px) { .area-body { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- artigo ---------- */
-.art-head { padding-block: clamp(150px, 20vh, 200px) 0; background: var(--navy); color: var(--on-deep); }
+/* O respiro embaixo é padding do próprio cabeçalho, não margem do filho:
+   com padding-bottom zero, a margem do .pub-meta colapsava para fora e
+   abria uma faixa branca entre o cabeçalho e a moldura da foto. */
+.art-head {
+  padding-block: clamp(150px, 20vh, 200px) clamp(44px, 5vw, 70px);
+  background: var(--navy);
+  color: var(--on-deep);
+}
 .art-head h1 { font-size: clamp(2.3rem, 1.3rem + 3.3vw, 4.6rem); max-width: 20ch; letter-spacing: -0.02em; }
 .art-head .pub-meta {
   color: var(--on-deep-soft);
   font-size: 0.86rem;
   margin-top: 30px;
-  margin-bottom: clamp(44px, 5vw, 70px);
 }
 .art-head .pub-meta b { color: var(--bronze-light); }
 .art-cover-wrap { background: linear-gradient(var(--navy) 50%, var(--paper) 50%); }

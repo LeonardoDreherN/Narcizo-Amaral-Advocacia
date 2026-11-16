@@ -3,6 +3,7 @@ name: Eduardo Dreher Narcizo
 treat: Dr. Eduardo Dreher Narcizo
 first: Dr. Eduardo
 oab: OAB/SC 54.574
+instagram: advogado.eduardo
 nucleo: civil
 order: 1
 role: Coordenador do Núcleo de Direito Civil

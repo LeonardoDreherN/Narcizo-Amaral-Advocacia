@@ -345,13 +345,15 @@ function setup() {
     );
   });
 
-  // Mapa: aproxima devagar até o pino.
-  all('.place-map img').forEach((img) => {
-    gsap.set(img, { transformOrigin: '64% 40%' });
+  // Mapa: aproxima devagar até o marcador. A escala é aplicada ao conjunto
+  // foto + pulso, com origem no ponto do escritório (64% x 40% da imagem),
+  // para que o pulso continue coincidindo com o marcador em qualquer escala.
+  all('.place-map-in').forEach((el) => {
+    gsap.set(el, { transformOrigin: '64% 40%' });
     gsap.fromTo(
-      img,
+      el,
       { scale: 1.14 },
-      { scale: 1, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom 40%', scrub: true } },
+      { scale: 1, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom 40%', scrub: true } },
     );
   });
 
