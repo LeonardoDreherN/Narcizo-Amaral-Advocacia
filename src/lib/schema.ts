@@ -1,4 +1,4 @@
-import { ADDRESS, CONTACT, SITE } from '~/data/site';
+import { ADDRESS, CONTACT, SITE, instagramUrl } from '~/data/site';
 
 /**
  * Dados estruturados do escritório (JSON-LD).
@@ -30,7 +30,7 @@ export function legalServiceSchema(siteUrl: string) {
       longitude: ADDRESS.lon,
     },
     areaServed: { '@type': 'Country', name: 'Brasil' },
-    sameAs: [CONTACT.instagram],
+    sameAs: CONTACT.instagrams.map((i) => instagramUrl(i.handle)),
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],

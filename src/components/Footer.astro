@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { SITE, CONTACT, ADDRESS } from '~/data/site';
+import { SITE, CONTACT, ADDRESS, instagramUrl } from '~/data/site';
 
 const areas = (await getCollection('areas')).sort((a, b) => a.data.order - b.data.order);
 const destaque = [
@@ -48,7 +48,15 @@ const ano = new Date().getFullYear();
         <h2 class="ftr-tit">Contato</h2>
         <ul>
           <li><a href="/contato">Agendar reunião</a></li>
-          <li><a href={CONTACT.instagram} target="_blank" rel="noopener">Instagram</a></li>
+          {
+            CONTACT.instagrams.map((i) => (
+              <li>
+                <a href={instagramUrl(i.handle)} target="_blank" rel="noopener">
+                  Instagram · {i.quem}
+                </a>
+              </li>
+            ))
+          }
           <li><a href={`tel:${CONTACT.phoneRaw}`}>{CONTACT.phone}</a></li>
         </ul>
       </div>

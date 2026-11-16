@@ -50,14 +50,19 @@ import mapa from '~/assets/img/mapa.jpg';
     </div>
 
     <div class="place-map">
-      <Image
-        src={mapa}
-        alt={`Mapa do bairro ${ADDRESS.district}, em ${ADDRESS.city}, com a localização do escritório`}
-        width={1200}
-        height={900}
-        loading="lazy"
-      />
-      <span class="pin" aria-hidden="true"></span>
+      {/* Foto e pulso ficam no mesmo elemento para que o parallax transforme
+          os dois juntos: separados, a escala movia só a imagem e o pulso
+          deixava de coincidir com o marcador. */}
+      <div class="place-map-in">
+        <Image
+          src={mapa}
+          alt={`Mapa do bairro ${ADDRESS.district}, em ${ADDRESS.city}, com a localização do escritório`}
+          width={1200}
+          height={900}
+          loading="lazy"
+        />
+        <span class="pin" aria-hidden="true"></span>
+      </div>
     </div>
   </div>
 </section>

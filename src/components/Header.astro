@@ -1,5 +1,5 @@
 ---
-import { NAV, SITE, CONTACT, ADDRESS } from '~/data/site';
+import { NAV, SITE, CONTACT, ADDRESS, instagramUrl } from '~/data/site';
 import { caminhoLimpo } from '~/lib/url';
 
 interface Props {
@@ -61,7 +61,14 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
     <span>
       <a href={`tel:${CONTACT.phoneRaw}`}>{CONTACT.phone}</a>
       ·
-      <a href={CONTACT.instagram} target="_blank" rel="noopener">{CONTACT.instagramHandle}</a>
+      {
+        CONTACT.instagrams.map((i, n) => (
+          <>
+            {n > 0 && ' · '}
+            <a href={instagramUrl(i.handle)} target="_blank" rel="noopener">@{i.handle}</a>
+          </>
+        ))
+      }
     </span>
   </div>
 </div>

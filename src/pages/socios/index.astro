@@ -5,7 +5,7 @@ import Base from '~/layouts/Base.astro';
 import Icon from '~/components/Icon.astro';
 import PageHero from '~/components/PageHero.astro';
 import CtaBand from '~/components/CtaBand.astro';
-import { NUCLEOS } from '~/data/site';
+import { NUCLEOS, instagramUrl } from '~/data/site';
 import { breadcrumbSchema } from '~/lib/schema';
 import sociosJuntos from '~/assets/img/socios-juntos.jpg';
 
@@ -53,6 +53,13 @@ const siteUrl = Astro.site!.origin;
                   <b>Sócio</b>
                   <span>{s.data.oab}</span>
                   <span>{s.data.role}</span>
+                  {
+                    s.data.instagram && (
+                      <a href={instagramUrl(s.data.instagram)} target="_blank" rel="noopener">
+                        @{s.data.instagram}
+                      </a>
+                    )
+                  }
                 </div>
 
                 <div class="prose" data-up>

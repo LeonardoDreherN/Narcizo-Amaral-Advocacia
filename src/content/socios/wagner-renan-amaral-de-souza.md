@@ -3,6 +3,7 @@ name: Wagner Renan Amaral de Souza
 treat: Dr. Wagner Renan Amaral de Souza
 first: Dr. Wagner
 oab: OAB/SC 54.618
+instagram: wagnerdesouza.adv
 nucleo: penal
 order: 2
 role: Coordenador do Núcleo de Direito Penal

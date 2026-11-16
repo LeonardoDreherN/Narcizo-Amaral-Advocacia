@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Icon from './Icon.astro';
-import { ADDRESS, CONTACT } from '~/data/site';
+import { ADDRESS, CONTACT, instagramUrl } from '~/data/site';
 
 interface Props {
   /** Pré-seleciona a área no campo Assunto. */
@@ -33,7 +33,15 @@ const areas = (await getCollection('areas')).sort((a, b) => {
       <div data-stagger-item>
         <dt>Instagram</dt>
         <dd>
-          <a href={CONTACT.instagram} target="_blank" rel="noopener">{CONTACT.instagramHandle}</a>
+          {
+            CONTACT.instagrams.map((i, n) => (
+              <>
+                {n > 0 && <br />}
+                <a href={instagramUrl(i.handle)} target="_blank" rel="noopener">@{i.handle}</a>
+                <span class="dd-quem"> · {i.quem}</span>
+              </>
+            ))
+          }
         </dd>
       </div>
       <div data-stagger-item>

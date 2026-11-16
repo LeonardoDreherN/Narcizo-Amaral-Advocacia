@@ -24,8 +24,11 @@ export const CONTACT = {
   /** Formato E.164, para links tel: e WhatsApp. */
   phoneRaw: '+5548984586534',
   whatsapp: 'https://wa.me/5548984586534',
-  instagram: 'https://www.instagram.com/advogado.eduardo/',
-  instagramHandle: '@advogado.eduardo',
+  /** Perfis dos sócios. O escritório não tem conta própria. */
+  instagrams: [
+    { handle: 'advogado.eduardo', quem: 'Dr. Eduardo' },
+    { handle: 'wagnerdesouza.adv', quem: 'Dr. Wagner' },
+  ],
   hours: 'Com hora marcada, até as 19h',
 } as const;
 
@@ -70,6 +73,9 @@ export const NUCLEOS = {
 } as const;
 
 export type NucleoId = keyof typeof NUCLEOS;
+
+/** URL do perfil a partir do nome de usuário, sem o @. */
+export const instagramUrl = (handle: string) => `https://www.instagram.com/${handle}/`;
 
 /** Aviso exigido pelo Provimento 205/2021 do CFOAB nos conteúdos informativos. */
 export const DISCLAIMER =
