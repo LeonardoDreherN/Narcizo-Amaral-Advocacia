@@ -8,7 +8,9 @@ HTML pré-renderizado, servido direto da CDN.
 
 ## Requisitos
 
-- Node 26.13.1 (a versão está fixada em `.node-version`)
+- Node 24.22.3 (a versão está fixada em `.node-version`)
+  A Vercel não suporta Node 26 em funções, então o projeto fica no 24 para que
+  o ambiente local seja igual ao de produção.
 - npm 11+
 
 O projeto usa [fnm](https://github.com/Schniz/fnm) para gerenciar a versão do Node.
@@ -83,44 +85,53 @@ Para deixar um rascunho fora do site, acrescente `draft: true` ao frontmatter.
 O tempo de leitura e a data formatada são calculados automaticamente, e a publicação
 já aparece na home, na listagem, na página da área e no sitemap.
 
-## Deploy na Cloudflare Pages
+## Deploy na Vercel
 
-1. No painel da Cloudflare, vá em **Workers & Pages → Create → Pages → Connect to Git**
-   e selecione este repositório.
-2. Configuração de build:
-   - **Framework preset:** Astro
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-   - **Node version:** defina a variável `NODE_VERSION` com `26.13.1`
+1. Em [vercel.com/new](https://vercel.com/new), importe este repositório do GitHub.
+2. A Vercel detecta o Astro sozinha. Confirme:
+   - **Framework Preset:** Astro
+   - **Build Command:** `npm run build`
+   - **Output Directory:** deixe em branco (o adaptador cuida disso)
 3. Cada push na branch `main` publica automaticamente.
 
-### Formulário de contato
+A versão do Node vem de `.node-version`; não é preciso configurar nada no painel.
 
-O formulário é recebido por `functions/api/contato.ts`, que roda como Pages Function
-e envia a mensagem por e-mail via [Resend](https://resend.com).
+O site é estático: as 37 páginas são pré-renderizadas no build. A única exceção é
+`/api/contato`, marcada com `prerender = false`, que roda como função sob demanda.
 
-Defina em **Settings → Environment variables**:
+### Variáveis de ambiente
 
-| Variável | Valor |
+Em **Settings → Environment Variables**:
+
+| Variável | Para quê |
 | --- | --- |
-| `RESEND_API_KEY` | chave da API do Resend |
-| `MAIL_TO` | e-mail que recebe as mensagens |
+| `SITE_URL` | a URL pública do site, sem barra final |
+| `INDEXAR` | `true` apenas quando estiver no domínio definitivo |
+| `RESEND_API_KEY` | chave da API do [Resend](https://resend.com) |
+| `MAIL_TO` | e-mail que recebe as mensagens do formulário |
 | `MAIL_FROM` | remetente em domínio verificado no Resend |
 
-Sem essas variáveis o site funciona e o visitante vê a página de confirmação, mas
-**a mensagem não é enviada** — só registrada no log da função. Configure antes de
-divulgar o site.
+**Enquanto não houver domínio próprio, não defina `INDEXAR`.** Sem ela, todas as
+páginas saem com `noindex` e o `robots.txt` bloqueia os buscadores — o que evita
+que o endereço provisório seja indexado e passe a competir com o definitivo.
 
-O formulário tem campo-armadilha contra robôs e revalidação no servidor. Se o volume
-de spam crescer, o próximo passo é o [Turnstile](https://www.cloudflare.com/products/turnstile/)
-da Cloudflare.
+Sem as variáveis do Resend o site funciona e o visitante vê a página de
+confirmação, mas **a mensagem não é enviada** — apenas registrada no log da
+função. Configure antes de divulgar o site.
+
+O formulário tem campo-armadilha contra robôs e revalidação no servidor. Se o
+volume de spam crescer, o próximo passo é adicionar um desafio como o Turnstile.
+
+### Cabeçalhos
+
+Os cabeçalhos de segurança e de cache ficam em `vercel.json`.
 
 ## Pendências antes de ir ao ar
 
-- [ ] Trocar o domínio em `astro.config.mjs` (`SITE`) e em `public/robots.txt`
+- [ ] Definir `SITE_URL` e `INDEXAR=true` na Vercel quando o domínio existir
 - [x] ~~Criar a imagem de compartilhamento em `public/og.jpg` (1200×630)~~
 - [x] ~~Criar `public/apple-touch-icon.png` (180×180)~~
-- [ ] Configurar as variáveis do Resend
+- [ ] Configurar as variáveis do Resend na Vercel
 - [ ] Cadastrar o site no Google Search Console e enviar o sitemap
 
 ## Origem
