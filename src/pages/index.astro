@@ -9,7 +9,9 @@ import PlaceBlock from '~/components/PlaceBlock.astro';
 import ContactBlock from '~/components/ContactBlock.astro';
 import { SITE, NUCLEOS, type NucleoId } from '~/data/site';
 import { legalServiceSchema } from '~/lib/schema';
-import hero from '~/assets/img/hero-colunas.jpg';
+// Capa: folhas de papel em grafite com a foto das colunas na abertura,
+// gerada a partir de hero-colunas.jpg.
+import hero from '~/assets/img/hero-moldura.jpg';
 import sociosJuntos from '~/assets/img/socios-juntos.jpg';
 
 const socios = (await getCollection('socios')).sort((a, b) => a.data.order - b.data.order);
@@ -35,7 +37,7 @@ const siteUrl = Astro.site!.origin;
         src={hero}
         alt=""
         width={1920}
-        height={1421}
+        height={1200}
         loading="eager"
         fetchpriority="high"
       />

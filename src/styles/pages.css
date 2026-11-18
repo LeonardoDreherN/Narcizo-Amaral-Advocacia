@@ -146,7 +146,9 @@
 }
 .prof-txt .meta b { color: var(--bronze-light); font-weight: 500; }
 .prof-txt .lead { margin-top: 28px; max-width: 46ch; color: rgba(241, 241, 236, 0.82); font-size: 1.08rem; }
-.prof-img { position: relative; align-self: stretch; min-height: 520px; }
+/* overflow: o parallax desloca a foto; sem o corte, no celular ela vazava
+   para baixo do quadro, com uma borda reta atrás do nome. */
+.prof-img { position: relative; align-self: stretch; min-height: 520px; overflow: hidden; }
 /* A foto preenche o painel sem ditar a altura do topo: retratos de
    proporções diferentes deixam os dois perfis com o mesmo tamanho. */
 .prof-img img {
@@ -172,7 +174,8 @@
     aspect-ratio: 4 / 4.4;
     margin-inline: calc(-1 * var(--gut)) calc(-1 * var(--gut-r));
   }
-  .prof-img::after { background: linear-gradient(180deg, rgba(33, 40, 65, 0) 55%, var(--navy) 100%); }
+  /* Chega ao azul puro antes da borda, para não sobrar um fio da foto. */
+  .prof-img::after { inset: 0 0 -1px; background: linear-gradient(180deg, rgba(33, 40, 65, 0) 50%, var(--navy) 90%); }
   .prof-txt { padding-top: 0; margin-top: -80px; position: relative; }
 }
 
