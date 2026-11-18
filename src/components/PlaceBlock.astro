@@ -50,9 +50,8 @@ import mapa from '~/assets/img/mapa.jpg';
     </div>
 
     <div class="place-map">
-      {/* Foto e pulso ficam no mesmo elemento para que o parallax transforme
-          os dois juntos: separados, a escala movia só a imagem e o pulso
-          deixava de coincidir com o marcador. */}
+      {/* O marcador do escritório já vem desenhado na imagem do mapa. O
+          wrapper é o elemento que o parallax transforma. */}
       <div class="place-map-in">
         <Image
           src={mapa}
@@ -61,7 +60,6 @@ import mapa from '~/assets/img/mapa.jpg';
           height={900}
           loading="lazy"
         />
-        <span class="pin" aria-hidden="true"></span>
       </div>
     </div>
   </div>
