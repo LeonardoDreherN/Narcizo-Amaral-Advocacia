@@ -185,21 +185,8 @@ html.lenis, html.lenis body { height: auto; }
   place-items: center;
 }
 .has-loader #loader { display: grid; }
-.ld-mark { display: flex; flex-direction: column; align-items: center; gap: 14px; }
-.ld-name {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(2rem, 1.2rem + 3vw, 3.6rem);
-  letter-spacing: -0.01em;
-  line-height: 1;
-}
-.ld-sub {
-  font-size: 0.68rem;
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-  color: var(--on-deep-soft);
-  padding-left: 0.42em;
-}
+.ld-mark { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.ld-logo { width: min(260px, 56vw); color: var(--on-deep); }
 .ld-bar { width: min(220px, 50vw); height: 1px; background: rgba(241, 241, 236, 0.16); position: relative; overflow: hidden; }
 .ld-bar i { position: absolute; inset: 0; background: var(--bronze-light); transform: scaleX(0); transform-origin: left; }
 
@@ -216,9 +203,7 @@ html.lenis, html.lenis body { height: auto; }
   transform: translateY(100%);
 }
 #curtain span {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(1.6rem, 1rem + 2vw, 2.6rem);
+  width: min(180px, 44vw);
   color: var(--on-deep);
   opacity: 0;
 }
@@ -226,20 +211,23 @@ html.lenis, html.lenis body { height: auto; }
 /* Header: some ao rolar para baixo, volta ao rolar para cima */
 .hdr { transition: transform 0.6s var(--ease), background-color 0.4s, color 0.4s, box-shadow 0.4s; }
 .hdr.is-hidden { transform: translateY(-110%); }
-/* Navegadores sem timeline de scroll: o mesmo estado sólido via classe */
+/* Header sólido ao rolar, aplicado pelo motion.ts */
 .hdr.is-solid {
+  --logo-c: var(--brand);
   background: rgba(255, 255, 255, 0.96);
   color: var(--ink);
   box-shadow: 0 1px 0 var(--line);
   backdrop-filter: blur(12px);
 }
 .hdr.is-solid .hdr-in { height: 74px; }
+@media (max-width: 1000px) { .hdr.is-solid .hdr-in { height: 68px; } }
+.hdr.is-solid .hdr-cta:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
 /* Rodapé revelado por baixo da página (só em telas largas) */
 .reveal-footer main { position: relative; z-index: 2; background: var(--paper); }
 .reveal-footer .ftr { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1; }
 
-/* Bolha "Ver perfil" e foto que segue o cursor na lista de áreas */
+/* Bolha "Ver perfil" que segue o cursor sobre as fotos dos sócios */
 .cursor {
   position: fixed;
   left: 0;
@@ -259,23 +247,9 @@ html.lenis, html.lenis body { height: auto; }
   opacity: 0;
   transform: scale(0);
 }
-.float-img {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: min(300px, 22vw);
-  aspect-ratio: 3 / 4;
-  pointer-events: none;
-  z-index: 40;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-}
-.float-img img { width: 100%; height: 100%; object-fit: cover; }
-.float-img.penal img { filter: grayscale(1); }
 @media (hover: none), (pointer: coarse) {
-  .cursor, .float-img { display: none; }
+  .cursor { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #loader, #curtain, .cursor, .float-img { display: none !important; }
+  #loader, #curtain, .cursor { display: none !important; }
 }

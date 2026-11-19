@@ -33,15 +33,7 @@ const areas = (await getCollection('areas')).sort((a, b) => {
       <div data-stagger-item>
         <dt>Instagram</dt>
         <dd>
-          {
-            CONTACT.instagrams.map((i, n) => (
-              <>
-                {n > 0 && <br />}
-                <a href={instagramUrl(i.handle)} target="_blank" rel="noopener">@{i.handle}</a>
-                <span class="dd-quem"> · {i.quem}</span>
-              </>
-            ))
-          }
+          <a href={instagramUrl(CONTACT.instagram)} target="_blank" rel="noopener">@{CONTACT.instagram}</a>
         </dd>
       </div>
       <div data-stagger-item>

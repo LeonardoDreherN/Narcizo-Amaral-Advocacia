@@ -18,11 +18,10 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
 
 <header class="hdr" data-solid={solid ? '' : undefined}>
   <div class="wrap hdr-in">
-    {/* Sem aria-label: o texto visível já nomeia o link, e um rótulo que
-        omitisse "Advogados Associados" divergiria do que se vê na tela. */}
+    {/* Logo oficial, aplicada como máscara: a cor acompanha o header
+        (clara sobre o topo escuro, azul da marca quando ele fica sólido). */}
     <a class="logo" href="/">
-      <b>{SITE.name}</b>
-      <small>{SITE.tagline}</small>
+      <span class="marca marca-h" role="img" aria-label={`${SITE.name} Advogados, página inicial`}></span>
     </a>
 
     <nav class="nav" aria-label="Principal">
@@ -61,14 +60,7 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
     <span>
       <a href={`tel:${CONTACT.phoneRaw}`}>{CONTACT.phone}</a>
       ·
-      {
-        CONTACT.instagrams.map((i, n) => (
-          <>
-            {n > 0 && ' · '}
-            <a href={instagramUrl(i.handle)} target="_blank" rel="noopener">@{i.handle}</a>
-          </>
-        ))
-      }
+      <a href={instagramUrl(CONTACT.instagram)} target="_blank" rel="noopener">@{CONTACT.instagram}</a>
     </span>
   </div>
 </div>

@@ -43,6 +43,7 @@
 }
 @keyframes hdr-solid {
   to {
+    --logo-c: var(--brand);
     background-color: rgba(255, 255, 255, 0.96);
     color: var(--ink);
     box-shadow: 0 1px 0 var(--line);
@@ -53,19 +54,25 @@
 
 .logo {
   display: flex;
-  flex-direction: column;
   text-decoration: none;
   line-height: 1;
   flex-shrink: 0;
 }
-.logo b { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; letter-spacing: -0.005em; }
-.logo small {
-  font-size: 0.6rem;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  margin-top: 7px;
-  opacity: 0.78;
+
+/* Logos oficiais (public/marca), usadas como máscara: o desenho vem do PNG
+   e a cor vem do CSS, então uma única imagem serve em fundo claro e escuro. */
+.marca {
+  display: block;
+  background-color: var(--logo-c, currentColor);
+  -webkit-mask: var(--marca) center / contain no-repeat;
+  mask: var(--marca) center / contain no-repeat;
 }
+.marca-h { --marca: url('/marca/horizontal.png'); aspect-ratio: 1000 / 146; width: clamp(180px, 17vw, 260px); }
+.marca-v { --marca: url('/marca/vertical.png'); aspect-ratio: 800 / 397; width: 210px; }
+.marca-mono { --marca: url('/marca/monograma.png'); aspect-ratio: 700 / 316; }
+
+/* Header sólido: a logo assume o azul da marca */
+.hdr[data-solid] { --logo-c: var(--brand); }
 
 .nav { display: flex; align-items: center; gap: clamp(18px, 2.6vw, 44px); }
 .nav a { text-decoration: none; font-size: 0.95rem; position: relative; padding: 6px 0; }
@@ -196,7 +203,7 @@
   gap: 40px;
   padding-block: clamp(64px, 7vw, 100px) clamp(48px, 5vw, 72px);
 }
-.ftr .logo b { font-size: 1.75rem; }
+.ftr .marca { color: var(--on-deep); }
 .ftr-note { font-size: 0.88rem; color: var(--on-deep-soft); margin-top: 24px; max-width: 30ch; }
 /* Títulos das colunas. São h2 para não pular nível depois dos h3 da página;
    o tamanho visual vem daqui, não da hierarquia. */

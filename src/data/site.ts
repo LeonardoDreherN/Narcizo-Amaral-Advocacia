@@ -24,11 +24,9 @@ export const CONTACT = {
   /** Formato E.164, para links tel: e WhatsApp. */
   phoneRaw: '+5548984586534',
   whatsapp: 'https://wa.me/5548984586534',
-  /** Perfis dos sócios. O escritório não tem conta própria. */
-  instagrams: [
-    { handle: 'advogado.eduardo', quem: 'Dr. Eduardo' },
-    { handle: 'wagnerdesouza.adv', quem: 'Dr. Wagner' },
-  ],
+  /** Instagram do escritório, sem o @. O perfil de cada sócio fica no
+      próprio cadastro (src/content/socios) e aparece na página dele. */
+  instagram: 'narcizoamaral.adv',
   hours: 'Com hora marcada, até as 19h',
 } as const;
 

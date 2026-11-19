@@ -20,7 +20,6 @@ gsap.registerPlugin(ScrollTrigger);
 const root = document.documentElement;
 const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
-const CSS_SCROLL_TL = CSS.supports('animation-timeline: scroll()');
 const EASE = 'expo.out';
 
 /**
@@ -77,6 +76,17 @@ const all = <T extends Element = HTMLElement>(sel: string, scope: ParentNode = d
 /* ------------------------------------------------------------------ */
 /* Inicialização                                                       */
 /* ------------------------------------------------------------------ */
+
+/* Header sólido ao rolar. Roda inclusive com "reduzir movimento": não é
+   animação, é legibilidade. A versão só em CSS (animation-timeline em
+   chrome.css) é desfeita pelo minificador do build, que funde as
+   propriedades num shorthand que os navegadores descartam. */
+function syncSolidHeader() {
+  const hdr = document.querySelector('.hdr');
+  if (hdr && !hdr.hasAttribute('data-solid')) hdr.classList.toggle('is-solid', window.scrollY > 30);
+}
+window.addEventListener('scroll', syncSolidHeader, { passive: true });
+document.addEventListener('astro:page-load', syncSolidHeader);
 
 if (REDUCE) {
   root.classList.remove('motion-js', 'motion-pending', 'has-loader');
@@ -172,7 +182,6 @@ function teardown() {
   ScrollTrigger.getAll().forEach((t) => t.kill());
   timelines.splice(0).forEach((t) => t.kill());
   hideCursor();
-  hideFloat();
 }
 
 /** Se a aba estiver em segundo plano, o requestAnimationFrame para; isso
@@ -414,8 +423,8 @@ function intro(first: boolean) {
 
 function runLoader() {
   const loader = document.getElementById('loader');
-  const name = loader?.querySelector<HTMLElement>('.ld-name');
-  if (!loader || !name) {
+  const logo = loader?.querySelector<HTMLElement>('.ld-logo');
+  if (!loader || !logo) {
     root.classList.remove('has-loader');
     intro(true);
     return;
@@ -432,8 +441,8 @@ function runLoader() {
 
   const tl = gsap
     .timeline({ onComplete: finish })
-    .from(splitWords(name), { yPercent: 115, duration: 1, ease: EASE, stagger: 0.08 })
-    .from('.ld-sub', { opacity: 0, y: 10, duration: 0.7, ease: EASE }, '-=.6')
+    // A logo sobe de dentro de uma máscara, como os títulos do site.
+    .fromTo(logo, { clipPath: 'inset(100% 0% 0% 0%)', y: 24 }, { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 1.2, ease: 'expo.out' })
     .to('.ld-bar i', { scaleX: 1, duration: 0.9, ease: 'expo.inOut' }, '-=.5')
     .to(loader, { yPercent: -100, duration: 1, ease: 'expo.inOut' }, '+=.1')
     .add(() => intro(true), '<');
@@ -506,7 +515,6 @@ function onScroll() {
   const hdr = document.querySelector('.hdr');
   if (!hdr) return;
   const y = window.scrollY;
-  if (!CSS_SCROLL_TL && !hdr.hasAttribute('data-solid')) hdr.classList.toggle('is-solid', y > 30);
   if (y > lastY + 4 && y > 320) hdr.classList.add('is-hidden');
   else if (y < lastY - 4 || y < 320) hdr.classList.remove('is-hidden');
   lastY = y;
@@ -526,13 +534,11 @@ function footerReveal() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Cursores: "Ver perfil" e foto flutuante na lista de áreas           */
+/* Cursor "Ver perfil" sobre as fotos dos sócios                       */
 /* ------------------------------------------------------------------ */
 
 let cursorX: ((v: number) => void) | null = null;
 let cursorY: ((v: number) => void) | null = null;
-let floatX: ((v: number) => void) | null = null;
-let floatY: ((v: number) => void) | null = null;
 
 function setupCursors() {
   if (!FINE) return;
@@ -540,20 +546,12 @@ function setupCursors() {
     'mousemove',
     (e) => {
       const cursor = document.getElementById('cursor');
-      const float = document.getElementById('float-img');
       if (cursor && !cursorX) {
         cursorX = gsap.quickTo(cursor, 'x', { duration: 0.5, ease: 'power3' });
         cursorY = gsap.quickTo(cursor, 'y', { duration: 0.5, ease: 'power3' });
       }
-      if (float && !floatX) {
-        gsap.set(float, { xPercent: -50, yPercent: -50 });
-        floatX = gsap.quickTo(float, 'x', { duration: 0.7, ease: 'power3' });
-        floatY = gsap.quickTo(float, 'y', { duration: 0.7, ease: 'power3' });
-      }
       cursorX?.(e.clientX);
       cursorY?.(e.clientY);
-      floatX?.(e.clientX + 40);
-      floatY?.(e.clientY);
     },
     { passive: true },
   );
@@ -563,36 +561,16 @@ function hideCursor() {
   const cursor = document.getElementById('cursor');
   if (cursor) gsap.to(cursor, { scale: 0, opacity: 0, duration: 0.3, ease: EASE });
 }
-function hideFloat() {
-  const float = document.getElementById('float-img');
-  if (float) gsap.to(float, { autoAlpha: 0, scale: 0.85, rotation: 0, duration: 0.3, ease: EASE });
-}
 
 function bindHoverTargets() {
   if (!FINE) return;
   const cursor = document.getElementById('cursor');
-  const float = document.getElementById('float-img');
-  const floatImg = float?.querySelector('img');
 
   if (cursor) {
     gsap.set(cursor, { scale: 0, opacity: 0 });
     all('.partner, .pp-img').forEach((el) => {
       el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.5, ease: EASE }));
       el.addEventListener('mouseleave', hideCursor);
-    });
-  }
-
-  if (float && floatImg) {
-    gsap.set(float, { autoAlpha: 0, scale: 0.85 });
-    all('.arow').forEach((row) => {
-      const thumb = row.querySelector<HTMLImageElement>('.thumb');
-      row.addEventListener('mouseenter', () => {
-        const src = row.dataset.float || thumb?.currentSrc || thumb?.src;
-        if (src) floatImg.src = src;
-        float.classList.toggle('penal', row.classList.contains('penal'));
-        gsap.to(float, { autoAlpha: 1, scale: 1, rotation: -2, duration: 0.6, ease: EASE });
-      });
-      row.addEventListener('mouseleave', hideFloat);
     });
   }
 }

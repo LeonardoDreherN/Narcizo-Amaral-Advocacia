@@ -59,7 +59,7 @@ const fullTitle = path === '/' ? title : `${title} · ${SITE.name}`;
     <Font cssVariable="--font-sans" preload />
 
     <meta name="theme-color" content="#1d2023" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -108,14 +108,12 @@ const fullTitle = path === '/' ? title : `${title} · ${SITE.name}`;
 
     <div id="loader" aria-hidden="true">
       <div class="ld-mark">
-        <div class="ld-name">{SITE.name}</div>
-        <div class="ld-sub">{SITE.tagline}</div>
+        <span class="marca marca-mono ld-logo"></span>
         <div class="ld-bar"><i></i></div>
       </div>
     </div>
-    <div id="curtain" aria-hidden="true" transition:persist><span>{SITE.name}</span></div>
+    <div id="curtain" aria-hidden="true" transition:persist><span class="marca marca-mono"></span></div>
     <div class="cursor" id="cursor" aria-hidden="true" transition:persist>Ver perfil</div>
-    <div class="float-img" id="float-img" aria-hidden="true" transition:persist><img alt="" /></div>
 
     <Header solid={solidHeader} />
 

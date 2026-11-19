@@ -10,6 +10,8 @@
   --graphite-2: #1d2023;
   /* Azul da parede atrás dos sócios (#24253a na foto), um pouco mais azul:
      fundo dos topos das páginas internas e dos perfis. */
+  /* Cor das logos oficiais do escritório. */
+  --brand: #08003c;
   --navy: #212841;
   --navy-2: #181d31;
   /* Contato, faixas de chamada e cortina: o mesmo azul dos topos. */

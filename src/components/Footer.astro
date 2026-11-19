@@ -16,8 +16,7 @@ const ano = new Date().getFullYear();
     <div class="ftr-top">
       <div>
         <a class="logo" href="/">
-          <b>{SITE.name}</b>
-          <small>{SITE.tagline}</small>
+          <span class="marca marca-v" role="img" aria-label={`${SITE.name} Advogados, página inicial`}></span>
         </a>
         <p class="ftr-note">
           Sede em {ADDRESS.city}, {ADDRESS.state === 'SC' ? 'Santa Catarina' : ADDRESS.state}.
@@ -48,15 +47,9 @@ const ano = new Date().getFullYear();
         <h2 class="ftr-tit">Contato</h2>
         <ul>
           <li><a href="/contato">Agendar reunião</a></li>
-          {
-            CONTACT.instagrams.map((i) => (
-              <li>
-                <a href={instagramUrl(i.handle)} target="_blank" rel="noopener">
-                  Instagram · {i.quem}
-                </a>
-              </li>
-            ))
-          }
+          <li>
+            <a href={instagramUrl(CONTACT.instagram)} target="_blank" rel="noopener">Instagram</a>
+          </li>
           <li><a href={`tel:${CONTACT.phoneRaw}`}>{CONTACT.phone}</a></li>
         </ul>
       </div>

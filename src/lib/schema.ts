@@ -30,7 +30,7 @@ export function legalServiceSchema(siteUrl: string) {
       longitude: ADDRESS.lon,
     },
     areaServed: { '@type': 'Country', name: 'Brasil' },
-    sameAs: CONTACT.instagrams.map((i) => instagramUrl(i.handle)),
+    sameAs: [instagramUrl(CONTACT.instagram)],
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
