@@ -171,7 +171,12 @@
   .prof-img {
     order: -1;
     min-height: 0;
-    aspect-ratio: 4 / 4.4;
+    align-self: start;
+    /* Largura e altura explícitas, de ponta a ponta da tela. Com aspect-ratio
+       dentro do grid, o Safari do iPhone calculava a largura a partir da
+       altura e a foto ocupava só metade da tela. */
+    width: calc(100% + var(--gut) + var(--gut-r));
+    height: min(110vw, 560px);
     margin-inline: calc(-1 * var(--gut)) calc(-1 * var(--gut-r));
   }
   /* Chega ao azul puro antes da borda, para não sobrar um fio da foto. */
