@@ -27,7 +27,7 @@ export const CONTACT = {
   /** Instagram do escritório, sem o @. O perfil de cada sócio fica no
       próprio cadastro (src/content/socios) e aparece na página dele. */
   instagram: 'narcizoamaral.adv',
-  hours: 'Com hora marcada, até as 19h',
+  hours: 'Com hora marcada, até às 19h',
 } as const;
 
 export const ADDRESS = {
